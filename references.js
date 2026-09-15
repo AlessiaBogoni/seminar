@@ -1,0 +1,193 @@
+const BIBLIOGRAPHY = {
+  "thaler2016": {
+    author: "Thaler, Richard H.",
+    year: 2016,
+    title: "Behavioral Economics: Past, present, and future",
+    journal: "American Economic Review, 106(7), 1577-1600",
+    tracks: ["BS", "MS"]
+  },
+  "allcott2011": {
+    author: "Allcott, Hunt",
+    year: 2011,
+    title: "Social norms and energy conservation",
+    journal: "Journal of Public Economics, 95(9-10), 1082-1095",
+    tracks: ["BS"]
+  },
+  "liebe2021": {
+    author: "Liebe, Ulf and Gewinner, Jasmin and Diekmann, Andreas",
+    year: 2021,
+    title: "Large and persistent effects of green energy defaults in the household and business sectors",
+    journal: "Nature Human Behaviour, 5, 576-585",
+    tracks: ["BS"]
+  },
+  "dellavigna2006": {
+    author: "DellaVigna, Stefano and Malmendier, Ulrike",
+    year: 2006,
+    title: "Paying not to go to the gym",
+    journal: "American Economic Review, 96(3), 694-719",
+    tracks: ["BS"]
+  },
+  "henkel2025": {
+    author: "Henkel, Lukas and Fehr, Ernst and Senn, Julien and Epper, Thomas",
+    year: 2025,
+    title: "Beliefs about inequality and the nature of support for redistribution",
+    journal: "Journal of Public Economics, 246, 105350",
+    tracks: ["MS"]
+  },
+  "settele2022": {
+    author: "Settele, Sonja",
+    year: 2022,
+    title: "How do beliefs about the gender wage gap affect the demand for public policy?",
+    journal: "American Economic Journal: Economic Policy, 14(2), 475-508",
+    tracks: ["BS"]
+  },
+  "bhargava2015": {
+    author: "Bhargava, Saurabh and Manoli, Dayanand",
+    year: 2015,
+    title: "Psychological frictions and the incomplete take-up of social benefits: Evidence from an IRS field experiment",
+    journal: "American Economic Review, 105(11), 3489-3529",
+    tracks: ["BS"]
+  },
+  "card2012": {
+    author: "Card, David and Mas, Alexandre Oriol and Moretti, Enrico and Saez, Emmanuel",
+    year: 2012,
+    title: "Inequality at work: The effect of peer salaries on job satisfaction",
+    journal: "American Economic Review, 102(6), 2981-3003",
+    tracks: ["BS"]
+  },
+  "gangl2022": {
+    author: "Gangl, Katharina and Walter, Anna and Van Lange, Paul A. M.",
+    year: 2022,
+    title: "Implicit reminders of reputation and nature reduce littering more than explicit information on injunctive norms and monetary costs",
+    journal: "Journal of Environmental Psychology, 84, 101914",
+    tracks: ["BS"]
+  },
+  "gravert2025": {
+    author: "Gravert, Christina and Mormann, Milica",
+    year: 2025,
+    title: "In-store food promotions increase sales as well as household food waste",
+    journal: "Scientific Reports, 15(1), 18035",
+    tracks: ["BS"]
+  },
+  "altmann2014": {
+    author: "Altmann, Steffen and Traxler, Christian",
+    year: 2014,
+    title: "Nudges at the dentist",
+    journal: "European Economic Review, 72, 19-38",
+    tracks: ["BS"]
+  },
+  "karlan2007": {
+    author: "Karlan, Dean and List, John A.",
+    year: 2007,
+    title: "Does price matter in charitable giving? Evidence from a large-scale natural field experiment",
+    journal: "American Economic Review, 97(5), 1774-1793",
+    tracks: ["BS"]
+  },
+  "ariely2009": {
+    author: "Ariely, Dan and Bracha, Anat and Meier, Stephan",
+    year: 2009,
+    title: "Doing Good or Doing Well? Image Motivation and Monetary Incentives in Behaving Prosocially",
+    journal: "American Economic Review, 99(1), 544-555",
+    tracks: ["BS"]
+  },
+  "andre2024": {
+    author: "Andre, Peter and Boneva, Teodora and Chopra, Felix and Falk, Armin",
+    year: 2024,
+    title: "Globally representative evidence on the actual and perceived support for climate action",
+    journal: "Nature Climate Change, 14, 253-259",
+    tracks: ["MS"]
+  },
+  "altmann2019": {
+    author: "Altmann, Steffen and Falk, Armin and Heidhues, Paul and Jayaraman, Rajshri and Teirlinck, Marrit",
+    year: 2019,
+    title: "Defaults and donations: Evidence from a field experiment",
+    journal: "The Review of Economics and Statistics, 101(5), 808-826",
+    tracks: ["MS"]
+  },
+  "altmann2012": {
+    author: "Altmann, Steffen and Falk, Armin and Wibral, Matthias",
+    year: 2012,
+    title: "Promotions and incentives: The case of multistage elimination tournaments",
+    journal: "Journal of Labor Economics, 30(1), 149-174",
+    tracks: ["MS"]
+  },
+  "abeler2010": {
+    author: "Abeler, Johannes and Altmann, Steffen and Kube, Sebastian and Wibral, Matthias",
+    year: 2010,
+    title: "Gift exchange and workers' fairness concerns: When equality is unfair",
+    journal: "Journal of the European Economic Association, 8(6), 1299-1324",
+    tracks: ["MS"]
+  },
+  "haaland2023designing": {
+    author: "Haaland, Ingar and Roth, Christopher and Wohlfart, Johannes",
+    year: 2023,
+    title: "Designing information provision experiments",
+    journal: "Journal of Economic Literature, 61(1), 3-40",
+  },
+  "stantcheva2023run": {
+    author: "Stantcheva, Stefanie",
+    year: 2023,
+    title: "How to run surveys: A guide to creating your own identifying variation and revealing the invisible",
+    journal: "Annual Review of Economics, 15(1), 205-234",
+  },
+  "acemoglu2018a": {
+    author: "Acemoglu, Daron and Restrepo, Pascual",
+    year: 2018,
+    title: "Artificial intelligence, automation, and work",
+    journal: "The Economics of Artificial Intelligence: An Agenda, 197-236",
+  },
+  "acemoglu2018b": {
+    author: "Acemoglu, Daron and Restrepo, Pascual",
+    year: 2018,
+    title: "The race between man and machine: Implications of technology for growth, factor shares, and employment",
+    journal: "American Economic Review, 108(6), 1488-1542",
+  },
+  "acemoglu2020": {
+    author: "Acemoglu, Daron and Restrepo, Pascual",
+    year: 2020,
+    title: "Unpacking skill bias: Automation and new tasks",
+    journal: "AEA Papers and Proceedings, 110, 356-361",
+  },
+  "cappelen2013": {
+    author: "Cappelen, Alexander W. and Konow, James and Sørensen, Erik Ø. and Tungodden, Bertil",
+    year: 2013,
+    title: "Just luck: An experimental study of risk-taking and fairness",
+    journal: "The American Economic Review, 103(4), 1398-1413",
+  },
+  "cappelen2016": {
+    author: "Cappelen, Alexander W. and Konow, James and Sørensen, Erik Ø. and Tungodden, Bertil",
+    year: 2016,
+    title: "Just luck: An experimental study of risk-taking and fairness: Erratum",
+    journal: "American Economic Review, 106(2), 239-240",
+  },
+  "fehr2006": {
+    author: "Fehr, Ernst and Schmidt, Klaus M.",
+    year: 2006,
+    title: "The economics of fairness, reciprocity and altruism - Experimental evidence and new theories",
+    journal: "Handbook of the Economics of Giving, Altruism and Reciprocity, Vol. 1, 615-691",
+  },
+  "gintis2005": {
+    author: "Gintis, Herbert and Bowles, Samuel and Boyd, Robert and Fehr, Ernst",
+    year: 2005,
+    title: "Moral sentiments and material interests: The foundations of cooperation in economic life",
+    journal: "The MIT Press",
+  },
+  "konow2000": {
+    author: "Konow, James",
+    year: 2000,
+    title: "Fair shares: Accountability and cognitive dissonance in allocation decisions",
+    journal: "American Economic Review, 90(4), 1072-1092",
+  },
+  "konow2023": {
+    author: "Konow, James",
+    year: 2023,
+    title: "Moral salience and conditional altruism: Reconciling Jekyll and Hyde paradoxes",
+    journal: "Economics Faculty Works, No. 45",
+  },
+  "fehr1999": {
+    author: "Fehr, Ernst and Schmidt, Klaus M.",
+    year: 1999,
+    title: "A theory of fairness, competition, and cooperation",
+    journal: "The Quarterly Journal of Economics, 114(3), 817-868",
+  }
+};

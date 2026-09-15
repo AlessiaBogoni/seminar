@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Resource Hub</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --primary: #3b82f6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1.5rem;
+    }
+    .container { max-width: 900px; width: 100%; }
+    
+    .header-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    h1 { font-size: 1.8rem; background: linear-gradient(135deg, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    p { color: var(--text-muted); font-size: 0.95rem; margin-top: 0.3rem; }
+    
+    .track-selector { display: flex; gap: 0.5rem; align-items: center; }
+    .track-btn {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .track-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); box-shadow: 0 0 12px rgba(59, 130, 246, 0.4); }
+
+    h2 { font-size: 1.2rem; margin-bottom: 1rem; color: #cbd5e1; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+    
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+    }
+    .card:hover { border-color: var(--primary); transform: translateY(-4px); box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.2); }
+    .card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+    .card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 1.5rem; }
+    .card-footer { font-size: 0.8rem; font-weight: 600; color: #60a5fa; display: flex; align-items: center; gap: 0.3rem; }
+
+    /* MANDATORY GATE MODAL OVERLAY */
+    #track-modal {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    #track-modal.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      max-width: 480px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+    .modal-card h2 { font-size: 1.5rem; color: #f8fafc; margin-bottom: 0.75rem; }
+    .modal-card p { font-size: 0.95rem; margin-bottom: 2rem; color: var(--text-muted); line-height: 1.5; }
+    .modal-options { display: flex; flex-direction: column; gap: 0.75rem; }
+    .modal-track-btn {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s;
+    }
+    .modal-track-btn:hover { border-color: var(--primary); background: rgba(59, 130, 246, 0.1); color: #60a5fa; }
+    .modal-track-btn span { font-size: 0.8rem; color: var(--text-muted); font-weight: normal; }
+  </style>
+</head>
+<body>
+
+  <!-- MANDATORY ENTRY GATE MODAL -->
+  <div id="track-modal">
+    <div class="modal-card">
+      <h2>Welcome to the Course Hub</h2>
+      <p>Please select your academic track to view the correct deadlines, guidelines, and roadmap tailored specifically for you.</p>
+      <div class="modal-options">
+        <button class="modal-track-btn" onclick="selectTrackAndReload('BS')">
+          Bachelor Seminar (BS) <span>Select Track →</span>
+        </button>
+        <button class="modal-track-btn" onclick="selectTrackAndReload('BT')">
+          Bachelor Thesis (BT) <span>Select Track →</span>
+        </button>
+        <button class="modal-track-btn" onclick="selectTrackAndReload('MS')">
+          Master Track (MS) <span>Select Track →</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="header-box">
+      <div>
+        <h1>Course Resource Hub</h1>
+        <p id="welcome-sub">Your central location for roadmaps, milestones, and guidelines.</p>
+      </div>
+      <div class="track-selector">
+        <span style="font-size: 0.85rem; color: var(--text-muted); margin-right: 0.5rem;">Active Track:</span>
+        <button class="track-btn" id="btn-BS" onclick="switchTrackAndReload('BS')">BS</button>
+        <button class="track-btn" id="btn-BT" onclick="switchTrackAndReload('BT')">BT</button>
+        <button class="track-btn" id="btn-MS" onclick="switchTrackAndReload('MS')">MS</button>
+      </div>
+    </div>
+
+    <h2>Available Resources</h2>
+    <!-- Grid container where valid cards are dynamically injected -->
+    <div class="grid" id="resource-grid"></div>
+  </div>
+
+  <script>
+    // Define all available resources and which tracks they are valid for.
+    // If a track is not in the array, its card will be completely hidden.
+    const RESOURCES = [
+      {
+        id: 'roadmap',
+        title: '🗺️ Roadmap',
+        desc: 'Interactive timeline tracking all course milestones, deadlines, and requirements block-by-block.',
+        file: 'roadmap.html',
+        footer: 'View Timeline →',
+        tracks: ['BS', 'BT', 'MS']
+      },
+      {
+        id: 'infopaper',
+        title: '📄 Paper Guidelines',
+        desc: 'Formatting instructions, structure layout, literature quality tips, and expectations for your final paper.',
+        file: 'infopaper.html',
+        footer: 'Read Guidelines →',
+        tracks: ['BS', 'BT', 'MS']
+      },
+      {
+        id: 'infopresentation',
+        title: '🎤 Presentation Guide',
+        desc: 'Slide limits, structural timing weights, grading criteria, and scheduling rules for intermediate and final talks.',
+        file: 'infopresentation.html',
+        footer: 'Read Presentation Info →',
+        tracks: ['BS', 'BT', 'MS']
+      },
+      {
+        id: 'infoproject',
+        title: '📊 Project Details',
+        desc: 'Methodology readings, survey platform guidelines (SoSci, oTree, etc.), and data analysis training resources.',
+        file: 'infoproject.html',
+        footer: 'Read Project Info →',
+        tracks: ['BS', 'BT', 'MS']
+      },
+      {
+        id: 'syllabus',
+        title: '📄 Syllabus',
+        desc: 'Overview, requirements and expectations',
+        file: 'syllabus.html',
+        footer: 'Read Syllabus →',
+        tracks: ['BS', 'MS'] // Example: hidden if track is BT if it doesn't exist for BT
+      },
+      {
+        id: 'website',
+        title: '📄 Overview',
+        desc: 'Official course website and details',
+        file: 'website.html',
+        footer: 'Read Overview →',
+        tracks: ['BS', 'MS'] // Example: hidden if track is BT if it doesn't exist for BT
+      },
+       {
+        id: 'standards',
+        title: '📄 Formatting Standards',
+        desc: 'Formatting rules',
+        file: 'standards.html',
+        footer: 'Read Formatting Standards →',
+        tracks: ['BS', 'MS'] // Example: hidden if track is BT if it doesn't exist for BT
+      }
+    ];
+
+    function switchTrackAndReload(track) {
+      if (!['BS', 'BT', 'MS'].includes(track)) return;
+      localStorage.setItem('student_track', track);
+      // Force a full page reload with the updated group parameter to clear old states and hide non-existent docs
+      window.location.href = `index.html?group=${track}`;
+    }
+
+    function selectTrackAndReload(track) {
+      switchTrackAndReload(track);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      let track = urlParams.get('group');
+
+      // Validate or fallback to localStorage or default 'BS'
+      if (!track || !['BS', 'BT', 'MS'].includes(track.toUpperCase())) {
+        track = localStorage.getItem('student_track');
+        if (!track || !['BS', 'BT', 'MS'].includes(track.toUpperCase())) {
+          // No track selected anywhere -> show modal gate
+          document.getElementById('track-modal').classList.add('visible');
+          track = 'BS'; // provisional background state
+        } else {
+          // Found in localStorage, reload to normalize URL
+          window.location.href = `index.html?group=${track.toUpperCase()}`;
+          return;
+        }
+      }
+
+      const activeTrack = track.toUpperCase();
+
+      // Highlight active track button
+      document.querySelectorAll('.track-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById(`btn-${activeTrack}`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      // Update subtitle
+      document.getElementById('welcome-sub').textContent = `Loaded profile for: ${activeTrack} Track`;
+
+      // Filter and render only resources belonging to the active track
+      const gridContainer = document.getElementById('resource-grid');
+      let cardsHTML = '';
+
+      RESOURCES.forEach(res => {
+        if (res.tracks.includes(activeTrack)) {
+          cardsHTML += `
+            <a href="${res.file}?group=${activeTrack}" class="card">
+              <div>
+                <h3>${res.title}</h3>
+                <p>${res.desc}</p>
+              </div>
+              <div class="card-footer">${res.footer}</div>
+            </a>
+          `;
+        }
+      });
+
+      gridContainer.innerHTML = cardsHTML;
+    });
+  </script>
+</body>
+</html>

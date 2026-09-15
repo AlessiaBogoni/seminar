@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Guidelines & Project Details</title>
+  
+  <!-- Load Central References Data Source -->
+  <script src="references.js"></script>
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --primary: #3b82f6;
+      --primary-glow: rgba(59, 130, 246, 0.15);
+      --todo-color: #f59e0b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1rem;
+    }
+
+    .container { max-width: 850px; width: 100%; }
+
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .back-hub-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: 0.2s;
+    }
+    .back-hub-btn:hover { color: var(--text); border-color: var(--text-muted); }
+
+    .doc-content {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    h1.doc-title {
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle-track {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    h2 { font-size: 1.3rem; color: #cbd5e1; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
+    h3 { font-size: 1.1rem; color: #93c5fd; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+    
+    p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; }
+    
+    ul { margin-bottom: 1.5rem; padding-left: 1.5rem; color: var(--text-muted); }
+    li { margin-bottom: 0.5rem; line-height: 1.5; font-size: 0.95rem; }
+    li a { color: #60a5fa; text-decoration: none; }
+    li a:hover { text-decoration: underline; }
+
+    .todo-box {
+      background: rgba(245, 158, 11, 0.1);
+      border-left: 4px solid var(--todo-color);
+      padding: 1rem;
+      border-radius: 0 8px 8px 0;
+      color: #fcd34d;
+      font-size: 0.9rem;
+      margin: 1rem 0;
+      line-height: 1.5;
+    }
+
+    .callout {
+      background: var(--primary-glow);
+      border-left: 4px solid var(--primary);
+      padding: 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0;
+    }
+    .callout-title { font-weight: 700; color: #93c5fd; margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .callout p { margin-bottom: 0; color: #e2e8f0; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header-bar">
+      <div>
+        <span style="font-size: 0.8rem; color: var(--primary); font-weight: 700; text-transform: uppercase;">Official Project Guideline</span>
+      </div>
+      <a id="back-link" href="index.html" class="back-hub-btn">← Back to Hub</a>
+    </div>
+
+    <div class="doc-content" id="document-body">
+      <!-- Rendered dynamically -->
+    </div>
+  </div>
+
+  <script>
+    const DOCUMENTS_DATA = {
+      "Info Project": {
+        title: "Guideline: Project Details",
+        commonContent: `
+          <p>This project is a crucial component of your academic journey, providing you with the opportunity to apply theoretical knowledge to your own research project. This section outlines the expectations and requirements for your work.</p>
+
+          <h2>Helpful Resources</h2>
+          
+          <h3>Methodology</h3>
+          <ul id="dynamic-methodology-list">
+            <!-- Dynamically injected via script -->
+          </ul>
+
+          <h3>Survey Platforms</h3>
+          <p>If you are planning to use a "simple" survey for data collection, you can use general survey platforms (Google Forms, Microsoft Forms, etc.). If you are implementing an online survey experiment requiring randomization or treatments, consider:</p>
+          <ul>
+            <li><strong>SoSci Survey:</strong> Offers a free version for academic non-profit, non-published papers</li>
+            <li><strong>LimeSurvey, oTree, Gorilla, formr, PsyToolkit</strong></li>
+          </ul>
+          <p>Make sure your chosen platform supports features like completion time tracking, single-page completion rates, and randomized treatment assignment, depending on what you need for your specific project.</p>
+
+          <h3>Data Analysis Tools</h3>
+          <p>For your data analysis and presentation, you may need programming or statistical tools. Useful university resources include:</p>
+          <ul>
+            <li><a href="https://www.rz.uni-wuerzburg.de/dienste/kurse/" target="_blank">Kurse – Rechenzentrum</a>: Practical training sessions ranging from basic Office software to advanced network administration.</li>
+            <li><a href="https://herdt-campus.com/" target="_blank">Herdt-Campus</a>: Digital library providing educational manuals and e-books.</li>
+            <li><a href="https://openwuecampus.uni-wuerzburg.de/moodle/enrol/index.php?id=19" target="_blank">R | OpenWueCampus</a>: Introductory e-learning module for R programming.</li>
+            <li><a href="https://openwuecampus.uni-wuerzburg.de/moodle/enrol/index.php?id=22" target="_blank">R2 | OpenWueCampus</a>: Follow-up course for advanced data manipulation and visualization.</li>
+            <li><a href="https://openwuecampus.uni-wuerzburg.de/moodle/enrol/index.php?id=5" target="_blank">SPSS Teil 1 & Part 2</a>: Beginner and intermediate IBM SPSS online courses.</li>
+          </ul>
+        `,
+        trackContent: {
+          "BT": `
+            <h2>Bachelor Thesis Project</h2>
+            <div class="todo-box">Include requirements for the Bachelor Thesis project here: read literature, find a research question, implement a design, collect data, analyze, and write a paper presenting findings.</div>
+
+            <h3>First Project Draft</h3>
+            <div class="todo-box">Include specific requirements for the first project draft (e.g., template specification, guidelines on references such as max 5 covering theory, empirical evidence, and methods).</div>
+            <p>This is your first project draft and it should serve as a first idea of what you want to implement and how. It should include a clear outline of the problem statement, objectives, methodology, and expected outcomes.</p>
+
+            <h3>Second Project Draft</h3>
+            <div class="todo-box">Include specific requirements for the second project draft and updated reference expectations.</div>
+            <p>Provide a more detailed and refined version of your project, demonstrating steady progress and ensuring you are on track.</p>
+
+            <h3>Survey Draft</h3>
+            <p>At this point, you are expected to have a working prototype of your survey/experiment ready for testing. Even though it is called a draft, your survey should be complete. You will present your design in your first presentation to receive peer feedback.</p>
+            
+            <div class="callout">
+              <div class="callout-title">💡 Serious Testing Hint</div>
+              <p>The quality of your survey/experiment directly impacts the validity and reliability of your findings. Once data collection starts, it is too late to change your design. Ensure thorough testing beforehand!</p>
+            </div>
+          `,
+          "MS": `
+            <h2>Master Seminar Project</h2>
+            <div class="todo-box">Include requirements for the Master Seminar project here: literature review, research question formulation, experimental design or replication execution, data collection, and analysis.</div>
+
+            <h3>First Project Draft</h3>
+            <div class="todo-box">Include specific requirements for the first project draft and specific templates.</div>
+
+            <h3>Second Project Draft</h3>
+            <div class="todo-box">Include specific requirements for the second project draft and specific templates.</div>
+          `,
+          "BS": `
+            <h2>Bachelor Seminar Project</h2>
+            <div class="todo-box">Include requirements for the Bachelor Seminar project here: choose a topic/paper, identify mechanisms, summarize the baseline paper, propose a new mechanism missing from the paper, and design an experiment to test it.</div>
+
+            <h3>Project Draft</h3>
+            <p>Provide an outline of your work up to now. Use this template to organize your knowledge and ideas, and verify whether you are missing any crucial components.</p>
+            <div class="todo-box">Include specific requirements for the project draft template here.</div>
+          `
+        }
+      }
+    };
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      let groupParam = urlParams.get('group');
+
+      if (!groupParam || !['BS', 'BT', 'MS'].includes(groupParam.toUpperCase())) {
+        groupParam = localStorage.getItem('student_track') || 'BS';
+      } else {
+        groupParam = groupParam.toUpperCase();
+      }
+
+      document.getElementById('back-link').href = `index.html?group=${groupParam}`;
+
+      const docData = DOCUMENTS_DATA["Info Project"];
+      let renderedHTML = `
+        <h1 class="doc-title">${docData.title}</h1>
+        <div class="subtitle-track">Active Profile: ${groupParam} Track &bull; Project Details</div>
+        ${docData.commonContent}
+      `;
+
+      if (docData.trackContent && docData.trackContent[groupParam]) {
+        renderedHTML += docData.trackContent[groupParam];
+      }
+
+      document.getElementById('document-body').innerHTML = renderedHTML;
+
+      // Dynamically populate methodology list from references.js
+      const methodologyKeys = ['haaland2023designing', 'stantcheva2023run'];
+      const listContainer = document.getElementById('dynamic-methodology-list');
+      if (listContainer && typeof BIBLIOGRAPHY !== 'undefined') {
+        let listHTML = '';
+        methodologyKeys.forEach(key => {
+          const ref = BIBLIOGRAPHY[key];
+          if (ref) {
+            listHTML += `<li><strong>${ref.author} (${ref.year}):</strong> ${ref.title}</li>`;
+          }
+        });
+        listContainer.innerHTML = listHTML;
+      }
+    });
+  </script>
+</body>
+</html>

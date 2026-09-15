@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Standards for Theses and Seminar Papers</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --primary: #3b82f6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1rem;
+    }
+    .container { max-width: 850px; width: 100%; }
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .back-hub-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .back-hub-btn:hover { color: var(--text); border-color: var(--text-muted); }
+    .doc-content {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+    h1.doc-title {
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle-track {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+    h2 { font-size: 1.3rem; color: #cbd5e1; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
+    h3 { font-size: 1.1rem; color: #93c5fd; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+    p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; }
+    ul, ol { margin-bottom: 1.5rem; padding-left: 1.5rem; color: var(--text-muted); }
+    li { margin-bottom: 0.75rem; line-height: 1.5; font-size: 0.95rem; }
+    .reference-item { margin-bottom: 1rem; padding-left: 1.5rem; text-indent: -1.5rem; color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
+  </style>
+
+  <!-- Load Central Data Source -->
+  <script src="references.js"></script>
+</head>
+<body>
+
+  <div class="container" id="main-container">
+    <div class="header-bar">
+      <span style="font-size: 0.8rem; color: var(--primary); font-weight: 700; text-transform: uppercase;">LEO Standards</span>
+      <a id="back-link" href="index.html" class="back-hub-btn">&larr; Back to Hub</a>
+    </div>
+
+    <div class="doc-content">
+      <h1 class="doc-title">Standards for Theses and Seminar Papers</h1>
+      <div class="subtitle-track">Official Guidelines &bull; LEO</div>
+      
+      <p>This sheet contains the main layout and citation requirements for theses and seminar papers at LEO. The presented examples are not complete, and we refer you to the suggested style guide for further information.</p>
+
+      <h2>Formatting</h2>
+      <ul>
+        <li><strong>Page margins:</strong> 
+          <ul>
+            <li>2.5 cm top</li>
+            <li>2 cm bottom</li>
+            <li>4 cm left</li>
+            <li>2 cm right</li>
+          </ul>
+        </li>
+        <li><strong>Page numbering:</strong> 
+          <ul>
+            <li>Pages preceding main part: Roman numbers (except cover)</li>
+            <li>Main part: Arabic numbers</li>
+          </ul>
+        </li>
+        <li><strong>Font and type size:</strong> Times New Roman 12pt or Arial 11pt.</li>
+        <li><strong>Line alignment and spacing:</strong> Justified, 1.5 lines.</li>
+      </ul>
+
+      <h2>Cover Page</h2>
+      <p>A cover page template is available on WueCampus. While alternative templates and formats are permitted, please ensure they include the essential elements specified in the provided template.</p>
+
+      <h2>Citation and References</h2>
+      
+      <h3>Citation Style</h3>
+      <ul>
+        <li>Use a common citation style: APA style.</li>
+        <li>Use indirect citations if the main thought, but not the exact wording of a quotation, is important.</li>
+        <li>Citations are typically not in footnotes.</li>
+        <li>All citations must be verifiable using the reference list. Citations that are not sufficiently marked as such may be considered plagiarism. Plagiarism is an act of academic fraud.</li>
+      </ul>
+
+      <h3>Examples for citation within the main text body</h3>
+      <p><strong>Indirect (main thought):</strong></p>
+      <ul>
+        <li>Fehr (1999) has argued that sanctions enforce norms.</li>
+        <li>It has been argued that sanctions enforce norms (Fehr, 1999).</li>
+      </ul>
+      <p><strong>Direct (exact wording):</strong></p>
+      <ul>
+        <li>Fehr (1999) wrote: “sanctions enforce norms.”</li>
+      </ul>
+
+      <h2>References Guidelines</h2>
+      <ul>
+        <li>The list of references includes all references that have been used in the seminar paper or theses. References that have not been used are not included.</li>
+        <li>The formatting should be in a consistent, uniform formatting style.</li>
+        <li>The citation style has guidelines for dealing with various sources such as journal articles, monographs, handbooks, and discussion papers.</li>
+      </ul>
+
+      <h2>Example for a List of References</h2>
+      <div id="dynamic-bibliography"></div>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      // Handle back link track context
+      const urlParams = new URLSearchParams(window.location.search);
+      let track = (urlParams.get('group') || localStorage.getItem('student_track') || 'BS').toUpperCase();
+      document.getElementById('back-link').href = `index.html?group=${track}`;
+
+      // Dynamic Bibliography Generator (mirroring LaTeX nocite list)
+      const nociteKeys = [
+        'acemoglu2018a', 'acemoglu2018b', 'acemoglu2020', 
+        'cappelen2013', 'cappelen2016', 'fehr2006', 
+        'gintis2005', 'konow2000', 'konow2023'
+      ];
+
+      const bibContainer = document.getElementById('dynamic-bibliography');
+      let bibHTML = '';
+
+      if (typeof BIBLIOGRAPHY !== 'undefined') {
+        nociteKeys.forEach(key => {
+          const ref = BIBLIOGRAPHY[key];
+          if (ref) {
+            // Formatting output similar to APA style based on available fields
+            let entry = `${ref.author} (${ref.year}). <strong>${ref.title}</strong>.`;
+            if (ref.journal) {
+              entry += ` <em>${ref.journal}</em>.`;
+            }
+            bibHTML += `<div class="reference-item">${entry}</div>`;
+          }
+        });
+      } else {
+        bibHTML = '<p>Bibliography data unavailable.</p>';
+      }
+
+      bibContainer.innerHTML = bibHTML;
+    });
+  </script>
+</body>
+</html>

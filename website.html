@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Website & Overview</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --primary: #3b82f6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1rem;
+    }
+    .container { max-width: 850px; width: 100%; }
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .back-hub-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .back-hub-btn:hover { color: var(--text); border-color: var(--text-muted); }
+    .doc-content {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+    h1.doc-title {
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle-track {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+    h2 { font-size: 1.3rem; color: #cbd5e1; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
+    h3 { font-size: 1.1rem; color: #93c5fd; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+    p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; }
+    ul, ol { margin-bottom: 1.5rem; padding-left: 1.5rem; color: var(--text-muted); }
+    li { margin-bottom: 0.75rem; line-height: 1.5; font-size: 0.95rem; }
+    .notice-box {
+      background: rgba(59, 130, 246, 0.1);
+      border-left: 4px solid var(--primary);
+      padding: 1rem;
+      border-radius: 0 8px 8px 0;
+      color: #93c5fd;
+      font-size: 0.9rem;
+      margin: 1rem 0;
+    }
+  </style>
+
+  <!-- Load Central Data Sources -->
+  <script src="shared_data.js"></script>
+  <script src="references.js"></script>
+</head>
+<body>
+
+  <div class="container" id="main-container">
+    <div class="header-bar">
+      <span style="font-size: 0.8rem; color: var(--primary); font-weight: 700; text-transform: uppercase;">Official Course Website</span>
+      <a id="back-link" href="index.html" class="back-hub-btn">&#8592; Back to Hub</a>
+    </div>
+
+    <div class="doc-content" id="document-body"></div>
+  </div>
+
+  <script>
+    function getWebsiteTimelineHTML(targetTrack) {
+      let html = '';
+      
+      html += `<h3>Block 1: Introduction to the Course and Topic Assignment</h3>`;
+      if (targetTrack === 'BS') {
+        html += `<p>The seminar starts with an introductory meeting in the first week of the semester and 1-2 lectures in the first two weeks of the semester. These lectures provide an overview of the required theoretical and empirical methods.</p>`;
+      } else {
+        html += `<p>The course will be introduced by 1-2 lectures in the first three weeks of the semester. In the lectures, we will discuss possible topics for the seminar papers and provide an overview of the required theoretical and empirical methods.</p>`;
+      }
+
+      html += `<h3>Block 2: Independent Writing and Consultation Phase</h3>`;
+      if (targetTrack === 'BS') {
+        html += `<p>Students work independently on their seminar paper over a period of 4 weeks. Individual appointments for consultation will be available.</p>`;
+      } else {
+        html += `<p>Students work independently on their seminar paper, individual appointments for consultation.</p>`;
+      }
+
+      html += `<h3>Block 3: Seminar Presentations</h3>`;
+      if (targetTrack === 'BS') {
+        html += `<p>The seminar concludes with a workshop (block seminar) where students present their seminar papers. Each student is expected to interact with other presentations, by asking questions. Attendance for the full workshop is mandatory. The planned date for the workshop is two weeks after the paper submission.</p>`;
+      } else {
+        html += `<p>There will be a workshop (block seminar) where students present their seminar paper drafts. Each student will also interact with other students presentation by asking questions. Attendance of the full workshop is mandatory.</p>`;
+      }
+
+      return html;
+    }
+
+    const WEBSITE_CONTENT = {
+      "BS": {
+        title: "B.Sc. Seminar: Behavioral Economics in Action",
+        content: `
+          <h2>Content</h2>
+          <p>Why do we pay for subscriptions we barely use? Why do we often eat unhealthy food, exercise too little, or procrastinate on important tasks? Why do individuals fail to claim social benefits they are entitled to? Should firms make co-workers' wages transparent, or keep them secret? How can cities reduce littering without simply raising fines? Do "free trials" help consumers, or do they exploit them?</p>
+          <p>Over the past decades, psychologists and economists have gained a deeper understanding of what motivates people's choices. Research in behavioral economics shows that individual choices are shaped not only by incentives and constraints, but also by limited attention, self-control problems, social preferences, and the behavior of others. These insights have fundamentally changed how economists think about consumer behavior, management practices, and public policy.</p>
+          <p>This seminar explores how insights from behavioral economics can be applied to real-world problems in consumer decision-making, organizations, and public policy. Students work on a concrete policy or management question, engage with relevant empirical research in behavioral economics, identify the key psychological mechanisms at play, and develop a well-founded proposal to address the problem. The seminar is highly application-oriented and interactive.</p>
+
+          <h2>Seminar Project</h2>
+          <p>Students will be assigned a specific policy or management question, along with a baseline research paper studying the question. Building on this, students will write a seminar paper that:</p>
+          <ul>
+            <li>critically assesses the underlying policy or management problem</li>
+            <li>identifies and explains the key behavioral mechanisms at play, and suggest additional mechanism(s) that could be at play</li>
+            <li>suggest a brief intervention plan that uses the aforementioned mechanism (including expected effects and potential unintended consequences)</li>
+            <li>suggest an experimental design to test the proposed mechanism</li>
+          </ul>
+          <p>Students will present the results of their seminar projects in a workshop with seminar presentations.</p>
+
+          <h2>Prerequisites</h2>
+          <p>Students should have a sound knowledge of microeconomics and empirical methods. Students will also benefit from previous course work on behavioral economics, although no specific previous knowledge is required. It is also recommended to familiarize yourself with the content of the key qualification Wissenschaftliches Arbeiten in advance.</p>
+        `
+      },
+      "MS": {
+        title: "M.Sc. Seminar: Behavioral, Organizational, and Labor Economics",
+        content: `
+          <h2>Content</h2>
+          <p>This seminar introduces students to state-of-the-art research in behavioral, organizational, and labor economics. It builds on a growing body of research in economics and psychology showing that individual behavior is shaped not only by economic incentives and constraints, but also by psychological factors and limitations in self-control, cognition, and attention.</p>
+          <p>Students independently and critically analyze research questions at the intersection of behavioral economics, organizational economics, and labor economics. The seminar covers a broad range of topics, highlighting how behavioral insights help explain behavior in real-world settings such as organizations, labor markets, consumer decision-making, and public policy.</p>
+          <p>Examples of research topics and papers from previous semesters include:</p>
+          <ul>
+            <li>Heuristics and biases in real-estate markets</li>
+            <li>Misperceptions and support for climate action</li>
+            <li>Experiments on perception and error detection in AI- versus human-generated texts</li>
+            <li>Biased beliefs and unemployment duration</li>
+            <li>Experimental evidence on founders' reactions to information shocks</li>
+          </ul>
+
+          <h2>Seminar Project</h2>
+          <p>Students are expected to actively engage with existing research and work with data or experimental designs. The seminar project can take two different forms:</p>
+          <ul>
+            <li><strong>Option 1:</strong> Students replicate and extend an existing empirical paper</li>
+            <li><strong>Option 2:</strong> Students develop an own experiment and conduct a pilot study on selected research questions</li>
+          </ul>
+
+          <h2>Prerequisites</h2>
+          <p>Students should have a sound knowledge of microeconomics and empirical methods. Students will also benefit from previous course work on behavioral economics and labor economics, although no specific previous knowledge is required.</p>
+        `
+      }
+    };
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const track = (urlParams.get('group') || localStorage.getItem('student_track') || 'BS').toUpperCase();
+
+      // Define allowed tracks for this document (e.g., BS and MS only)
+      const ALLOWED_TRACKS = ['BS', 'MS'];
+
+      if (!ALLOWED_TRACKS.includes(track)) {
+        document.body.innerHTML = `
+          <div style="font-family: system-ui, sans-serif; background: #0f172a; color: #f8fafc; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 1.5rem;">
+            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 2.5rem; max-width: 450px; width: 100%; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5);">
+              <h2 style="color: #f8fafc; margin-bottom: 0.75rem; font-size: 1.4rem;">Access Restricted</h2>
+              <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.5;">
+                This overview page is not available for the <strong>${track}</strong> track.
+              </p>
+              <a href="index.html?group=${track}" style="display: inline-block; background: #3b82f6; color: white; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem;">&larr; Return to Course Hub</a>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      document.getElementById('back-link').href = `index.html?group=${track}`;
+      const data = WEBSITE_CONTENT[track];
+      const timelineHTML = getWebsiteTimelineHTML(track);
+
+      document.getElementById('document-body').innerHTML = `
+        <h1 class="doc-title">${data.title}</h1>
+        <div class="subtitle-track">Website Overview &bull; Track: ${track}</div>
+        <div class="notice-box">Please note that this list is tentative and topics <strong>might be subject to change</strong>.</div>
+        ${data.content}
+        <h2>Course Procedures and Timeline (Tentative)</h2>
+        ${timelineHTML}
+      `;
+    });
+  </script>
+</body>
+</html>

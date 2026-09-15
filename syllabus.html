@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Official Course Syllabus</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --primary: #3b82f6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1rem;
+    }
+    .container { max-width: 850px; width: 100%; }
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .back-hub-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .back-hub-btn:hover { color: var(--text); border-color: var(--text-muted); }
+    .doc-content {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+    h1.doc-title {
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle-track {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+    h2 { font-size: 1.3rem; color: #cbd5e1; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
+    h3 { font-size: 1.1rem; color: #93c5fd; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+    p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; }
+    ul, ol { margin-bottom: 1.5rem; padding-left: 1.5rem; color: var(--text-muted); }
+    li { margin-bottom: 0.75rem; line-height: 1.5; font-size: 0.95rem; }
+    .timeline-dl { margin-top: 1rem; }
+    .timeline-item { margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.2rem; }
+    .timeline-date { font-weight: 700; color: #60a5fa; font-size: 0.9rem; }
+    .timeline-desc { color: var(--text-muted); font-size: 0.9rem; }
+  </style>
+
+  <!-- Centralized data source -->
+  <script src="shared-data.js"></script>
+  <script src="references.js"></script>
+</head>
+<body>
+
+  <div class="container" id="main-container">
+    <div class="header-bar">
+      <span style="font-size: 0.8rem; color: var(--primary); font-weight: 700; text-transform: uppercase;">Official Syllabus</span>
+      <a id="back-link" href="index.html" class="back-hub-btn">&larr; Back to Hub</a>
+    </div>
+
+    <div class="doc-content" id="document-body"></div>
+  </div>
+
+  <script>
+    const BLOCK_TITLES = {
+      "1": "Block 1: Orientation & Topic Assignment",
+      "2": "Block 2: Research, Drafts & Writing Phase",
+      "3": "Block 3: Final Submissions & Presentations"
+    };
+
+    function getReferencesHTML(targetTrack) {
+      let html = '<ul>';
+      let found = false;
+      if (typeof BIBLIOGRAPHY !== 'undefined') {
+        for (const key in BIBLIOGRAPHY) {
+          const ref = BIBLIOGRAPHY[key];
+          if (ref.tracks && ref.tracks.includes(targetTrack)) {
+            html += `<li>${ref.author} (${ref.year}). <strong>${ref.title}</strong>. <em>${ref.journal}</em>.</li>`;
+            found = true;
+          }
+        }
+      }
+      html += '</ul>';
+      return found ? html : '<p>No specific readings listed for this track.</p>';
+    }
+
+    function getSyllabusTimelineHTML(selectedGroup) {
+      if (typeof SHARED_TIMELINE_DATA === 'undefined') {
+        return '<p style="color: #ef4444;">Timeline data unavailable: SHARED_TIMELINE_DATA is not loaded.</p>';
+      }
+
+      // Filter events matching the group and flagged for the syllabus
+      const filteredEvents = SHARED_TIMELINE_DATA.filter(event => {
+        const groups = event.Groups ? event.Groups.split('|') : [];
+        const isGroupMatch = groups.includes(selectedGroup);
+        const isSyllabusMatch = String(event.syllabus).toLowerCase() === 'true';
+        return isGroupMatch && isSyllabusMatch;
+      });
+
+      const grouped = { "1": [], "2": [], "3": [] };
+      filteredEvents.forEach(item => {
+        const blockNum = item.block ? String(parseInt(parseFloat(item.block))) : '2';
+        if (grouped[blockNum]) grouped[blockNum].push(item);
+      });
+
+      let html = '';
+      for (const [blockKey, title] of Object.entries(BLOCK_TITLES)) {
+        const events = grouped[blockKey] || [];
+        if (events.length === 0) continue;
+
+        html += `<h3>${title}</h3><div class="timeline-dl">`;
+        events.forEach(milestone => {
+          html += `
+            <div class="timeline-item">
+              <span class="timeline-date">${milestone.TargetDate || ''}: <strong>${milestone.MilestoneName || ''}</strong></span>
+              ${milestone.description ? `<span class="timeline-desc">${milestone.description}</span>` : ''}
+            </div>`;
+        });
+        html += `</div>`;
+      }
+
+      return html ? html : '<p>No timeline milestones found for the ' + selectedGroup + ' track.</p>';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      let groupParam = urlParams.get('group');
+
+      if (!groupParam || !['BS', 'BT', 'MS'].includes(groupParam.toUpperCase())) {
+        groupParam = localStorage.getItem('student_track') || 'BS';
+      } else {
+        groupParam = groupParam.toUpperCase();
+      }
+
+      // Define allowed tracks for this document (BS and MS)
+      const ALLOWED_TRACKS = ['BS', 'MS'];
+
+      if (!ALLOWED_TRACKS.includes(groupParam)) {
+        document.body.innerHTML = `
+          <div style="font-family: system-ui, sans-serif; background: #0f172a; color: #f8fafc; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 1.5rem;">
+            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 2.5rem; max-width: 450px; width: 100%; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5);">
+              <h2 style="color: #f8fafc; margin-bottom: 0.75rem; font-size: 1.4rem;">Access Restricted</h2>
+              <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.5;">
+                This syllabus page is not available for the <strong>${groupParam}</strong> track.
+              </p>
+              <a href="index.html?group=${groupParam}" style="display: inline-block; background: #3b82f6; color: white; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem;">&larr; Return to Course Hub</a>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      document.getElementById('back-link').href = `index.html?group=${groupParam}`;
+      
+      const title = groupParam === 'BS' ? 'B.Sc. Seminar Syllabus' : 'M.Sc. Seminar Syllabus';
+      const dynamicRefs = getReferencesHTML(groupParam);
+      const dynamicTimeline = getSyllabusTimelineHTML(groupParam);
+
+      const introContent = groupParam === 'BS' ? `
+        <h2>Course Overview & Objectives</h2>
+        <p>This seminar explores how insights from behavioral economics can be applied to real-world problems in consumer decision-making, organizations, and public policy. Students work on a concrete policy or management question, engage with relevant empirical research, identify key psychological mechanisms, and develop well-founded proposals.</p>
+        
+        <h2>Prerequisites</h2>
+        <p>Sound knowledge of microeconomics and empirical methods. Previous coursework in behavioral economics is beneficial but not strictly required.</p>
+      ` : `
+        <h2>Course Overview & Objectives</h2>
+        <p>This seminar introduces students to state-of-the-art research in behavioral, organizational, and labor economics. Students independently and critically analyze complex research questions at the intersection of behavioral and labor economics, utilizing existing empirical studies or experimental pilot designs.</p>
+        
+        <h2>Prerequisites</h2>
+        <p>Sound knowledge of microeconomics, empirical methods, and familiarity with economic literature.</p>
+      `;
+
+      document.getElementById('document-body').innerHTML = `
+        <h1 class="doc-title">${title}</h1>
+        <div class="subtitle-track">Official Syllabus &bull; Track: ${groupParam}</div>
+        
+        ${introContent}
+
+        <h2>Course Topics and Reading List</h2>
+        <p>The following literature references are assigned for your track:</p>
+        ${dynamicRefs}
+
+        <h2>Course Procedures and Timeline</h2>
+        ${dynamicTimeline}
+
+        <h2>Examination and Grading</h2>
+        <p>Grading is based on the seminar paper and the workshop presentation, weighted 3:2 (paper 60%, presentation 40%).</p>
+      `;
+    });
+  </script>
+</body>
+</html>

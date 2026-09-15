@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Guidelines & Presentations</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --primary: #3b82f6;
+      --primary-glow: rgba(59, 130, 246, 0.15);
+      --todo-color: #f59e0b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1rem;
+    }
+
+    .container { max-width: 850px; width: 100%; }
+
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .back-hub-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: 0.2s;
+    }
+    .back-hub-btn:hover { color: var(--text); border-color: var(--text-muted); }
+
+    .doc-content {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    h1.doc-title {
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle-track {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    h2 { font-size: 1.3rem; color: #cbd5e1; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
+    h3 { font-size: 1.1rem; color: #93c5fd; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+    
+    p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; }
+    
+    ul { margin-bottom: 1.5rem; padding-left: 1.5rem; color: var(--text-muted); }
+    li { margin-bottom: 0.5rem; line-height: 1.5; font-size: 0.95rem; }
+
+    .todo-box {
+      background: rgba(245, 158, 11, 0.1);
+      border-left: 4px solid var(--todo-color);
+      padding: 1rem;
+      border-radius: 0 8px 8px 0;
+      color: #fcd34d;
+      font-size: 0.9rem;
+      margin: 1rem 0;
+      line-height: 1.5;
+    }
+
+    .callout {
+      background: var(--primary-glow);
+      border-left: 4px solid var(--primary);
+      padding: 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0;
+    }
+    .callout-title { font-weight: 700; color: #93c5fd; margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .callout p { margin-bottom: 0; color: #e2e8f0; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header-bar">
+      <div>
+        <span style="font-size: 0.8rem; color: var(--primary); font-weight: 700; text-transform: uppercase;">Official Presentation Guideline</span>
+      </div>
+      <a id="back-link" href="index.html" class="back-hub-btn">← Back to Hub</a>
+    </div>
+
+    <div class="doc-content" id="document-body">
+      <!-- Rendered dynamically -->
+    </div>
+  </div>
+
+  <script>
+    const DOCUMENTS_DATA = {
+      "Info Presentation": {
+        title: "Guideline: Presentations",
+        commonContent: `
+          <p>Presenting your work, whether it is a draft or your final work, is a crucial part of the academic process. It allows you to communicate your research findings, receive feedback, and engage with your audience.</p>
+          <p>All presentation sessions are considered fundamental parts of your work and you are expected to attend and actively participate in every session of your group. This includes providing constructive feedback to your peers, asking insightful questions, and engaging in discussions.</p>
+
+          <div class="callout">
+            <div class="callout-title">💡 Learning Opportunity Hint</div>
+            <p>Other students' presentations are valuable learning opportunities. By observing how your peers present their work, you gain insights into effective communication styles and ways to structure your own talks. Make sure to take notes on feedback received, especially on drafts, to refine your final submission.</p>
+          </div>
+        `,
+        trackContent: {
+          "BT": `
+            <h2>Bachelor Thesis Presentations</h2>
+            
+            <h3>First Presentation</h3>
+            <p>Your first presentation is an important milestone in your project, where you will receive valuable feedback. We expect your presentation to include:</p>
+            <ul>
+              <li><strong>Introduction & Motivation:</strong> Related literature, research question, and theoretical hypotheses (approx. 5–7 minutes).</li>
+              <li><strong>Design & Implementation Strategy:</strong> Key measurements, potential limitations, and implementation challenges (approx. 8–10 minutes).</li>
+            </ul>
+            <p>Individual talk duration is a maximum of 15 minutes, followed by up to 15 minutes for discussion and questions. Active peer participation is required.</p>
+            
+            <div class="callout">
+              <div class="callout-title">Note for Dual Writers (Seminar & Thesis)</div>
+              <p>If you are also writing a Bachelor Seminar on the same topic, you will only have to present once. Please refer to the Bachelor Seminar guidelines regarding combined requirements.</p>
+            </div>
+            
+            <div class="todo-box">Check whether info matches seminar info for students doing both, and confirm time ranges fit next semester's schedule.</div>
+
+            <h3>Second Presentation</h3>
+            <p>Focus your second presentation on improvements, updates, empirical strategy, and results (roughly 10–12 minutes of your 15-minute time slot):</p>
+            <ul>
+              <li><strong>Research Question & Final Design:</strong> 2–3 minutes</li>
+              <li><strong>Data Elicitation & Empirical Strategy:</strong> 3–4 minutes (hypotheses, sampling approach, statistical tests)</li>
+              <li><strong>Empirical / Preliminary Results:</strong> 8–10 minutes (primary focus)</li>
+              <li><strong>Open Questions & Conclusion:</strong> 2 minutes</li>
+            </ul>
+            <p>Followed by a 15-minute question and interaction round.</p>
+          `,
+          "MS": `
+            <h2>Master Seminar Presentations</h2>
+            <p>Your presentation is a crucial component of your Master Seminar—worth 40% of your final grade. Thorough preparation and active participation in peer discussions are essential.</p>
+            
+            <div class="todo-box">Include specific requirements for presentation structure, time ranges, and distinctions between data collection vs. replication tracks.</div>
+
+            <h3>Final Presentation Structure</h3>
+            <p>Prepare a talk of approximately 15 minutes covering:</p>
+            <ul>
+              <li>Brief motivation of your research question</li>
+              <li>Relevant theoretical and empirical background</li>
+              <li>Your data, experimental design, or empirical setup</li>
+              <li>Preliminary analysis and results (where available)</li>
+              <li>Empirical strategy and steps remaining before final submission</li>
+            </ul>
+            <p>To your presentation will follow a 15-minute question round.</p>
+          `,
+          "BS": `
+            <h2>Bachelor Seminar Presentations</h2>
+            <p>Your presentation is worth 40% of your final grade. It is an opportunity to reflect on, improve, and elevate your work beyond your written paper.</p>
+
+            <h3>Final Presentation (15 Minutes)</h3>
+            <p>Content & structural weights must be strictly observed:</p>
+            <ul>
+              <li><strong>Introduction & Motivation (approx. 2 min):</strong> Introduce your policy or management question.</li>
+              <li><strong>Critical Discussion of Existing Evidence (approx. 3–4 min):</strong> Concise overview of baseline paper and literature.</li>
+              <li><strong>Identification of Behavioral Mechanisms (approx. 5–6 min):</strong> Core of your presentation—critically assess underlying behavioral drivers.</li>
+              <li><strong>Proposal Discussion (approx. 3–5 min):</strong> Discuss how your proposed intervention tests the mechanism.</li>
+            </ul>
+            
+            <p><strong>Dual Writer Note:</strong> If you are also writing a Bachelor Thesis on the same topic, you present only once and receive 5 additional minutes focused on your empirical project design and implementation strategy.</p>
+            
+            <p><strong>Discussion & Questions:</strong> Followed by a 15-minute question round. Active participation in peer reviews is mandatory.</p>
+          `
+        }
+      }
+    };
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      let groupParam = urlParams.get('group');
+
+      if (!groupParam || !['BS', 'BT', 'MS'].includes(groupParam.toUpperCase())) {
+        groupParam = localStorage.getItem('student_track') || 'BS';
+      } else {
+        groupParam = groupParam.toUpperCase();
+      }
+
+      document.getElementById('back-link').href = `index.html?group=${groupParam}`;
+
+      const docData = DOCUMENTS_DATA["Info Presentation"];
+      let renderedHTML = `
+        <h1 class="doc-title">${docData.title}</h1>
+        <div class="subtitle-track">Active Profile: ${groupParam} Track &bull; Presentation Guide</div>
+        ${docData.commonContent}
+      `;
+
+      if (docData.trackContent && docData.trackContent[groupParam]) {
+        renderedHTML += docData.trackContent[groupParam];
+      }
+
+      document.getElementById('document-body').innerHTML = renderedHTML;
+    });
+  </script>
+</body>
+</html>

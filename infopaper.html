@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Guidelines & Documentation</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --primary: #3b82f6;
+      --primary-glow: rgba(59, 130, 246, 0.15);
+      --todo-color: #f59e0b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1rem;
+    }
+
+    .container { max-width: 850px; width: 100%; }
+
+    /* Navigation & Header Bar */
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .back-hub-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: 0.2s;
+    }
+    .back-hub-btn:hover { color: var(--text); border-color: var(--text-muted); }
+
+    /* Content Styling mimicking LaTeX cleanly */
+    .doc-content {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    h1.doc-title {
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle-track {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    h2 { font-size: 1.3rem; color: #cbd5e1; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
+    h3 { font-size: 1.1rem; color: #93c5fd; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+    
+    p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; }
+    
+    ul { margin-bottom: 1.5rem; padding-left: 1.5rem; color: var(--text-muted); }
+    li { margin-bottom: 0.5rem; line-height: 1.5; font-size: 0.95rem; }
+    li a { color: #60a5fa; text-decoration: none; }
+    li a:hover { text-decoration: underline; }
+
+    /* Todo Box placeholders mapping to LaTeX todoColor */
+    .todo-box {
+      background: rgba(245, 158, 11, 0.1);
+      border-left: 4px solid var(--todo-color);
+      padding: 1rem;
+      border-radius: 0 8px 8px 0;
+      color: #fcd34d;
+      font-size: 0.9rem;
+      margin: 1rem 0;
+      line-height: 1.5;
+    }
+
+    /* Hint / Paragraph callouts */
+    .callout {
+      background: var(--primary-glow);
+      border-left: 4px solid var(--primary);
+      padding: 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0;
+    }
+    .callout-title { font-weight: 700; color: #93c5fd; margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .callout p { margin-bottom: 0; color: #e2e8f0; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header-bar">
+      <div>
+        <span id="doc-category-tag" style="font-size: 0.8rem; color: var(--primary); font-weight: 700; text-transform: uppercase;">Official Guideline</span>
+      </div>
+      <a id="back-link" href="index.html" class="back-hub-btn">← Back to Hub</a>
+    </div>
+
+    <div class="doc-content" id="document-body">
+      <!-- Content dynamically rendered via script below -->
+    </div>
+  </div>
+
+  <script>
+    // Document text content data structure mapping precisely from your LaTeX source.
+    // This allows you to update content once here, without duplicating it across tracks.
+    const DOCUMENTS_DATA = {
+      "Info Paper": {
+        title: "Guideline: Academic Papers",
+        commonContent: `
+          <p>We require all submissions to meet professional scientific publishing standards. Please consult the Info Formatting document on WueCampus. In addition to essential formatting and citation rules, this guide provides recommendations for writing and reference software (including MS Word, LaTeX and Zotero). It also contains direct links to additional support resources, such as the University Library and the Writing Center, where you can access writing workshops and consultation services.</p>
+          <p>Independent of your specific track, your paper should allow for a clear and concise presentation of your research.</p>
+
+          <h2>Quality of literature</h2>
+          <div class="todo-box">Give some hints on how to evaluate the good quality of research papers looking at top journals, authors, citations (also depending on the year of publication)</div>
+
+          <h2>Helpful Resources</h2>
+          <h3>Writing and Research</h3>
+          <ul>
+            <li><a href="https://www.uni-wuerzburg.de/schreibzentrum/" target="_blank">Schreibzentrum - Schreibzentrum</a>: The University Writing Center provides personalized consultations, workshops, and peer-to-peer support to help students improve their academic writing style and structure.</li>
+            <li><a href="https://www.bibliothek.uni-wuerzburg.de/lernen/kurse-module-e-learning/" target="_blank">Kurse, Module, E-Learning - Universitätsbibliothek</a>: The University Library offers specialized training on literature research, citation management (like Citavi or Zotero), and strategies to avoid plagiarism.</li>
+            <li><a href="https://guides.lib.umich.edu/c.php?g=1114879&p=8128983" target="_blank">University of Michigan Library | Microsoft Word for Dissertations</a>: A complete guide on how to use Word tools efficiently (captions, figures, cross references, contents, page numbers, appendices).</li>
+            <li><a href="https://support.microsoft.com/en-us/office/create-a-bibliography-citations-and-references-17686589-4824-4940-9c69-342c289fa2a5" target="_blank">Support Microsoft Office: Create a bibliography, citations and references in Word</a></li>
+            <li><a href="https://blog.orvium.io/latex-over-word/" target="_blank">Why use LaTeX over Word?</a> and <a href="https://www.underleaf.ai/blog/latex-vs-word" target="_blank">Underleaf.ai | LaTeX vs Word</a>: Quick guides on why you might want to consider LaTeX.</li>
+            <li><a href="https://openwuecampus.uni-wuerzburg.de/moodle/enrol/index.php?id=13" target="_blank">LaTeX | OpenWueCampus</a>: A dedicated e-learning resource for learning LaTeX.</li>
+            <li><a href="https://www.zotero.org/" target="_blank">Zotero</a>: A free, easy-to-use tool to help you collect, organize, annotate, cite, and share research.</li>
+          </ul>
+
+          <div class="callout">
+            <div class="callout-title">💡 Hint on Strategy</div>
+            <p>A paper draft should never be treated as a simple deadline to fulfill just to make your supervisor happy. Instead, look at it as a strategic opportunity to receive critical feedback on your research approach and structure. The more complete and polished your draft is, the more actionable the feedback will be... Maintain a single master document from day one that mirrors the final structure of your paper.</p>
+          </div>
+        `,
+        trackContent: {
+          "BT": `
+            <h2>Bachelor Thesis Guidelines</h2>
+            <p>Your Bachelor Thesis should demonstrate your ability to conduct independent research and present your findings in a structured and coherent manner.</p>
+            
+            <h3>First Paper Draft</h3>
+            <div class="todo-box">Include specific requirements for the first paper draft here, e.g., expected length, content, and structure.</div>
+
+            <h3>Second Paper Draft</h3>
+            <div class="todo-box">Include specific requirements for the second paper draft here, e.g., expected length, content, and structure.</div>
+
+            <h3>Final Paper</h3>
+            <p>The expected length is between 25–40 pages, including all appendixes, titles, abstract, references.</p>
+            <div class="todo-box">Include specific requirements for the final paper here, e.g., expected length, content, and structure. Specify whether we want table of contents, abstract, page allocations per section, and examples.</div>
+            <p>For candidates who wrote a prior seminar paper on the thesis topic, the opening chapters of the thesis must not simply replicate or copy-paste that seminar work. Introductory and literature chapters must contain only information directly useful or interesting for the specific thesis question.</p>
+          `,
+          "MS": `
+            <h2>Master Seminar Guidelines</h2>
+            <p>Your Master Seminar paper should demonstrate your ability to conduct independent research and present your findings in a structured and coherent manner. The expected length is between ??-?? pages, including all appendixes, titles, abstract, references.</p>
+            <div class="todo-box">If needed, add sections for paper draft and specific requirements regarding length, content, structure, table of contents, and examples.</div>
+          `,
+          "BS": `
+            <h2>Bachelor Seminar Guidelines</h2>
+            <p>Your Bachelor Seminar paper introduces you to academic writing fundamentals and should demonstrate your ability to conduct independent research and present your findings in a structured and coherent manner. The expected length is between 10-15 pages, including all appendixes, titles, abstract, references.</p>
+            <div class="todo-box">Include specific requirements for the paper here, e.g., structure, page budgets, table of contents, and abstract expectations.</div>
+            
+            <h3>Core Elements Required</h3>
+            <ul>
+              <li>Motivation of the research question.</li>
+              <li>Thorough discussion of the baseline paper.</li>
+              <li>Thorough discussion of alternative theoretical/behavioral mechanisms.</li>
+              <li>A proposal of a policy intervention and an idea on how to validate the suggested mechanism/intervention with an experiment.</li>
+            </ul>
+          `
+        }
+      }
+    };
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      let docName = urlParams.get('doc') || 'Info Paper';
+      let groupParam = urlParams.get('group');
+
+      // Fallback group resolution
+      if (!groupParam || !['BS', 'BT', 'MS'].includes(groupParam.toUpperCase())) {
+        groupParam = localStorage.getItem('student_track') || 'BS';
+      } else {
+        groupParam = groupParam.toUpperCase();
+      }
+
+      // Update back link to preserve track context back to hub
+      document.getElementById('back-link').href = `index.html?group=${groupParam}`;
+
+      // Render requested document or default to Info Paper
+      const docData = DOCUMENTS_DATA[docName] || DOCUMENTS_DATA["Info Paper"];
+      
+      let renderedHTML = `
+        <h1 class="doc-title">${docData.title}</h1>
+        <div class="subtitle-track">Active Profile: ${groupParam} Track &bull; ${docName}</div>
+        ${docData.commonContent}
+      `;
+
+      if (docData.trackContent && docData.trackContent[groupParam]) {
+        renderedHTML += docData.trackContent[groupParam];
+      }
+
+      document.getElementById('document-body').innerHTML = renderedHTML;
+    });
+  </script>
+</body>
+</html>
