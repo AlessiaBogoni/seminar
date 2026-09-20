@@ -3,7 +3,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "slidev build --base /seminar/Intro_Meeting/dist-slides/ --out dist-slides",
+    "build": "slidev build --base /seminar/Intro_Meeting/dist-slides/ --out dist-slides && cp dist-slides/index.html dist-slides/404.html",
     "dev": "slidev --open",
     "export": "slidev export"
   },
