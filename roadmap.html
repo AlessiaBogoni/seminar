@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,7 @@
       --text: #f8fafc;
       --text-muted: #94a3b8;
       --border: #334155;
-      
+
       --block1-color: #3b82f6;
       --block1-bg: rgba(59, 130, 246, 0.1);
       --block2-color: #8b5cf6;
@@ -20,8 +21,12 @@
       --block3-bg: rgba(16, 185, 129, 0.1);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       font-family: system-ui, -apple-system, sans-serif;
       background: var(--bg);
@@ -33,7 +38,10 @@
       padding: 2rem 1rem;
     }
 
-    #roadmap-container { width: 100%; max-width: 1000px; }
+    #roadmap-container {
+      width: 100%;
+      max-width: 1000px;
+    }
 
     .header-bar {
       display: flex;
@@ -55,51 +63,109 @@
       font-size: 0.9rem;
       transition: 0.2s;
     }
-    .back-hub-btn:hover { color: var(--text); border-color: var(--text-muted); }
+
+    .back-hub-btn:hover {
+      color: var(--text);
+      border-color: var(--text-muted);
+    }
 
     /* Timeline Physical Line Structure */
-    .timeline { position: relative; margin: 0 auto; padding: 2rem 0; }
+    .timeline {
+      position: relative;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+
     .timeline::before {
       content: '';
       position: absolute;
-      top: 0; bottom: 0; left: 50%;
+      top: 0;
+      bottom: 0;
+      left: 50%;
       width: 4px;
       background: var(--border);
       transform: translateX(-50%);
     }
 
-    .block-divider { position: relative; z-index: 2; text-align: center; margin: 3rem 0 2rem 0; }
+    .block-divider {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      margin: 3rem 0 2rem 0;
+    }
+
     .block-badge {
       display: inline-block;
       padding: 0.6rem 1.5rem;
       border-radius: 30px;
       font-weight: 700;
       font-size: 1rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
-    .block-1 .block-badge { background: var(--block1-color); color: #fff; }
-    .block-2 .block-badge { background: var(--block2-color); color: #fff; }
-    .block-3 .block-badge { background: var(--block3-color); color: #fff; }
 
-    .node { position: relative; width: 50%; padding: 1rem 2.5rem; margin-bottom: 1.5rem; }
-    .node.left { left: 0; text-align: right; }
-    .node.right { left: 50%; text-align: left; }
+    .block-1 .block-badge {
+      background: var(--block1-color);
+      color: #fff;
+    }
+
+    .block-2 .block-badge {
+      background: var(--block2-color);
+      color: #fff;
+    }
+
+    .block-3 .block-badge {
+      background: var(--block3-color);
+      color: #fff;
+    }
+
+    .node {
+      position: relative;
+      width: 50%;
+      padding: 1rem 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .node.left {
+      left: 0;
+      text-align: right;
+    }
+
+    .node.right {
+      left: 50%;
+      text-align: left;
+    }
 
     .node::after {
       content: '';
       position: absolute;
-      top: 24px; width: 16px; height: 16px;
+      top: 24px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
       background: var(--bg);
       border: 4px solid var(--border);
       z-index: 2;
     }
-    .node.left::after { right: -10px; }
-    .node.right::after { left: -10px; }
 
-    .block-1 .node::after { border-color: var(--block1-color); }
-    .block-2 .node::after { border-color: var(--block2-color); }
-    .block-3 .node::after { border-color: var(--block3-color); }
+    .node.left::after {
+      right: -10px;
+    }
+
+    .node.right::after {
+      left: -10px;
+    }
+
+    .block-1 .node::after {
+      border-color: var(--block1-color);
+    }
+
+    .block-2 .node::after {
+      border-color: var(--block2-color);
+    }
+
+    .block-3 .node::after {
+      border-color: var(--block3-color);
+    }
 
     .card {
       background: var(--card-bg);
@@ -110,37 +176,96 @@
       position: relative;
     }
 
-    .block-1 .card { border-top: 4px solid var(--block1-color); background: linear-gradient(180deg, var(--block1-bg) 0%, var(--card-bg) 40%); }
-    .block-2 .card { border-top: 4px solid var(--block2-color); background: linear-gradient(180deg, var(--block2-bg) 0%, var(--card-bg) 40%); }
-    .block-3 .card { border-top: 4px solid var(--block3-color); background: linear-gradient(180deg, var(--block3-bg) 0%, var(--card-bg) 40%); }
+    .block-1 .card {
+      border-top: 4px solid var(--block1-color);
+      background: linear-gradient(180deg, var(--block1-bg) 0%, var(--card-bg) 40%);
+    }
+
+    .block-2 .card {
+      border-top: 4px solid var(--block2-color);
+      background: linear-gradient(180deg, var(--block2-bg) 0%, var(--card-bg) 40%);
+    }
+
+    .block-3 .card {
+      border-top: 4px solid var(--block3-color);
+      background: linear-gradient(180deg, var(--block3-bg) 0%, var(--card-bg) 40%);
+    }
 
     .target-date {
       display: inline-block;
-      font-size: 0.85rem; font-weight: 700; margin-bottom: 0.4rem;
-      padding: 0.2rem 0.6rem; border-radius: 4px;
-      background: rgba(255, 255, 255, 0.05); color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
     }
 
-    .node-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
-    .node-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 0.75rem; }
-    
-    .doc-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: inherit; }
-    .doc-tag {
-      font-size: 0.75rem; background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--border); padding: 0.2rem 0.5rem;
-      border-radius: 4px; color: #60a5fa; text-decoration: none; display: inline-block; transition: background 0.2s;
+    .node-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
     }
-    .doc-tag:hover { background: rgba(96, 165, 250, 0.2); }
+
+    .node-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      margin-bottom: 0.75rem;
+    }
+
+    .doc-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      justify-content: inherit;
+    }
+
+    .doc-tag {
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      color: #60a5fa;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+
+    .doc-tag:hover {
+      background: rgba(96, 165, 250, 0.2);
+    }
 
     @media (max-width: 768px) {
-      .timeline::before { left: 20px; }
-      .node { width: 100%; padding-left: 3rem; padding-right: 0; text-align: left !important; }
-      .node.right { left: 0; }
-      .node.left::after, .node.right::after { left: 10px; }
-      .doc-tags { justify-content: flex-start !important; }
+      .timeline::before {
+        left: 20px;
+      }
+
+      .node {
+        width: 100%;
+        padding-left: 3rem;
+        padding-right: 0;
+        text-align: left !important;
+      }
+
+      .node.right {
+        left: 0;
+      }
+
+      .node.left::after,
+      .node.right::after {
+        left: 10px;
+      }
+
+      .doc-tags {
+        justify-content: flex-start !important;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <div id="roadmap-container">
@@ -208,35 +333,49 @@
         if (events.length === 0) continue;
 
         html += `
-          <div class="block-divider block-${blockKey}">
-            <div class="block-badge">${title}</div>
-          </div>
-        `;
+    <div class="block-divider block-${blockKey}">
+      <div class="block-badge">${title}</div>
+    </div>
+  `;
 
         events.forEach(event => {
           const sideClass = isLeft ? 'left' : 'right';
           isLeft = !isLeft;
 
-          // Reference document tags point to info reader with both doc name and active group
-          const docs = event.RefDoc 
-            ? event.RefDoc.split('\\').map(doc => `<a href="infopaper.html?doc=${encodeURIComponent(doc.trim())}&group=${selectedGroup}" class="doc-tag">📄 ${doc.trim()}</a>`).join('') 
+          // Dynamically map RefDoc to its actual page file
+          const docs = event.RefDoc
+            ? event.RefDoc.split('\\').map(doc => {
+              const docName = doc.trim();
+              const lowerName = docName.toLowerCase();
+
+              let targetFile = 'infopaper.html';
+              if (lowerName.includes('syllabus')) targetFile = 'syllabus.html';
+              else if (lowerName.includes('standard') || lowerName.includes('formatting')) targetFile = 'standards.html';
+              else if (lowerName.includes('methodology')) targetFile = 'methodology.html';
+              else if (lowerName.includes('project') || lowerName.includes('guideline')) targetFile = 'infoproject.html';
+
+              return `<a href="${targetFile}?doc=${encodeURIComponent(docName)}&group=${selectedGroup}" class="doc-tag">📄 ${docName}</a>`;
+            }).join('')
             : '';
 
           html += `
-            <div class="node ${sideClass} block-${blockKey}">
-              <div class="card">
-                <div class="target-date">🗓️ ${event.TargetDate}</div>
-                <div class="node-title">${event.MilestoneName}</div>
-                ${event.description ? `<div class="node-desc">${event.description}</div>` : ''}
-                ${docs ? `<div class="doc-tags">${docs}</div>` : ''}
-              </div>
-            </div>
-          `;
+      <div class="node ${sideClass} block-${blockKey}">
+        <div class="card">
+          <div class="target-date">🗓️ ${event.TargetDate}</div>
+          <div class="node-title">${event.MilestoneName}</div>
+          ${event.description ? `<div class="node-desc">${event.description}</div>` : ''}
+          ${docs ? `<div class="doc-tags">${docs}</div>` : ''}
+        </div>
+      </div>
+    `;
         });
       }
+
+
 
       document.getElementById('timeline').innerHTML = html;
     }
   </script>
 </body>
+
 </html>
