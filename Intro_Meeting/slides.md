@@ -3,9 +3,9 @@ theme: default
 background: '#0f172a'
 head:
   - - script
-    - src: '../references.js'
+    - src: '../../..//references.js'
   - - script
-    - src: '../shared-data.js'
+    - src: '../../..//shared-data.js'
 routerMode: memory
 class: text-slate-100
 highlighter: shiki
@@ -28,6 +28,9 @@ const roadmapEvents = ref([]);
 const bibliographyEntries = ref([]);
 
 onMounted(() => {
+  console.log("Current page URL:", window.location.href);
+  console.log("Checking BIBLIOGRAPHY:", typeof BIBLIOGRAPHY !== 'undefined' ? BIBLIOGRAPHY : "NOT FOUND");
+  console.log("Checking ROADMAP_DATA:", typeof SHARED_TIMELINE_DATA !== 'undefined' ? SHARED_TIMELINE_DATA : "NOT FOUND");
   // Load Roadmap data if available globally
   if (typeof SHARED_TIMELINE_DATA !== 'undefined') {
     roadmapEvents.value = SHARED_TIMELINE_DATA.filter(item => item.Groups && item.Groups.includes(track));
