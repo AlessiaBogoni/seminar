@@ -6,6 +6,7 @@ head:
     - src: '../references.js'
   - - script
     - src: '../shared-data.js'
+routerMode: hash
 class: text-slate-100
 highlighter: shiki
 lineNumbers: false
