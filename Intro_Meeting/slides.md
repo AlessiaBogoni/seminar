@@ -1,6 +1,11 @@
 ---
 theme: default
 background: '#0f172a'
+head:
+  - - script
+    - src: '../references.js'
+  - - script
+    - src: '../shared-data.js'
 class: text-slate-100
 highlighter: shiki
 lineNumbers: false
@@ -10,7 +15,7 @@ info: |
 canvasWidth: 980
 ---
 
-<script setup>
+<script setup>  
 import { ref, onMounted } from 'vue';
 
 // Determine active track from URL query param (?group=BS|BT|MS) or localStorage fallback
@@ -23,8 +28,8 @@ const bibliographyEntries = ref([]);
 
 onMounted(() => {
   // Load Roadmap data if available globally
-  if (typeof ROADMAP_DATA !== 'undefined') {
-    roadmapEvents.value = ROADMAP_DATA.filter(item => item.Groups && item.Groups.includes(track));
+  if (typeof SHARED_TIMELINE_DATA !== 'undefined') {
+    roadmapEvents.value = SHARED_TIMELINE_DATA.filter(item => item.Groups && item.Groups.includes(track));
   }
 
   // Load Bibliography items based on track or keywords
