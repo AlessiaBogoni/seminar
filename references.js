@@ -1,4 +1,4 @@
-export const BIBLIOGRAPHY = {
+const BIBLIOGRAPHY = {
   "thaler2016": {
     author: "Thaler, Richard H.",
     year: 2016,

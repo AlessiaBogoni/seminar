@@ -1,5 +1,5 @@
 // shared-data.js
-export const SHARED_TIMELINE_DATA = [
+const SHARED_TIMELINE_DATA = [
   {
     ID: "intro",
     MilestoneName: "Mandatory Introductory Meeting",
