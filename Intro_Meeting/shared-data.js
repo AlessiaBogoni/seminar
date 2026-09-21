@@ -5,7 +5,7 @@ export const SHARED_TIMELINE_DATA = [
     MilestoneName: "Mandatory Introductory Meeting",
     TargetDate: "14-10-2026",
     Groups: "BT|MS|BS",
-    RefDoc: "Intro Meeting Slides\\Support Offices\\Intro Writing\\Intro Reading\\Info Project\\Info Paper",
+    RefDoc: "Intro Meeting Slides\\Intro Writing\\Intro Reading\\Info Project\\Info Paper",
     description: "For students who don't show up at this meeting without a valid excuse, supervision commitment will be revoked.",
     block: "1.0",
     syllabus: "true"
