@@ -1,13 +1,10 @@
 ---
 theme: default
+defaults:
+  class: 'bg-[#0f172a] text-white'
 background: '#0f172a'
-head:
-  - - script
-    - src: '../../..//references.js'
-  - - script
-    - src: '../../..//shared-data.js'
 routerMode: memory
-class: text-slate-100
+class: text-slate-100 bg-[#0f172a]'
 highlighter: shiki
 lineNumbers: false
 info: |
@@ -16,44 +13,10 @@ info: |
 canvasWidth: 980
 ---
 
-<script setup>  
-import { ref, onMounted } from 'vue';
-
-// Determine active track from URL query param (?group=BS|BT|MS) or localStorage fallback
+<script setup>
 const urlParams = new URLSearchParams(window.location.search);
 const track = (urlParams.get('group') || localStorage.getItem('student_track') || 'BS').toUpperCase();
-
-// Roadmap and Bibliography states loaded from global js files
-const roadmapEvents = ref([]);
-const bibliographyEntries = ref([]);
-
-onMounted(() => {
-  console.log("Current page URL:", window.location.href);
-  console.log("Checking BIBLIOGRAPHY:", typeof BIBLIOGRAPHY !== 'undefined' ? BIBLIOGRAPHY : "NOT FOUND");
-  console.log("Checking ROADMAP_DATA:", typeof SHARED_TIMELINE_DATA !== 'undefined' ? SHARED_TIMELINE_DATA : "NOT FOUND");
-  // Load Roadmap data if available globally
-  if (typeof SHARED_TIMELINE_DATA !== 'undefined') {
-    roadmapEvents.value = SHARED_TIMELINE_DATA.filter(item => item.Groups && item.Groups.includes(track));
-  }
-
-  // Load Bibliography items based on track or keywords
-  if (typeof BIBLIOGRAPHY !== 'undefined') {
-    bibliographyEntries.value = Object.keys(BIBLIOGRAPHY).map(key => ({
-      key,
-      ...BIBLIOGRAPHY[key]
-    })).filter(item => {
-      if (track === 'BT') return item.keyword === 'BT' || item.type === 'BT';
-      if (track === 'BS') return item.keyword === 'BS' || item.type === 'BS';
-      return true;
-    });
-  }
-});
 </script>
-
----
-layout: center
-class: text-center
----
 
 # <span v-if="track === 'BT'">Bachelor Thesis</span><span v-else-if="track === 'MS'">Master Seminar: Labor Economics</span><span v-else>Bachelor Seminar: Behavioral Economics in Action</span>
 ### Intro Meeting
@@ -80,6 +43,11 @@ We are interested in:
 layout: default
 ---
 
+<script setup>
+const urlParams = new URLSearchParams(window.location.search);
+const track = (urlParams.get('group') || localStorage.getItem('student_track') || 'BS').toUpperCase();
+</script>
+
 # Who are you?
 
 <div v-if="track === 'BT'">
@@ -104,8 +72,14 @@ layout: default
 
 ---
 layout: default
-v-if: track === 'BT'
 ---
+
+<script setup>
+const urlParams = new URLSearchParams(window.location.search);
+const track = (urlParams.get('group') || localStorage.getItem('student_track') || 'BS').toUpperCase();
+</script>
+
+<div v-if="track === 'BT'">
 
 # Bachelor thesis - your final paper
 
@@ -114,10 +88,31 @@ v-if: track === 'BT'
 - Ideally, you build on skills from seminar work, academic writing, and empirical methods
 - A strong thesis is not only feasible, but also interesting to you and relevant for your future path
 
+</div>
+
+<div v-else>
+
+# Seminar Requirements
+
+<div class="space-y-2 text-slate-300">
+  <ul>
+    <li class="text-amber-400 font-semibold"><span v-if="track === 'MS'">Master Seminar students</span><span v-else>Bachelor Seminar students</span></li>
+    <li>Active participation, literature review, and presentation of selected topics.</li>
+  </ul>
+</div>
+
+</div>
+
 ---
 layout: default
-v-if: track === 'BT'
 ---
+
+<script setup>
+const urlParams = new URLSearchParams(window.location.search);
+const track = (urlParams.get('group') || localStorage.getItem('student_track') || 'BS').toUpperCase();
+</script>
+
+<div v-if="track === 'BT'">
 
 # Bachelor thesis - prerequisites
 
@@ -129,10 +124,28 @@ v-if: track === 'BT'
   - You have completed a substantial part of your studies $\rightarrow$ in-depth understanding of economic thinking
   - **$\rightarrow$ Please think twice before applying if you feel you do not meet any requirements**
 
+</div>
+
+<div v-else>
+
+# Seminar Overview & Objectives
+
+<div class="space-y-2 text-slate-300">
+  <p>Welcome to the seminar track! Here you will engage deeply with modern empirical literature, evaluate research methods, and present your findings.</p>
+</div>
+
+</div>
+
 ---
 layout: default
-v-if: track === 'BT'
 ---
+
+<script setup>
+const urlParams = new URLSearchParams(window.location.search);
+const track = (urlParams.get('group') || localStorage.getItem('student_track') || 'BS').toUpperCase();
+</script>
+
+<div v-if="track === 'BT'">
 
 # Bachelor Thesis - An Own Empirical Project
 
@@ -144,10 +157,65 @@ v-if: track === 'BT'
 - Critically analyze your data: the goal is to find a well-suited presentation of preliminary findings.
 - Relate your project to the broader topic and literature.
 
+</div>
+
+<div v-else>
+
+# Seminar Setup
+
+- Review assigned research papers thoroughly before sessions.
+- Prepare discussion points and critical feedback for fellow presenters.
+- Active engagement is key to getting the most out of this seminar.
+
+</div>
+
 ---
 layout: default
-v-if: track === 'BT'
 ---
+
+<script setup>
+import { computed } from 'vue';
+import { BIBLIOGRAPHY } from './references.js';
+
+const urlParams = new URLSearchParams(window.location.search);
+const track = (urlParams.get('group') || localStorage.getItem('student_track') || 'BS').toUpperCase();
+
+const bibliographyEntries = computed(() => {
+  const bib = BIBLIOGRAPHY || {};
+  const entries = Object.keys(bib).map(key => ({
+    key,
+    ...bib[key]
+  }));
+  return entries.filter(item => {
+    if (!item.tracks || !Array.isArray(item.tracks)) return false; 
+    if (track === 'BT') return item.tracks.includes('BT');
+    if (track === 'BS') return item.tracks.includes('BS');
+    if (track === 'MS') return item.tracks.includes('MS') || item.tracks.includes('BS');
+    return false;
+  });
+});
+</script>
+
+# <span v-if="track === 'MS'">Master Seminar Topics</span><span v-else>Bachelor Seminar Topics</span>
+
+<p class="text-slate-400 text-sm mb-3">The following seminar topics are available for your track:</p>
+
+<div class="space-y-2 text-sm text-slate-300 max-h-[350px] overflow-y-auto pr-2">
+  <div v-for="item in bibliographyEntries" :key="item.key" class="p-2.5 bg-slate-800/60 rounded border border-slate-700">
+    <strong>{{ item.author }}</strong> ({{ item.year }}). <em>{{ item.title }}</em>.
+  </div>
+</div>
+
+---
+layout: default
+---
+
+<script setup>
+const urlParams = new URLSearchParams(window.location.search);
+const track = (urlParams.get('group') || localStorage.getItem('student_track') || 'BS').toUpperCase();
+</script>
+
+<div v-if="track === 'BT'">
 
 # Inspiration for Your Bachelor Thesis Topic
 
@@ -157,10 +225,45 @@ v-if: track === 'BT'
   - **Choice Difficulty and Delegation in Hotel Booking:** studying whether difficult choices increase willingness to delegate decisions via online survey/experiment.
   - **Entrepreneurial Red Flags and Behavioral Responses:** experimentally studying how founders react to negative information shocks.
 
+</div>
+
+<div v-else>
+
+# Literature Discussion Guidelines
+
+- Focus on identification strategies and empirical findings.
+- Consider potential extensions or alternative research questions for each paper.
+
+</div>
+
 ---
 layout: default
-v-if: track === 'BT'
 ---
+
+<script setup>
+import { computed } from 'vue';
+import { BIBLIOGRAPHY } from './references.js';
+
+const urlParams = new URLSearchParams(window.location.search);
+const track = (urlParams.get('group') || localStorage.getItem('student_track') || 'BS').toUpperCase();
+
+const bibliographyEntries = computed(() => {
+  const bib = BIBLIOGRAPHY || {};
+  const entries = Object.keys(bib).map(key => ({
+    key,
+    ...bib[key]
+  }));
+  return entries.filter(item => {
+    if (!item.tracks || !Array.isArray(item.tracks)) return false; 
+    if (track === 'BT') return item.tracks.includes('BT');
+    if (track === 'BS') return item.tracks.includes('BS');
+    if (track === 'MS') return item.tracks.includes('MS') || item.tracks.includes('BS');
+    return false;
+  });
+});
+</script>
+
+<div v-if="track === 'BT'">
 
 # Examples from the Literature
 
@@ -170,19 +273,18 @@ v-if: track === 'BT'
   </div>
 </div>
 
----
-layout: default
-v-if: track === 'BS'
----
+</div>
 
-# Bachelor Seminar Topics
+<div v-else>
 
-The following seminar topics are available:
+# Key Readings Reference
 
-<div class="space-y-2 text-sm text-slate-300 max-h-[350px] overflow-y-auto pr-2">
-  <div v-for="item in bibliographyEntries" :key="item.key" class="p-2.5 bg-slate-800/60 rounded border border-slate-700">
+<div class="space-y-3 text-sm text-slate-300 max-h-[350px] overflow-y-auto pr-2">
+  <div v-for="item in bibliographyEntries.slice(0, 4)" :key="item.key" class="p-3 bg-slate-800/60 rounded border border-slate-700">
     <strong>{{ item.author }}</strong> ({{ item.year }}). <em>{{ item.title }}</em>.
   </div>
+</div>
+
 </div>
 
 ---
@@ -212,6 +314,19 @@ layout: default
 layout: default
 ---
 
+<script setup>
+import { computed } from 'vue';
+import { SHARED_TIMELINE_DATA } from './shared-data.js';
+
+const urlParams = new URLSearchParams(window.location.search);
+const track = (urlParams.get('group') || localStorage.getItem('student_track') || 'BS').toUpperCase();
+
+const roadmapEvents = computed(() => {
+  const data = SHARED_TIMELINE_DATA || [];
+  return data.filter(item => item.Groups && item.Groups.includes(track));
+});
+</script>
+
 # Your Milestone Roadmap
 
 <div class="space-y-3 max-h-[380px] overflow-y-auto pr-3 text-sm">
@@ -227,8 +342,14 @@ layout: default
 
 ---
 layout: default
-v-if: track === 'BT'
 ---
+
+<script setup>
+const urlParams = new URLSearchParams(window.location.search);
+const track = (urlParams.get('group') || localStorage.getItem('student_track') || 'BS').toUpperCase();
+</script>
+
+<div v-if="track === 'BT'">
 
 # Next Steps
 
@@ -239,10 +360,18 @@ v-if: track === 'BT'
 
 **Have a good start!**
 
----
-layout: default
-v-if: track === 'BS'
----
+</div>
+
+<div v-else-if="track === 'MS'">
+
+# Next Steps
+
+- Review your course reading list and preparation notes.
+- Prepare for your initial topic assignment session.
+
+</div>
+
+<div v-else>
 
 # Next Steps
 
@@ -250,6 +379,8 @@ v-if: track === 'BS'
 
 <div class="mt-6 p-4 bg-blue-950/40 border border-blue-800/50 rounded-lg text-sm text-slate-300">
   Please ensure you complete your <strong>Topic Selection</strong> on schedule. Check your roadmap for specific milestone dates.
+</div>
+
 </div>
 
 ---
