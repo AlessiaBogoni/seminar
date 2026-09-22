@@ -351,8 +351,17 @@
                 let linkURL = '';
 
                 // 1. Define custom URLs for specific documents (like your slides)
-                if (lowerName.includes('intro methods slides') || lowerName.includes('intro_emp')) {
+                if (lowerName.includes('intro methods') || lowerName.includes('intro_emp')) {
                   linkURL = `https://alessiabogoni.github.io/seminar/Intro_Meeting/dist-slides/Intro_emp/index.html?group=${selectedGroup}`;
+                } 
+                else if (lowerName.includes('intro reading') || lowerName.includes('intro_reading')) {
+                  linkURL = `https://alessiabogoni.github.io/seminar/Intro_Meeting/dist-slides/Intro_reading/index.html?group=${selectedGroup}`;
+                } 
+                else if (lowerName.includes('intro writing') || lowerName.includes('intro_writing')) {
+                  linkURL = `https://alessiabogoni.github.io/seminar/Intro_Meeting/dist-slides/Intro_writing/index.html?group=${selectedGroup}`;
+                } 
+                else if (lowerName.includes('intro') || lowerName.includes('intro')) {
+                  linkURL = `https://alessiabogoni.github.io/seminar/Intro_Meeting/dist-slides/Intro/index.html?group=${selectedGroup}`;
                 } 
                 // Add other custom slide/external links here as needed:
                 // else if (lowerName.includes('other presentation')) {
@@ -364,8 +373,9 @@
                   let targetFile = 'infopaper.html';
                   if (lowerName.includes('syllabus')) targetFile = 'syllabus.html';
                   else if (lowerName.includes('standard') || lowerName.includes('formatting')) targetFile = 'standards.html';
-                  else if (lowerName.includes('methodology')) targetFile = 'methodology.html';
-                  else if (lowerName.includes('project') || lowerName.includes('guideline') || lowerName.includes('presentation')) targetFile = 'infoproject.html';
+                  else if (lowerName.includes('project')) targetFile = 'infoproject.html';
+                  else if (lowerName.includes('presentation')) targetFile = 'infopresentation.html';
+
 
                   // Optional: add your section ID hash if applicable
                   const eventId = event.ID || event.MilestoneID || '';
@@ -377,7 +387,7 @@
                 return `<a href="${linkURL}" class="doc-tag">📄 ${docName}</a>`;
               }).join('')
             : '';
-            
+
           html += `
       <div class="node ${sideClass} block-${blockKey}">
         <div class="card">
