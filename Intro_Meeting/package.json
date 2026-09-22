@@ -3,7 +3,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "slidev build --base /seminar/Intro_Meeting/ --out dist-slides && node -e \"require('fs').copyFileSync('dist-slides/index.html', 'dist-slides/404.html')\"",
+    "build": "slidev build --base /seminar/Intro_Meeting/dist-slides/ --out dist-slides && node -e \"require('fs').copyFileSync('dist-slides/index.html', 'dist-slides/404.html')\"",
     "export": "slidev export"
   },
   "dependencies": {
