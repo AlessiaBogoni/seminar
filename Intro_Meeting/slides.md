@@ -197,7 +197,7 @@ const bibliographyEntries = computed(() => {
 </script>
 
 # <span v-if="track === 'MS'">Master Seminar Topics</span><span v-else>Bachelor Seminar Topics</span>
-
+<!-- todo: include the topics as well, not only the papers -->
 <p class="text-slate-400 text-sm mb-3">The following seminar topics are available for your track:</p>
 
 <div class="space-y-2 text-sm text-slate-300 max-h-[350px] overflow-y-auto pr-2">
