@@ -209,10 +209,10 @@
         tracks: ['BS', 'MS'] // Example: hidden if track is BT if it doesn't exist for BT
       },
       {
-        id: 'slides',
+        id: 'slides_intro',
         title: '📊 Intro Presentation',
         desc: 'Interactive lecture slides covering course structure, expectations, and roadmap highlights.',
-        file: 'Intro_Meeting/dist-slides/index.html', // Pointing to your built Slidev folder
+        file: 'Intro_Meeting/dist-slides/Intro/index.html', // Pointing to your built Slidev folder
         footer: 'Open Slides →',
         tracks: ['BS', 'BT', 'MS'] // Change if it's only for certain tracks
       },
@@ -231,7 +231,32 @@
         file: 'standards.html',
         footer: 'Read Formatting Standards →',
         tracks: ['BS', 'MS', 'BT'] 
+      },
+      {
+        id: 'slides_emp',
+        title: '📊 Empirical Methods',
+        desc: 'A recap on experiments and causality',
+        file: 'Intro_Meeting/dist-slides/Intro_emp/index.html', // Pointing to your built Slidev folder
+        footer: 'Open Slides →',
+        tracks: ['BS', 'BT', 'MS'] // Change if it's only for certain tracks
+      },
+      {
+        id: 'slides_writing',
+        title: '📄 How to Write',
+        desc: 'Best practices for academic writing',
+        file: 'Intro_Meeting/dist-slides/Intro_writing/index.html',
+        footer: 'Read Overview →',
+        tracks: ['BS', 'MS','BT'] // Example: hidden if track is BT if it doesn't exist for BT
+      },
+       {
+        id: 'slides_reading',
+        title: '📄 How to Read',
+        desc: 'Best practices for academic reading',
+        file: 'Intro_Meeting/dist-slides/Intro_reading/index.html',
+        footer: 'Read Formatting Standards →',
+        tracks: ['BS', 'MS', 'BT'] 
       }
+
     ];
 
     function switchTrackAndReload(track) {

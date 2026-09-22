@@ -3,7 +3,12 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "slidev build --base /seminar/Intro_Meeting/dist-slides/ --out dist-slides && node -e \"require('fs').copyFileSync('dist-slides/index.html', 'dist-slides/404.html')\"",
+    "build:intro": "slidev build Intro.md --base /seminar/Intro_Meeting/dist-slides/Intro/ --out dist-slides/Intro && node -e \"require('fs').copyFileSync('dist-slides/Intro/index.html', 'dist-slides/Intro/404.html')\"",
+    "build:emp": "slidev build Intro_emp.md --base /seminar/Intro_Meeting/dist-slides/Intro_emp/ --out dist-slides/Intro_emp && node -e \"require('fs').copyFileSync('dist-slides/Intro_emp/index.html', 'dist-slides/Intro_emp/404.html')\"",
+    "build:reading": "slidev build Intro_reading.md --base /seminar/Intro_Meeting/dist-slides/Intro_reading/ --out dist-slides/Intro_reading && node -e \"require('fs').copyFileSync('dist-slides/Intro_reading/index.html', 'dist-slides/Intro_reading/404.html')\"",
+    "build:writing": "slidev build Intro_writing.md --base /seminar/Intro_Meeting/dist-slides/Intro_writing/ --out dist-slides/Intro_writing && node -e \"require('fs').copyFileSync('dist-slides/Intro_writing/index.html', 'dist-slides/Intro_writing/404.html')\"",
+    
+    "build:all": "npm run build:intro && npm run build:emp && npm run build:reading && npm run build:writing",
     "export": "slidev export"
   },
   "dependencies": {
