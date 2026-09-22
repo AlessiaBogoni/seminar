@@ -325,6 +325,9 @@ const roadmapEvents = computed(() => {
   const data = SHARED_TIMELINE_DATA || [];
   return data.filter(item => item.Groups && item.Groups.includes(track));
 });
+
+/*todo: include a filter here to only show them milestone/blocks instead of a roadmap */
+
 </script>
 
 # Your Milestone Roadmap
@@ -333,7 +336,6 @@ const roadmapEvents = computed(() => {
   <div v-for="event in roadmapEvents" :key="event.ID" class="p-3 bg-slate-800/50 rounded-lg border border-slate-700/80 flex flex-col gap-1">
     <div class="flex justify-between items-center text-xs text-blue-400 font-semibold">
       <span>🗓️ {{ event.TargetDate }}</span>
-      <span class="px-2 py-0.5 bg-slate-700 rounded text-[10px] text-slate-300">{{ event.ID }}</span>
     </div>
     <div class="font-bold text-slate-100 text-base">{{ event.MilestoneName }}</div>
     <div class="text-slate-400 text-xs leading-relaxed" v-html="event.description"></div>

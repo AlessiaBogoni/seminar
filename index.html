@@ -129,7 +129,7 @@
   <!-- MANDATORY ENTRY GATE MODAL -->
   <div id="track-modal">
     <div class="modal-card">
-      <h2>Welcome to the Course Hub</h2>
+      <h2>Welcome to the LEO Hub</h2>
       <p>Please select your academic track to view the correct deadlines, guidelines, and roadmap tailored specifically for you.</p>
       <div class="modal-options">
         <button class="modal-track-btn" onclick="selectTrackAndReload('BS')">
@@ -139,7 +139,7 @@
           Bachelor Thesis (BT) <span>Select Track →</span>
         </button>
         <button class="modal-track-btn" onclick="selectTrackAndReload('MS')">
-          Master Track (MS) <span>Select Track →</span>
+          Master Seminar (MS) <span>Select Track →</span>
         </button>
       </div>
     </div>
@@ -148,14 +148,14 @@
   <div class="container">
     <div class="header-box">
       <div>
-        <h1>Course Resource Hub</h1>
+        <h1>LEO Resource Hub</h1>
         <p id="welcome-sub">Your central location for roadmaps, milestones, and guidelines.</p>
       </div>
       <div class="track-selector">
         <span style="font-size: 0.85rem; color: var(--text-muted); margin-right: 0.5rem;">Active Track:</span>
-        <button class="track-btn" id="btn-BS" onclick="switchTrackAndReload('BS')">BS</button>
-        <button class="track-btn" id="btn-BT" onclick="switchTrackAndReload('BT')">BT</button>
-        <button class="track-btn" id="btn-MS" onclick="switchTrackAndReload('MS')">MS</button>
+        <button class="track-btn" id="btn-BS" onclick="switchTrackAndReload('BS')">B.Sc. Seminar</button>
+        <button class="track-btn" id="btn-BT" onclick="switchTrackAndReload('BT')">B.Sc. Thesis</button>
+        <button class="track-btn" id="btn-MS" onclick="switchTrackAndReload('MS')">M.Sc. Seminar</button>
       </div>
     </div>
 
@@ -230,7 +230,7 @@
         desc: 'Formatting rules',
         file: 'standards.html',
         footer: 'Read Formatting Standards →',
-        tracks: ['BS', 'MS'] // Example: hidden if track is BT if it doesn't exist for BT
+        tracks: ['BS', 'MS', 'BT'] 
       }
     ];
 
@@ -248,6 +248,7 @@
     window.addEventListener('DOMContentLoaded', () => {
       const urlParams = new URLSearchParams(window.location.search);
       let track = urlParams.get('group');
+
 
       // Validate or fallback to localStorage or default 'BS'
       if (!track || !['BS', 'BT', 'MS'].includes(track.toUpperCase())) {
