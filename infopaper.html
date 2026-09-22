@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,8 +17,12 @@
       --todo-color: #f59e0b;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       font-family: system-ui, -apple-system, sans-serif;
       background: var(--bg);
@@ -29,7 +34,10 @@
       padding: 2.5rem 1rem;
     }
 
-    .container { max-width: 850px; width: 100%; }
+    .container {
+      max-width: 850px;
+      width: 100%;
+    }
 
     /* Navigation & Header Bar */
     .header-bar {
@@ -54,7 +62,11 @@
       font-size: 0.9rem;
       transition: 0.2s;
     }
-    .back-hub-btn:hover { color: var(--text); border-color: var(--text-muted); }
+
+    .back-hub-btn:hover {
+      color: var(--text);
+      border-color: var(--text-muted);
+    }
 
     /* Content Styling mimicking LaTeX cleanly */
     .doc-content {
@@ -82,15 +94,49 @@
       font-weight: 600;
     }
 
-    h2 { font-size: 1.3rem; color: #cbd5e1; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
-    h3 { font-size: 1.1rem; color: #93c5fd; margin-top: 1.5rem; margin-bottom: 0.5rem; }
-    
-    p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; }
-    
-    ul { margin-bottom: 1.5rem; padding-left: 1.5rem; color: var(--text-muted); }
-    li { margin-bottom: 0.5rem; line-height: 1.5; font-size: 0.95rem; }
-    li a { color: #60a5fa; text-decoration: none; }
-    li a:hover { text-decoration: underline; }
+    h2 {
+      font-size: 1.3rem;
+      color: #cbd5e1;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.4rem;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      color: #93c5fd;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+      color: var(--text-muted);
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    li a {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+
+    li a:hover {
+      text-decoration: underline;
+    }
 
     /* Todo Box placeholders mapping to LaTeX todoColor */
     .todo-box {
@@ -112,16 +158,29 @@
       border-radius: 0 8px 8px 0;
       margin: 1.5rem 0;
     }
-    .callout-title { font-weight: 700; color: #93c5fd; margin-bottom: 0.4rem; font-size: 0.95rem; }
-    .callout p { margin-bottom: 0; color: #e2e8f0; }
+
+    .callout-title {
+      font-weight: 700;
+      color: #93c5fd;
+      margin-bottom: 0.4rem;
+      font-size: 0.95rem;
+    }
+
+    .callout p {
+      margin-bottom: 0;
+      color: #e2e8f0;
+    }
   </style>
 </head>
+
 <body>
 
   <div class="container">
     <div class="header-bar">
       <div>
-        <span id="doc-category-tag" style="font-size: 0.8rem; color: var(--primary); font-weight: 700; text-transform: uppercase;">Official Guideline</span>
+        <span id="doc-category-tag"
+          style="font-size: 0.8rem; color: var(--primary); font-weight: 700; text-transform: uppercase;">Official
+          Guideline</span>
       </div>
       <a id="back-link" href="index.html" class="back-hub-btn">← Back to Hub</a>
     </div>
@@ -220,19 +279,43 @@
 
       // Render requested document or default to Info Paper
       const docData = DOCUMENTS_DATA[docName] || DOCUMENTS_DATA["Info Paper"];
-      
+
       let renderedHTML = `
-        <h1 class="doc-title">${docData.title}</h1>
-        <div class="subtitle-track">Active Profile: ${groupParam} Track &bull; ${docName}</div>
-        ${docData.commonContent}
-      `;
+    <h1 class="doc-title">${docData.title}</h1>
+    <div class="subtitle-track">Active Profile: ${groupParam} Track &bull; ${docName}</div>
+    ${docData.commonContent}
+  `;
 
       if (docData.trackContent && docData.trackContent[groupParam]) {
         renderedHTML += docData.trackContent[groupParam];
       }
 
       document.getElementById('document-body').innerHTML = renderedHTML;
+
+      // --- ADD THIS BLOCK HERE ---
+      document.getElementById('document-body').innerHTML = renderedHTML;
+
+      // --- DEBUGGING CONSOLE LOGS ---
+      console.log("1. Current URL Hash:", window.location.hash);
+
+      if (window.location.hash) {
+        setTimeout(() => {
+          const targetElement = document.querySelector(window.location.hash);
+          console.log("2. Target Element Found:", targetElement);
+
+          if (targetElement) {
+            console.log("3. Scrolling now...");
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            console.warn("⚠️ Hash exists, but NO element with this ID exists in the rendered HTML!");
+          }
+        }, 150);
+      } else {
+        console.log("⚠️ No hash found in the URL.");
+      }
+      // ---------------------------
     });
   </script>
 </body>
+
 </html>

@@ -345,33 +345,39 @@
           // Dynamically map RefDoc to its actual page file
           const docs = event.RefDoc
             ? event.RefDoc.split('\\').map(doc => {
-              const docName = doc.trim();
-              const lowerName = docName.toLowerCase();
+                const docName = doc.trim();
+                const lowerName = docName.toLowerCase();
 
-              // 1. Your original file mapping logic
-              let targetFile = 'infopaper.html';
-              if (lowerName.includes('syllabus')) targetFile = 'syllabus.html';
-              else if (lowerName.includes('standard') || lowerName.includes('formatting')) targetFile = 'standards.html';
-              else if (lowerName.includes('methodology')) targetFile = 'methodology.html';
-              else if (lowerName.includes('project') || lowerName.includes('guideline') || lowerName.includes('presentation')) targetFile = 'infoproject.html';
+                let linkURL = '';
 
-              // 2. Intelligent anchor assignment: 
-              // Only attach the event ID as a hash if the document is actually a guideline/presentation 
-              // where you expect section IDs to live, OR use it if you design your IDs globally.
-              const eventId = event.ID || event.MilestoneID || '';
+                // 1. Define custom URLs for specific documents (like your slides)
+                if (lowerName.includes('intro methods slides') || lowerName.includes('intro_emp')) {
+                  linkURL = `https://alessiabogoni.github.io/seminar/Intro_Meeting/dist-slides/Intro_emp/index.html?group=${selectedGroup}`;
+                } 
+                // Add other custom slide/external links here as needed:
+                // else if (lowerName.includes('other presentation')) {
+                //   linkURL = `https://.../index.html?group=${selectedGroup}`;
+                // } 
+                
+                // 2. Fall back to your standard local HTML pages if it's not an external link
+                else {
+                  let targetFile = 'infopaper.html';
+                  if (lowerName.includes('syllabus')) targetFile = 'syllabus.html';
+                  else if (lowerName.includes('standard') || lowerName.includes('formatting')) targetFile = 'standards.html';
+                  else if (lowerName.includes('methodology')) targetFile = 'methodology.html';
+                  else if (lowerName.includes('project') || lowerName.includes('guideline') || lowerName.includes('presentation')) targetFile = 'infoproject.html';
 
-              let sectionHash = '';
-              if (eventId && (lowerName.includes('presentation') || lowerName.includes('guideline'))) {
-                sectionHash = `#${eventId}`;
-              }
+                  // Optional: add your section ID hash if applicable
+                  const eventId = event.ID || event.MilestoneID || '';
+                  const sectionHash = eventId ? `#${eventId}` : '';
 
-              // 3. Build the clean URL
-              const linkURL = `${targetFile}?group=${selectedGroup}&doc=${encodeURIComponent(docName)}${sectionHash}`;
+                  linkURL = `${targetFile}?group=${selectedGroup}&doc=${encodeURIComponent(docName)}${sectionHash}`;
+                }
 
-              return `<a href="${linkURL}" class="doc-tag">📄 ${docName}</a>`;
-            }).join('')
+                return `<a href="${linkURL}" class="doc-tag">📄 ${docName}</a>`;
+              }).join('')
             : '';
-
+            
           html += `
       <div class="node ${sideClass} block-${blockKey}">
         <div class="card">
