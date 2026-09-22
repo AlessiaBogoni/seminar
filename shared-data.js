@@ -132,11 +132,11 @@ const SHARED_TIMELINE_DATA = [
   },
   {
     ID: "collBT",
-    MilestoneName: "Presentation",
+    MilestoneName: "Colloquium",
     TargetDate: "13-01-2027",
     Groups: "BT",
     RefDoc: "Info Presentation",
-    description: "Presentation",
+    description: "Colloquium",
     block: "3.0",
     syllabus: "false"
   },

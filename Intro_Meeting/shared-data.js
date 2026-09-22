@@ -1,17 +1,37 @@
 // shared-data.js
 export const SHARED_TIMELINE_DATA = [
   {
-    ID: "intro",
+    ID: "bt_intro",
     MilestoneName: "Mandatory Introductory Meeting",
     TargetDate: "14-10-2026",
-    Groups: "BT|MS|BS",
+    Groups: "BT",
     RefDoc: "Intro Meeting Slides\\Intro Writing\\Intro Reading\\Info Project\\Info Paper",
     description: "For students who don't show up at this meeting without a valid excuse, supervision commitment will be revoked.",
     block: "1.0",
     syllabus: "true"
   },
   {
-    ID: "topic_selection",
+    ID: "ms_intro",
+    MilestoneName: "Mandatory Introductory Meeting",
+    TargetDate: "14-10-2026",
+    Groups: "MS",
+    RefDoc: "Intro Meeting Slides\\Intro Writing\\Intro Reading\\Info Project\\Info Paper",
+    description: "For students who don't show up at this meeting without a valid excuse, supervision commitment will be revoked.",
+    block: "1.0",
+    syllabus: "true"
+  },
+  {
+    ID: "bs_intro",
+    MilestoneName: "Mandatory Introductory Meeting",
+    TargetDate: "14-10-2026",
+    Groups: "BS",
+    RefDoc: "Intro Meeting Slides\\Intro Writing\\Intro Reading\\Info Project\\Info Paper",
+    description: "For students who don't show up at this meeting without a valid excuse, supervision commitment will be revoked.",
+    block: "1.0",
+    syllabus: "true"
+  },
+  {
+    ID: "bs_topic_selection",
     MilestoneName: "Topic Selection Deadline",
     TargetDate: "19-10-2026",
     Groups: "BS",
@@ -21,37 +41,87 @@ export const SHARED_TIMELINE_DATA = [
     syllabus: "true"
   },
   {
-    ID: "emp_intro",
+    ID: "bt_emp_intro",
     MilestoneName: "Intro Methods",
     TargetDate: "21-10-2026",
-    Groups: "BT|MS|BS",
+    Groups: "BT",
     RefDoc: "Intro Methods Slides",
     description: "Recap Session: Empirical methods and Academic writing and reading guidelines",
     block: "1.0",
     syllabus: "true"
   },
   {
-    ID: "proj_draft",
+    ID: "ms_emp_intro",
+    MilestoneName: "Intro Methods",
+    TargetDate: "21-10-2026",
+    Groups: "MS",
+    RefDoc: "Intro Methods Slides",
+    description: "Recap Session: Empirical methods and Academic writing and reading guidelines",
+    block: "1.0",
+    syllabus: "true"
+  },
+  {
+    ID: "bs_emp_intro",
+    MilestoneName: "Intro Methods",
+    TargetDate: "21-10-2026",
+    Groups: "BS",
+    RefDoc: "Intro Methods Slides",
+    description: "Recap Session: Empirical methods and Academic writing and reading guidelines",
+    block: "1.0",
+    syllabus: "true"
+  },
+  {
+    ID: "bt_proj_draft",
     MilestoneName: "Project Draft",
     TargetDate: "23-10-2026",
-    Groups: "BT|MS",
+    Groups: "BT",
     RefDoc: "Info Project",
     description: "First Project Draft to be submitted via WueCampus (see the reference documents for more info)",
     block: "2.0",
     syllabus: "false"
   },
   {
-    ID: "ext_proj",
+    ID: "ms_proj_draft",
+    MilestoneName: "Project Draft",
+    TargetDate: "23-10-2026",
+    Groups: "MS",
+    RefDoc: "Info Project",
+    description: "First Project Draft to be submitted via WueCampus (see the reference documents for more info)",
+    block: "2.0",
+    syllabus: "false"
+  },
+  {
+    ID: "bt_ext_proj",
     MilestoneName: "Extended Project Draft",
     TargetDate: "06-11-2026",
-    Groups: "BT|MS|BS",
+    Groups: "BT",
     RefDoc: "Info Project",
     description: "Second Project Draft to be submitted via WueCampus (see the reference documents for more info)",
     block: "2.0",
     syllabus: "false"
   },
   {
-    ID: "bsc_sem_submission",
+    ID: "ms_ext_proj",
+    MilestoneName: "Extended Project Draft",
+    TargetDate: "06-11-2026",
+    Groups: "MS",
+    RefDoc: "Info Project",
+    description: "Second Project Draft to be submitted via WueCampus (see the reference documents for more info)",
+    block: "2.0",
+    syllabus: "false"
+  },
+  {
+    ID: "bs_ext_proj",
+    MilestoneName: "Extended Project Draft",
+    TargetDate: "06-11-2026",
+    Groups: "BS",
+    RefDoc: "Info Project",
+    description: "Second Project Draft to be submitted via WueCampus (see the reference documents for more info)",
+    block: "2.0",
+    syllabus: "false"
+  },
+  {
+    ID: "bs_submission",
     MilestoneName: "BSc Seminar Submission",
     TargetDate: "27-11-2026",
     Groups: "BS",
@@ -61,27 +131,47 @@ export const SHARED_TIMELINE_DATA = [
     syllabus: "true"
   },
   {
-    ID: "paper_draft",
+    ID: "bt_paper_draft",
     MilestoneName: "Paper Draft",
     TargetDate: "27-11-2027",
-    Groups: "BT|MS",
+    Groups: "BT",
     RefDoc: "Info Paper",
     description: "First Paper Draft to be submitted via WueCampus (see the reference documents for more info)",
     block: "2.0",
     syllabus: "false"
   },
   {
-    ID: "survey1",
+    ID: "ms_paper_draft",
+    MilestoneName: "Paper Draft",
+    TargetDate: "27-11-2027",
+    Groups: "MS",
+    RefDoc: "Info Paper",
+    description: "First Paper Draft to be submitted via WueCampus (see the reference documents for more info)",
+    block: "2.0",
+    syllabus: "false"
+  },
+  {
+    ID: "bt_survey1",
     MilestoneName: "Survey Proposal",
     TargetDate: "27-11-2026",
-    Groups: "BT|MS",
+    Groups: "BT",
     RefDoc: "Submission Requirements\\Info Project",
     description: "Survey Proposal (see the reference documents for more info)",
     block: "2.0",
     syllabus: "false"
   },
   {
-    ID: "pres1BT",
+    ID: "ms_survey1",
+    MilestoneName: "Survey Proposal",
+    TargetDate: "27-11-2026",
+    Groups: "MS",
+    RefDoc: "Submission Requirements\\Info Project",
+    description: "Survey Proposal (see the reference documents for more info)",
+    block: "2.0",
+    syllabus: "false"
+  },
+  {
+    ID: "bt_pres1",
     MilestoneName: "Presentation 1 + Antrag auf Zuteilung Bachelor Arbeit",
     TargetDate: "02-12-2026",
     Groups: "BT",
@@ -91,7 +181,7 @@ export const SHARED_TIMELINE_DATA = [
     syllabus: "false"
   },
   {
-    ID: "presBS",
+    ID: "bs_pres",
     MilestoneName: "BSc Seminar Presentation",
     TargetDate: "02-12-2026",
     Groups: "BS",
@@ -101,17 +191,27 @@ export const SHARED_TIMELINE_DATA = [
     syllabus: "true"
   },
   {
-    ID: "survey2",
+    ID: "bt_survey2",
     MilestoneName: "Final survey submission",
     TargetDate: "09-12-2026",
-    Groups: "BT|MS",
+    Groups: "BT",
     RefDoc: "Submission Requirements",
     description: "Submission of Final Survey used for data collection",
     block: "2.0",
     syllabus: "false"
   },
   {
-    ID: "ext_paper_coll_data",
+    ID: "ms_survey2",
+    MilestoneName: "Final survey submission",
+    TargetDate: "09-12-2026",
+    Groups: "MS",
+    RefDoc: "Submission Requirements",
+    description: "Submission of Final Survey used for data collection",
+    block: "2.0",
+    syllabus: "false"
+  },
+  {
+    ID: "bt_ext_paper_coll_data",
     MilestoneName: "Extended Paper Draft + Collected Data",
     TargetDate: "09-01-2027",
     Groups: "BT",
@@ -121,7 +221,7 @@ export const SHARED_TIMELINE_DATA = [
     syllabus: "false"
   },
   {
-    ID: "msc_sem_submission",
+    ID: "ms_submission",
     MilestoneName: "MSc Seminar Submission",
     TargetDate: "27-01-2027",
     Groups: "MS",
@@ -131,7 +231,7 @@ export const SHARED_TIMELINE_DATA = [
     syllabus: "true"
   },
   {
-    ID: "collBT",
+    ID: "bt_coll",
     MilestoneName: "Presentation",
     TargetDate: "13-01-2027",
     Groups: "BT",
@@ -141,7 +241,7 @@ export const SHARED_TIMELINE_DATA = [
     syllabus: "false"
   },
   {
-    ID: "bsc_thesis_submission",
+    ID: "bt_submission",
     MilestoneName: "BSc Thesis Submission",
     TargetDate: "27-01-2027",
     Groups: "BT",
@@ -151,7 +251,7 @@ export const SHARED_TIMELINE_DATA = [
     syllabus: "true"
   },
   {
-    ID: "presMS",
+    ID: "ms_pres",
     MilestoneName: "Presentation",
     TargetDate: "03-02-2027",
     Groups: "MS",

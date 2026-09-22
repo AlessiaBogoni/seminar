@@ -354,6 +354,13 @@
               else if (lowerName.includes('methodology')) targetFile = 'methodology.html';
               else if (lowerName.includes('project') || lowerName.includes('guideline')) targetFile = 'infoproject.html';
 
+              // ---> PUT THE SNIPPET RIGHT HERE <---
+              const eventId = event.ID || event.MilestoneID || '';
+              const sectionHash = eventId ? `#${eventId}` : '';
+
+              // Construct the link using the event's unique ID as the anchor hash
+              const linkURL = `${targetFile}?group=${selectedGroup}&doc=${encodeURIComponent(docName)}${sectionHash}`;
+
               return `<a href="${targetFile}?doc=${encodeURIComponent(docName)}&group=${selectedGroup}" class="doc-tag">📄 ${docName}</a>`;
             }).join('')
             : '';
