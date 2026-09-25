@@ -111,19 +111,22 @@ layout: default
 const urlParams = new URLSearchParams(window.location.search);
 const track = (urlParams.get('group') || localStorage.getItem('student_track') || 'BS').toUpperCase();
 </script>
-
 <div v-if="track === 'BT'">
-
-# Bachelor thesis - prerequisites
-
-- Official prerequisites: at least 100 ECTS
-- Recommended prerequisites:
-  - You have completed a seminar paper $\rightarrow$ your thesis is not your first scholarly paper
-  - You have completed a course on academic writing $\rightarrow$ familiar with style, conventions, and citations
-  - You have completed a course in empirical methods $\rightarrow$ interpret econometric results
-  - You have completed a substantial part of your studies $\rightarrow$ in-depth understanding of economic thinking
-  - **$\rightarrow$ Please think twice before applying if you feel you do not meet any requirements**
-
+  <h1 class="text-3xl font-bold mb-4">Bachelor thesis - prerequisites</h1>
+  <v-clicks depth="2">
+  <ul  class="space-y-2 list-disc list-inside">
+    <li>Official prerequisites: at least 100 ECTS</li>
+    <li>Recommended prerequisites:
+      <ul class="list-disc pl-6 space-y-1 mt-1">
+        <li >You have completed a seminar paper &rarr; your thesis is not your first scholarly paper</li>
+        <li >You have completed a course on academic writing &rarr; familiar with style, conventions, and citations</li>
+        <li >You have completed a course in empirical methods &rarr; interpret econometric results</li>
+        <li >You have completed a substantial part of your studies &rarr; in-depth understanding of economic thinking</li>
+        <li class="font-bold">&rarr; Please think twice before applying if you feel you do not meet any requirements</li>
+      </ul>
+    </li>
+  </ul>
+  </v-clicks>
 </div>
 
 <div v-else>
@@ -135,6 +138,7 @@ const track = (urlParams.get('group') || localStorage.getItem('student_track') |
 </div>
 
 </div>
+
 
 ---
 layout: default
@@ -148,15 +152,20 @@ const track = (urlParams.get('group') || localStorage.getItem('student_track') |
 <div v-if="track === 'BT'">
 
 # Bachelor Thesis - An Own Empirical Project
-
-- You choose a research question and try to find an answer.
-- What is expected?
-  - You conduct your own survey or experiment and collect data.
-  - Think about survey/experiment design, sampling, pool of participants, to answer the research question.
-- The target is a (pilot) survey or experiment to test your hypotheses.
-- Critically analyze your data: the goal is to find a well-suited presentation of preliminary findings.
-- Relate your project to the broader topic and literature.
-
+<v-clicks depth="2">
+<ul class="space-y-2 list-disc list-inside">
+<li>You choose a research question and try to find an answer.</li>
+<li>What is expected?
+<ul class="list-disc pl-6 space-y-1 mt-1">
+  <li>You conduct your own survey or experiment and collect data.</li>
+  <li>Think about survey/experiment design, sampling, pool of participants, to answer the research question.</li>
+  </ul>
+  </li>
+<li>The target is a (pilot) survey or experiment to test your hypotheses.</li>
+<li>Critically analyze your data: the goal is to find a well-suited presentation of preliminary findings.</li>
+<li>Relate your project to the broader topic and literature.</li>
+</ul>
+</v-clicks>
 </div>
 
 <div v-else>
@@ -202,6 +211,7 @@ const bibliographyEntries = computed(() => {
 
 <div class="space-y-2 text-sm text-slate-300 max-h-[350px] overflow-y-auto pr-2">
   <div v-for="item in bibliographyEntries" :key="item.key" class="p-2.5 bg-slate-800/60 rounded border border-slate-700">
+  <strong>{{ item.note }}</strong><br>
     <strong>{{ item.author }}</strong> ({{ item.year }}). <em>{{ item.title }}</em>.
   </div>
 </div>
