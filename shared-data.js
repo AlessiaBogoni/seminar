@@ -77,7 +77,7 @@ const SHARED_TIMELINE_DATA = [
     Groups: "BT",
     RefDoc: "Info Project",
     description: "First Project Draft to be submitted via WueCampus (see the reference documents for more info)",
-    block: "2.0",
+    block: "1.0",
     syllabus: "false"
   },
   {
@@ -137,7 +137,7 @@ const SHARED_TIMELINE_DATA = [
     Groups: "BT",
     RefDoc: "Info Paper",
     description: "First Paper Draft to be submitted via WueCampus (see the reference documents for more info)",
-    block: "2.0",
+    block: "3.0",
     syllabus: "false"
   },
   {
@@ -157,7 +157,7 @@ const SHARED_TIMELINE_DATA = [
     Groups: "BT",
     RefDoc: "Submission Requirements\\Info Project",
     description: "Survey Proposal (see the reference documents for more info)",
-    block: "2.0",
+    block: "3.0",
     syllabus: "false"
   },
   {
@@ -177,7 +177,7 @@ const SHARED_TIMELINE_DATA = [
     Groups: "BT",
     RefDoc: "Info Presentation",
     description: "First Project Presentation (see the reference documents for more info)",
-    block: "2.0",
+    block: "3.0",
     syllabus: "false"
   },
   {
@@ -197,7 +197,7 @@ const SHARED_TIMELINE_DATA = [
     Groups: "BT",
     RefDoc: "Submission Requirements",
     description: "Submission of Final Survey used for data collection",
-    block: "2.0",
+    block: "3.0",
     syllabus: "false"
   },
   {
@@ -217,7 +217,7 @@ const SHARED_TIMELINE_DATA = [
     Groups: "BT",
     RefDoc: "Info Paper",
     description: "Second Paper Draft to be submitted via WueCampus together with the raw collected data (see the reference documents for more info)",
-    block: "2.0",
+    block: "4.0",
     syllabus: "false"
   },
   {
@@ -237,7 +237,7 @@ const SHARED_TIMELINE_DATA = [
     Groups: "BT",
     RefDoc: "Info Presentation",
     description: "Presentation",
-    block: "3.0",
+    block: "4.0",
     syllabus: "false"
   },
   {
@@ -247,7 +247,7 @@ const SHARED_TIMELINE_DATA = [
     Groups: "BT",
     RefDoc: "Submission Requirements\\Info Paper\\Info Project\\AI Guidelines WiWi\\Versicherung zur selbstständigen Leistungserbringung\\Info Formatting",
     description: "",
-    block: "3.0",
+    block: "5.0",
     syllabus: "true"
   },
   {

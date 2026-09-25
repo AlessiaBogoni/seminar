@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +14,13 @@
       --border: #334155;
       --primary: #3b82f6;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       font-family: system-ui, -apple-system, sans-serif;
       background: var(--bg);
@@ -24,7 +31,12 @@
       align-items: center;
       padding: 2.5rem 1rem;
     }
-    .container { max-width: 850px; width: 100%; }
+
+    .container {
+      max-width: 850px;
+      width: 100%;
+    }
+
     .header-bar {
       display: flex;
       justify-content: space-between;
@@ -33,6 +45,7 @@
       padding-bottom: 1rem;
       border-bottom: 1px solid var(--border);
     }
+
     .back-hub-btn {
       background: transparent;
       border: 1px solid var(--border);
@@ -43,7 +56,12 @@
       text-decoration: none;
       font-size: 0.9rem;
     }
-    .back-hub-btn:hover { color: var(--text); border-color: var(--text-muted); }
+
+    .back-hub-btn:hover {
+      color: var(--text);
+      border-color: var(--text-muted);
+    }
+
     .doc-content {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -51,6 +69,7 @@
       padding: 2.5rem;
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
     }
+
     h1.doc-title {
       font-size: 1.8rem;
       background: linear-gradient(135deg, #60a5fa, #a78bfa);
@@ -58,6 +77,7 @@
       -webkit-text-fill-color: transparent;
       margin-bottom: 0.5rem;
     }
+
     .subtitle-track {
       font-size: 0.95rem;
       color: var(--text-muted);
@@ -66,26 +86,77 @@
       letter-spacing: 0.05em;
       font-weight: 600;
     }
-    h2 { font-size: 1.3rem; color: #cbd5e1; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
-    h3 { font-size: 1.1rem; color: #93c5fd; margin-top: 1.5rem; margin-bottom: 0.5rem; }
-    p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; }
-    ul, ol { margin-bottom: 1.5rem; padding-left: 1.5rem; color: var(--text-muted); }
-    li { margin-bottom: 0.75rem; line-height: 1.5; font-size: 0.95rem; }
-    .timeline-dl { margin-top: 1rem; }
-    .timeline-item { margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.2rem; }
-    .timeline-date { font-weight: 700; color: #60a5fa; font-size: 0.9rem; }
-    .timeline-desc { color: var(--text-muted); font-size: 0.9rem; }
+
+    h2 {
+      font-size: 1.3rem;
+      color: #cbd5e1;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.4rem;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      color: #93c5fd;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    ul,
+    ol {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+      color: var(--text-muted);
+    }
+
+    li {
+      margin-bottom: 0.75rem;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    .timeline-dl {
+      margin-top: 1rem;
+    }
+
+    .timeline-item {
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .timeline-date {
+      font-weight: 700;
+      color: #60a5fa;
+      font-size: 0.9rem;
+    }
+
+    .timeline-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
   </style>
 
   <!-- Centralized data source -->
   <script src="shared-data.js"></script>
   <script src="references.js"></script>
 </head>
+
 <body>
 
   <div class="container" id="main-container">
     <div class="header-bar">
-      <span style="font-size: 0.8rem; color: var(--primary); font-weight: 700; text-transform: uppercase;">Official Syllabus</span>
+      <span style="font-size: 0.8rem; color: var(--primary); font-weight: 700; text-transform: uppercase;">Official
+        Syllabus</span>
       <a id="back-link" href="index.html" class="back-hub-btn">&larr; Back to Hub</a>
     </div>
 
@@ -105,13 +176,29 @@
       if (typeof BIBLIOGRAPHY !== 'undefined') {
         for (const key in BIBLIOGRAPHY) {
           const ref = BIBLIOGRAPHY[key];
-          if (ref.tracks && ref.tracks.includes(targetTrack)) {
-            html += `<li>${ref.author} (${ref.year}). <strong>${ref.title}</strong>. <em>${ref.journal}</em>.</li>`;
+          if (ref.tracks && ref.tracks.includes(targetTrack) && ref.note) {
+            html += `<li>${ref.note ? `<strong>${ref.note}</strong><br>` : ''} ${ref.author} (${ref.year}). <strong>${ref.title}</strong>. <em>${ref.journal}</em>.</li>`;
             found = true;
           }
         }
       }
       html += '</ul>';
+      return found ? html : '<p>No specific readings listed for this track.</p>';
+    }
+
+    function getThalerHTML(targetTrack) {
+      let html = '<p>';
+      let found = false;
+      if (typeof BIBLIOGRAPHY !== 'undefined') {
+        for (const key in BIBLIOGRAPHY) {
+          const ref = BIBLIOGRAPHY[key];
+          if (ref.tracks && ref.tracks.includes(targetTrack) && key == "thaler2016") {
+            html += `${ref.author} (${ref.year}). <strong>${ref.title}</strong>. <em>${ref.journal}</em>.<br>`;
+            found = true;
+          }
+        }
+      }
+      html += '</p>';
       return found ? html : '<p>No specific readings listed for this track.</p>';
     }
 
@@ -182,20 +269,72 @@
       }
 
       document.getElementById('back-link').href = `index.html?group=${groupParam}`;
-      
+
       const title = groupParam === 'BS' ? 'B.Sc. Seminar Syllabus' : 'M.Sc. Seminar Syllabus';
       const dynamicRefs = getReferencesHTML(groupParam);
+      const thalerRef = getThalerHTML(groupParam);
       const dynamicTimeline = getSyllabusTimelineHTML(groupParam);
 
-      const introContent = groupParam === 'BS' ? `
-        <h2>Course Overview & Objectives</h2>
-        <p>This seminar explores how insights from behavioral economics can be applied to real-world problems in consumer decision-making, organizations, and public policy. Students work on a concrete policy or management question, engage with relevant empirical research, identify key psychological mechanisms, and develop well-founded proposals.</p>
-        
-        <h2>Prerequisites</h2>
-        <p>Sound knowledge of microeconomics and empirical methods. Previous coursework in behavioral economics is beneficial but not strictly required.</p>
+      const option1 = groupParam === 'BS' ? `
       ` : `
-        <h2>Course Overview & Objectives</h2>
-        <p>This seminar introduces students to state-of-the-art research in behavioral, organizational, and labor economics. Students independently and critically analyze complex research questions at the intersection of behavioral and labor economics, utilizing existing empirical studies or experimental pilot designs.</p>
+      <h4>Option 1: replication & extension of an existing empirical study</h4>
+      `
+      const option2 = groupParam === 'BS' ? `
+      ` : `
+      <h4>Option 2: Own experimental design + pilot study</h4>
+      <p>Possible Research Questions:</p>
+        <ul>
+          <li>How do anchors affect wage expectations for a job?</li>
+          <li>Does a signed pledge increase timely task completion before a deadline?</li>
+          <li>How do differences in commuting time and wages affect (stated) job choice?</li>
+          <li>Does a gendered label change individuals’ willingness-to-pay for the same product?</li>
+          <li>How does knowledge about a “gender price gap” affect perceived fairness and purchase intent?</li>
+        </ul>
+      <p>…or an own question that you can study, e.g., in your student job (in this case: contact us!)</p>
+      `
+
+      const introContent = groupParam === 'BS' ? `
+        <h2>Content</h2>
+        <p>Why do we pay for subscriptions we barely use? Why do we often eat unhealthy food, exercise too little, or procrastinate on important tasks? Why do individuals fail to claim social benefits they are entitled to? Should firms make co-workers’ wages transparent, or keep them secret? How can cities reduce littering without simply raising fines? Do “free trials” help consumers, or do they exploit them?</p>
+
+        <p>Over the past decades, psychologists and economists have gained a deeper understanding of what motivates people’s choices. Research in behavioral economics shows that individual choices are shaped not only by incentives and constraints, but also by limited attention, self-control problems, social preferences, and the behavior of others. These insights have fundamentally changed how economists think about consumer behavior, management practices, and public policy.</p>
+
+        <p>This seminar explores how insights from behavioral economics can be applied to real-world problems in consumer decision-making, organizations, and public policy. Students work on a concrete policy or management question, engage with relevant empirical research in behavioral economics, identify the key psychological mechanisms at play, and develop a well-founded proposal to address the problem.</p>
+
+        <p>The seminar is highly application-oriented and interactive. It is particularly well suited for students who are interested in using behavioral economics to design better policies, smarter organizations, or more effective interventions. Students are encouraged to develop project ideas that can later be extended, refined, and tested in their Bachelor’s thesis.</p>
+        
+        <h2>Seminar Project</h2>
+        <p>Students will be assigned a specific policy or management question, along with a baseline research paper studying the question. Building on this, students will write a seminar paper that </p>
+          <ul>
+            <li> critically assesses the underlying policy or management problem,</li>
+            <li>identifies and explains the key behavioral mechanisms at play, and</li>
+            <li>develops a plausible intervention to address the problem.</li>
+          </ul>
+        <p>The seminar paper should also include a brief implementation plan and discuss the expected effects and potential unintended consequences of the proposed intervention. Students will present the results of their seminar projects in a workshop with seminar presentations.</p>
+
+        <h2>Prerequisites</h2>
+        <p>Sound knowledge of microeconomics, empirical methods and econometrics (basic courses taught at the B.Sc. level). Previous coursework in behavioral economics is beneficial but not strictly required. It is also recommended to familiarize yourself with the content of the key qualification “Wissenschaftliches Arbeiten” in advance.</p>
+      ` : `
+        <h2>Content</h2>
+        <p>This seminar introduces students to state-of-the-art research in behavioral, organizational, and labor economics. It builds on a growing body of research in economics and psychology showing that individual behavior is shaped not only by economic incentives and constraints, but also by psychological factors and limitations in self-control, cognition, and attention.</p>
+        <p>Students independently and critically analyze research questions at the intersection of behavioral economics, organizational economics, and labor economics. The seminar covers a broad range of topics, highlighting how behavioral insights help explain behavior in real-world settings such as organizations, labor markets, consumer decision-making, and public policy. Depending on the chosen topic, papers may be more behaviorally focused, more closely linked to organizational or labor economics, or combine elements of all three fields.</p>
+
+        <p>Examples of research topics and papers from previous semesters include:</p> 
+          <ul>
+            <li>Heuristics and biases in real-estate markets</li>
+            <li>Misperceptions and support for climate action</li>
+            <li>Experiments on perception and error detection in AI- versus human-generated texts</li>
+            <li>Biased beliefs and unemployment duration</li>
+            <li>Experimental evidence on founders’ reactions to information shocks</li>
+          </ul>  
+
+        <h2>Seminar Project</h2>
+        <p>Students are expected to actively engage with existing research and work with data or experimental designs. The seminar project can take two different forms.</p>
+          <ul>
+            <li>Option 1: Students replicate and extend an existing empirical paper</li>
+            <li>Option 2: Students develop an own experiment and conduct a pilot study on selected research questions.</li>
+          </ul>
+        <p>The seminar is designed to prepare students for independent research and provides an excellent foundation for a subsequent MSc thesis.</p>
         
         <h2>Prerequisites</h2>
         <p>Sound knowledge of microeconomics, empirical methods, and familiarity with economic literature.</p>
@@ -208,8 +347,16 @@
         ${introContent}
 
         <h2>Course Topics and Reading List</h2>
-        <p>The following literature references are assigned for your track:</p>
+        <p>General reading:</p>
+        ${thalerRef}
+
+        <p>Seminar topics will be assigned in the first week of the semester. The following overview and research papers allow you to familiarize yourself with possible topics.</p>
+
+        ${option1}
+        
         ${dynamicRefs}
+        ${option2}
+
 
         <h2>Course Procedures and Timeline</h2>
         ${dynamicTimeline}
@@ -220,4 +367,5 @@
     });
   </script>
 </body>
+
 </html>
