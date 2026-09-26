@@ -15,8 +15,10 @@ canvasWidth: 980
 
 <script setup>
 const urlParams = new URLSearchParams(window.location.search);
-const track = (urlParams.get('group') || localStorage.getItem('student_track') || 'BS').toUpperCase();
+const track = (urlParams.get('group') ||  'BS').toUpperCase();
 </script>
+
+<!-- TITLE SLIDE -->
 
 # <span v-if="track === 'BT'">Bachelor Thesis</span><span v-else-if="track === 'MS'">Master Seminar: Labor Economics</span><span v-else>Bachelor Seminar: Behavioral Economics in Action</span>
 ### Intro Meeting
@@ -25,27 +27,37 @@ const track = (urlParams.get('group') || localStorage.getItem('student_track') |
 ---
 layout: default
 ---
+<!-- # Who are we? -->
 
 # Who are we?
+<div v-click >
+Research group <strong>“Labour and Organizational Economics”</strong>:
+<ul>
+<li>Steffen Altmann</li>
+<li>Michael Hilweg-Waldeck</li>
+<li>Alessia Bogoni</li>
+<li>Lorenzo Fontana</li>
+</ul>
+</div>
 
-Research group **“Labour and Organizational Economics”**:
-- Steffen Altmann
-- Alessia Bogoni
-- Lorenzo Fontana
-
+<div v-click class="mt-5">
 We are interested in:
-- Behavioral Economics
-- Experimental Economics
-- Labor Economics
-- Organizational Economics
+<ul>
+<li>Behavioral Economics</li>
+<li>Experimental Economics</li>
+<li>Labor Economics</li>
+<li>Organizational Economics</li>
+</ul>
+</div >
 
 ---
 layout: default
 ---
+<!-- # Who are you? -->
 
 <script setup>
 const urlParams = new URLSearchParams(window.location.search);
-const track = (urlParams.get('group') || localStorage.getItem('student_track') || 'BS').toUpperCase();
+const track = (urlParams.get('group') ||  'BS').toUpperCase();
 </script>
 
 # Who are you?
@@ -73,44 +85,68 @@ const track = (urlParams.get('group') || localStorage.getItem('student_track') |
 ---
 layout: default
 ---
+<!-- # What is a ... ? -->
 
 <script setup>
 const urlParams = new URLSearchParams(window.location.search);
-const track = (urlParams.get('group') || localStorage.getItem('student_track') || 'BS').toUpperCase();
+const track = (urlParams.get('group') ||  'BS').toUpperCase();
 </script>
 
 <div v-if="track === 'BT'">
 
 # Bachelor thesis - your final paper
+  <v-clicks>
+    <ul>
+      <li>Your (first) major independent research project</li>
+      <li>A chance to show that you can develop, structure, and answer a research question on your own</li>
+      <li>Ideally, you build on skills from seminar work, academic writing, and empirical methods</li>
+      <li>A strong thesis is not only feasible, but also interesting to you and relevant for your future path</li>
+    </ul>
+  </v-clicks>
+</div>
 
-- Your (first) major independent research project
-- A chance to show that you can develop, structure, and answer a research question on your own
-- Ideally, you build on skills from seminar work, academic writing, and empirical methods
-- A strong thesis is not only feasible, but also interesting to you and relevant for your future path
+<div v-else-if="track === 'BS'">
+
+# Bachelor Seminar - your first(?) academic paper 
+
+  <div class="space-y-2 text-slate-300">
+    In your bachelor seminar you will: 
+      <ul>
+        <li>engage deeply with modern empirical literature</li>
+        <li>evaluate research methods</li>
+        <li>Report findings</li>
+        <li>Propose alternative methods, mechanism and interventions!</li>
+      </ul>
+  </div>
 
 </div>
 
-<div v-else>
+<div v-else-if="track === 'MS'">
 
-# Seminar Requirements
+# Master Seminar - the occasion to put into practice what you learned 
 
-<div class="space-y-2 text-slate-300">
-  <ul>
-    <li class="text-amber-400 font-semibold"><span v-if="track === 'MS'">Master Seminar students</span><span v-else>Bachelor Seminar students</span></li>
-    <li>Active participation, literature review, and presentation of selected topics.</li>
-  </ul>
-</div>
-
+  <div class="space-y-2 text-slate-300">
+      In your master seminar you will: 
+      <ul>
+        <li>engage deeply with modern empirical literature</li>
+        <li>evaluate research methods</li>
+        <li>propose alternative methods</li>
+        <li>run your own project</li>
+      </ul>
+  </div>
 </div>
 
 ---
 layout: default
 ---
+<!-- Prerequisites -->
 
 <script setup>
 const urlParams = new URLSearchParams(window.location.search);
-const track = (urlParams.get('group') || localStorage.getItem('student_track') || 'BS').toUpperCase();
+const track = (urlParams.get('group') ||  'BS').toUpperCase();
 </script>
+
+
 <div v-if="track === 'BT'">
   <h1 class="text-3xl font-bold mb-4">Bachelor thesis - prerequisites</h1>
   <v-clicks depth="2">
@@ -129,12 +165,22 @@ const track = (urlParams.get('group') || localStorage.getItem('student_track') |
   </v-clicks>
 </div>
 
-<div v-else>
+<div v-else-if="track === 'BS'">
 
-# Seminar Overview & Objectives
+# Seminar Prerequisites
 
 <div class="space-y-2 text-slate-300">
-  <p>Welcome to the seminar track! Here you will engage deeply with modern empirical literature, evaluate research methods, and present your findings.</p>
+  prerequisites bs 
+</div>
+
+</div>
+
+<div v-else-if="track === 'MS'">
+
+# Seminar Prerequisites
+
+<div class="space-y-2 text-slate-300">
+  prerequisites ms 
 </div>
 
 </div>
@@ -143,51 +189,73 @@ const track = (urlParams.get('group') || localStorage.getItem('student_track') |
 ---
 layout: default
 ---
+<!-- Project Objectives -->
 
 <script setup>
 const urlParams = new URLSearchParams(window.location.search);
-const track = (urlParams.get('group') || localStorage.getItem('student_track') || 'BS').toUpperCase();
+const track = (urlParams.get('group') ||  'BS').toUpperCase();
 </script>
 
 <div v-if="track === 'BT'">
 
-# Bachelor Thesis - An Own Empirical Project
+# Bachelor Thesis - Objectives 
 <v-clicks depth="2">
-<ul class="space-y-2 list-disc list-inside">
-<li>You choose a research question and try to find an answer.</li>
-<li>What is expected?
-<ul class="list-disc pl-6 space-y-1 mt-1">
-  <li>You conduct your own survey or experiment and collect data.</li>
-  <li>Think about survey/experiment design, sampling, pool of participants, to answer the research question.</li>
+  <ul class="space-y-2 list-disc list-inside">
+    <li>You choose a research question and try to find an answer.</li>
+    <li>What is expected?
+      <ul class="list-disc pl-6 space-y-1 mt-1">
+        <li>You conduct your own survey or experiment and collect data.</li>
+        <li>Think about survey/experiment design, sampling, pool of participants, to answer the research question.</li>
+        <li>The target is a (pilot) survey or experiment to test your hypotheses.</li>
+        <li>Critically analyze your data: the goal is to find a well-suited presentation of preliminary findings.</li>
+        <li>Relate your project to the broader topic and literature.</li>
+      </ul>
+    </li>
   </ul>
-  </li>
-<li>The target is a (pilot) survey or experiment to test your hypotheses.</li>
-<li>Critically analyze your data: the goal is to find a well-suited presentation of preliminary findings.</li>
-<li>Relate your project to the broader topic and literature.</li>
-</ul>
 </v-clicks>
 </div>
 
-<div v-else>
+<div v-else-if="track === 'BS'">
 
-# Seminar Setup
+# Bachelor Seminar - Objectives 
 
-- Review assigned research papers thoroughly before sessions.
-- Prepare discussion points and critical feedback for fellow presenters.
-- Active engagement is key to getting the most out of this seminar.
+  <div>
+ find a mechanism, propose etc etc 
+  </div>
+</div>
+<div v-else-if="track === 'MS'" >
+
+# Master Seminar - Objectives 
+  <div>
+    <ul>
+      <li>Option 1
+        <ul>
+        <li>step 1 of option1 </li>
+        </ul>
+      </li>
+      <li>Option 2
+        <ul>
+        <li>step 1 of option2 </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
 
 </div>
+
 
 ---
 layout: default
 ---
+
+<!-- Topics -->
 
 <script setup>
 import { computed } from 'vue';
 import { BIBLIOGRAPHY } from './references.js';
 
 const urlParams = new URLSearchParams(window.location.search);
-const track = (urlParams.get('group') || localStorage.getItem('student_track') || 'BS').toUpperCase();
+const track = (urlParams.get('group') ||  'BS').toUpperCase();
 
 const bibliographyEntries = computed(() => {
   const bib = BIBLIOGRAPHY || {};
@@ -196,7 +264,7 @@ const bibliographyEntries = computed(() => {
     ...bib[key]
   }));
   return entries.filter(item => {
-    if (!item.tracks || !Array.isArray(item.tracks)) return false; 
+    if (!item.note || !item.tracks || !Array.isArray(item.tracks)) return false; 
     if (track === 'BT') return item.tracks.includes('BT');
     if (track === 'BS') return item.tracks.includes('BS');
     if (track === 'MS') return item.tracks.includes('MS') || item.tracks.includes('BS');
@@ -204,120 +272,88 @@ const bibliographyEntries = computed(() => {
   });
 });
 </script>
-
-# <span v-if="track === 'MS'">Master Seminar Topics</span><span v-else>Bachelor Seminar Topics</span>
-<!-- todo: include the topics as well, not only the papers -->
-<p class="text-slate-400 text-sm mb-3">The following seminar topics are available for your track:</p>
-
-<div class="space-y-2 text-sm text-slate-300 max-h-[350px] overflow-y-auto pr-2">
-  <div v-for="item in bibliographyEntries" :key="item.key" class="p-2.5 bg-slate-800/60 rounded border border-slate-700">
-  <strong>{{ item.note }}</strong><br>
-    <strong>{{ item.author }}</strong> ({{ item.year }}). <em>{{ item.title }}</em>.
+  <div v-if="track === 'MS'">
+    <h1 >Master Seminar Topics - Replication</h1>
+    <p class="text-slate-400 text-sm mb-3">The following seminar topics are available for replication:</p>
   </div>
-</div>
+  <div v-else-if="track === 'BS'">
+    <h1>Bachelor Seminar Topics</h1>
+    <p class="text-slate-400 text-sm mb-3">The following are suggestion topics from the literature:
+    </p>
+  </div>
+
+  <div v-if="track !== 'BT'" class="space-y-2 text-sm text-slate-300 max-h-[350px] overflow-y-auto pr-2" >
+    <div v-for="item in bibliographyEntries" :key="item.key" class="p-2.5 bg-slate-800/60 rounded border border-slate-700">
+      <strong>{{ item.note }}</strong><br>
+      <strong>{{ item.author }}</strong> ({{ item.year }}). <em>{{ item.title }}</em>.
+    </div>
+  </div>
+
+  <div v-else-if="track === 'BT'">
+    <div v-click.hide v-if="$clicks < 6">
+    <h1>Inspiration for Your Bachelor Thesis Topic</h1>
+      <v-clicks depth="2">
+      <ul>
+      <li>Good thesis ideas often start from real contexts you know well: student job, sports club, volunteering, student initiative.</li>
+      <li>These environments give access to relevant questions, realistic settings, and participants.</li>
+      <li>Examples of previous student projects:
+      <ul>
+        <li><strong>Choice Difficulty and Delegation in Hotel Booking:</strong> studying whether difficult choices increase willingness to delegate decisions via online survey/experiment.</li>
+        <li><strong>Entrepreneurial Red Flags and Behavioral Responses:</strong> experimentally studying how founders react to negative information shocks.</li>
+        </ul>
+      </li>
+      </ul>
+      </v-clicks>
+    </div>
+    <div v-else>
+      <h1>Inspiration for Your Bachelor Thesis Topic</h1>
+      <p v-if="track === 'BT'" v-click>The following topics  from the literature might also be interesting for you:</p>
+      <div class="space-y-2 text-sm text-slate-300 max-h-[350px] overflow-y-auto pr-2" >
+        <div v-for="item in bibliographyEntries" :key="item.key" class="p-2.5 bg-slate-800/60 rounded border border-slate-700">
+          <strong>{{ item.note }}</strong><br>
+          <strong>{{ item.author }}</strong> ({{ item.year }}). <em>{{ item.title }}</em>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
 
 ---
 layout: default
 ---
+<!-- BOT/option2 topics -->
 
 <script setup>
 const urlParams = new URLSearchParams(window.location.search);
-const track = (urlParams.get('group') || localStorage.getItem('student_track') || 'BS').toUpperCase();
+const track = (urlParams.get('group') || 'BS').toUpperCase();
 </script>
 
-<div v-if="track === 'BT'">
+<div v-if="track === 'MS'">
 
-# Inspiration for Your Bachelor Thesis Topic
-
-- Good thesis ideas often start from real contexts you know well: student job, sports club, volunteering, student initiative.
-- These environments give access to relevant questions, realistic settings, and participants.
-- Examples of previous student projects:
-  - **Choice Difficulty and Delegation in Hotel Booking:** studying whether difficult choices increase willingness to delegate decisions via online survey/experiment.
-  - **Entrepreneurial Red Flags and Behavioral Responses:** experimentally studying how founders react to negative information shocks.
-
+option 2 literature/idea (attention, right now only MS literature is replication package so use a idfferent method/field for this one, or change MS to MS1, MS 2)
 </div>
-
 <div v-else>
 
-# Literature Discussion Guidelines
-
-- Focus on identification strategies and empirical findings.
-- Consider potential extensions or alternative research questions for each paper.
-
-</div>
-
----
-layout: default
----
-
-<script setup>
-import { computed } from 'vue';
-import { BIBLIOGRAPHY } from './references.js';
-
-const urlParams = new URLSearchParams(window.location.search);
-const track = (urlParams.get('group') || localStorage.getItem('student_track') || 'BS').toUpperCase();
-
-const bibliographyEntries = computed(() => {
-  const bib = BIBLIOGRAPHY || {};
-  const entries = Object.keys(bib).map(key => ({
-    key,
-    ...bib[key]
-  }));
-  return entries.filter(item => {
-    if (!item.tracks || !Array.isArray(item.tracks)) return false; 
-    if (track === 'BT') return item.tracks.includes('BT');
-    if (track === 'BS') return item.tracks.includes('BS');
-    if (track === 'MS') return item.tracks.includes('MS') || item.tracks.includes('BS');
-    return false;
-  });
-});
-</script>
-
-<div v-if="track === 'BT'">
-
-# Examples from the Literature
-
-<div class="space-y-3 text-sm text-slate-300">
-  <div v-for="item in bibliographyEntries.slice(0, 4)" :key="item.key" class="p-3 bg-slate-800/60 rounded border border-slate-700">
-    <strong>{{ item.author }}</strong> ({{ item.year }}). <em>{{ item.title }}</em>.
-  </div>
-</div>
-
-</div>
-
-<div v-else>
-
-# Key Readings Reference
-
-<div class="space-y-3 text-sm text-slate-300 max-h-[350px] overflow-y-auto pr-2">
-  <div v-for="item in bibliographyEntries.slice(0, 4)" :key="item.key" class="p-3 bg-slate-800/60 rounded border border-slate-700">
-    <strong>{{ item.author }}</strong> ({{ item.year }}). <em>{{ item.title }}</em>.
-  </div>
-</div>
-
-</div>
-
----
-layout: default
----
-
-# A tool to get you up to speed
+<h1>A tool to get you up to speed</h1>
 
 <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center mt-4">
   <div class="md:col-span-7 space-y-3 text-sm">
     <div class="text-blue-400 font-bold uppercase tracking-wider text-xs">Behavioral Econ Course Assistant</div>
     <ul class="space-y-2 text-slate-300">
-      <li>• Designated AI ChatBOT</li>
-      <li>• Trained on course materials provided in WueCampus</li>
-      <li>• Available through WueCampus course room</li>
-      <li>• Helps review or get started with key concepts, definitions, and methods</li>
-      <li>• Useful to catch up and get up to speed</li>
-      <li>• <strong class="text-blue-400">Does not replace</strong> careful work with course materials and original research papers!</li>
+      <li>Designated AI ChatBOT</li>
+      <li>Trained on course materials provided in WueCampus</li>
+      <li>Available through WueCampus course room</li>
+      <li>Helps review or get started with key concepts, definitions, and methods</li>
+      <li>Useful to catch up and get up to speed</li>
+      <li><strong class="text-blue-400">Does not replace</strong> careful work with course materials and original research papers!</li>
     </ul>
   </div>
   <div class="md:col-span-5 flex justify-center">
     <img src="./BOT_qrcode.png" alt="Bot QR Code" class="w-48 h-48 rounded-lg border border-slate-700 shadow-md">
   </div>
+</div>
 </div>
 
 ---
@@ -329,7 +365,7 @@ import { computed } from 'vue';
 import { SHARED_TIMELINE_DATA } from './shared-data.js';
 
 const urlParams = new URLSearchParams(window.location.search);
-const track = (urlParams.get('group') || localStorage.getItem('student_track') || 'BS').toUpperCase();
+const track = (urlParams.get('group') ||  'BS').toUpperCase();
 
 const roadmapEvents = computed(() => {
   const data = SHARED_TIMELINE_DATA || [];
@@ -358,29 +394,34 @@ layout: default
 
 <script setup>
 const urlParams = new URLSearchParams(window.location.search);
-const track = (urlParams.get('group') || localStorage.getItem('student_track') || 'BS').toUpperCase();
+const track = (urlParams.get('group') ||  'BS').toUpperCase();
 </script>
 
 <div v-if="track === 'BT'">
 
 # Next Steps
+<v-clicks depth="2">
+<ul>
+<li>Think about a topic and research question that interests you.</li>
+<li>Print and fill out the Project Draft form. Please bring it to the individual meeting.</li>
+<li>We inform you thereafter on your topic and supervisor.</li>
+<li>You can start working on your thesis.</li>
+</ul>
+</v-clicks>
 
-- Think about a topic and research question that interests you.
-- Print and fill out the Project Draft form. Please bring it to the individual meeting.
-- We inform you thereafter on your topic and supervisor.
-- You can start working on your thesis.
-
-**Have a good start!**
+<p v-click class="align center"><strong>Have a good start!</strong></p>
 
 </div>
 
 <div v-else-if="track === 'MS'">
 
 # Next Steps
-
-- Review your course reading list and preparation notes.
-- Prepare for your initial topic assignment session.
-
+<v-clicks>
+<ul>
+<li>Review your course reading list and preparation notes.</li>
+<li>Prepare for your initial topic assignment session.</li>
+</ul>
+</v-clicks>
 </div>
 
 <div v-else>

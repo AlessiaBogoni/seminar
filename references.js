@@ -27,7 +27,7 @@ const BIBLIOGRAPHY = {
     year: 2006,
     title: "Paying not to go to the gym",
     journal: "American Economic Review, 96(3), 694-719",
-    tracks: ["BS"],
+    tracks: ["BS", "BT"],
     note: "Why do we pay for subscriptions we don't use?"
   },
   "henkel2025": {
@@ -42,7 +42,7 @@ const BIBLIOGRAPHY = {
     year: 2022,
     title: "How do beliefs about the gender wage gap affect the demand for public policy?",
     journal: "American Economic Journal: Economic Policy, 14(2), 475-508",
-    tracks: ["BS"],
+    tracks: ["BS", "BT"],
     note: "How do beliefs about the gender gap affect policy demand?"
   },
   "bhargava2015": {
@@ -50,7 +50,7 @@ const BIBLIOGRAPHY = {
     year: 2015,
     title: "Psychological frictions and the incomplete take-up of social benefits: Evidence from an IRS field experiment",
     journal: "American Economic Review, 105(11), 3489-3529",
-    tracks: ["BS"],
+    tracks: ["BS", "BT"],
     note: "Why do people fail to claim benefits they are entitled to?"
   },
   "card2012": {
@@ -90,7 +90,7 @@ const BIBLIOGRAPHY = {
     year: 2007,
     title: "Does price matter in charitable giving? Evidence from a large-scale natural field experiment",
     journal: "American Economic Review, 97(5), 1774-1793",
-    tracks: ["BS"],
+    tracks: ["BS", "BT"],
     note: "How can charities encourage charitable giving?"
   },
   "ariely2009": {
@@ -98,7 +98,7 @@ const BIBLIOGRAPHY = {
     year: 2009,
     title: "Doing Good or Doing Well? Image Motivation and Monetary Incentives in Behaving Prosocially",
     journal: "American Economic Review, 99(1), 544-555",
-    tracks: ["BS"],
+    tracks: ["BS", "BT"],
     note: "How can charities encourage charitable giving?"
   },
   "andre2024": {
