@@ -156,3 +156,18 @@ class: text-center
 <a href="https://www.reed.edu/economics/parker/354/guide.html" target="_blank" class="text-blue-400 hover:underline font-mono text-sm">
   https://www.reed.edu/economics/parker/354/guide.html
 </a>
+
+---
+layout: center
+class: text-center
+---
+
+All research articles for the different research topics available through the <a href="https://www.bibliothek.uni-wuerzburg.de/en/">University Library</a> 
+
+Full-text access within Uni network / VPN
+
+Make sure to look under “Articles & more”
+
+
+
+

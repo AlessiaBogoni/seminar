@@ -78,7 +78,8 @@ const track = (urlParams.get('group') ||  'BS').toUpperCase();
 
 <div v-else>
   <ul>
-    <li class="text-amber-400 font-semibold">Bachelor Seminar students</li>
+  <li>Students in B.Sc. Wirtschaftswissenschaften</li>
+  <li>Students with other academic majors</li>
   </ul>
 </div>
 
@@ -106,19 +107,37 @@ const track = (urlParams.get('group') ||  'BS').toUpperCase();
 </div>
 
 <div v-else-if="track === 'BS'">
-
-# Bachelor Seminar - your first(?) academic paper 
-
-  <div class="space-y-2 text-slate-300">
-    In your bachelor seminar you will: 
-      <ul>
-        <li>engage deeply with modern empirical literature</li>
-        <li>evaluate research methods</li>
-        <li>Report findings</li>
-        <li>Propose alternative methods, mechanism and interventions!</li>
-      </ul>
+  <!-- CSS Grid container: stacks both parts in the exact same screen space -->
+  <div class="grid grid-cols-1 items-start">
+    <!-- PART 1: Shows up, goes through your click list, and .hide fades it out on the final click -->
+    <div class="col-start-1 row-start-1 text-slate-300" v-click.hide>
+      <h1>Bachelor Seminar - your first (?) academic paper</h1>
+      <p class="!mt-6 !mb-6"><em>How can insights from behavioral economics be applied to real-world problems in consumer decision-making, organizations, and public policy?</em></p>
+      <p>In your bachelor seminar you will:</p>
+      <v-clicks>
+        <ul>
+          <li>Work on a concrete policy or management question</li>
+          <li>Critically assess the question, using your knowledge from behavioral economics, microeconomics and econometrics</li>
+          <li>Carefully interpret empirical evidence from a related research paper</li>
+          <li>Identify and explain the key behavioral mechanism</li>
+          <li>Develop a proposal for an own intervention or solution to address the question</li>
+        </ul>
+      </v-clicks>
+    </div>
+    <!-- PART 2: Sits in the exact same grid slot and fades in via v-after right as Part 1 hides -->
+    <div class="col-start-1 row-start-1 space-y-2 text-slate-300" >
+      <h1 v-after>Learning goals: Academic work and communication</h1>
+      <v-clicks depth="3">
+        <ul>
+          <li>Elaborate a focused research question in a structured and coherent way</li>
+          <li>Write a seminar paper in an appropriate academic style</li>
+          <li>Use academic conventions correctly, including citations and references</li>
+          <li>Present your results clearly to an informed audience</li>
+          <li>Strengthen the academic writing skills needed for future seminar papers and theses</li>
+        </ul>
+    </v-clicks>
+    </div>
   </div>
-
 </div>
 
 <div v-else-if="track === 'MS'">
@@ -127,12 +146,14 @@ const track = (urlParams.get('group') ||  'BS').toUpperCase();
 
   <div class="space-y-2 text-slate-300">
       In your master seminar you will: 
+      <v-clicks>
       <ul>
         <li>engage deeply with modern empirical literature</li>
         <li>evaluate research methods</li>
         <li>propose alternative methods</li>
         <li>run your own project</li>
       </ul>
+      </v-clicks>
   </div>
 </div>
 
@@ -150,7 +171,7 @@ const track = (urlParams.get('group') ||  'BS').toUpperCase();
 <div v-if="track === 'BT'">
   <h1 class="text-3xl font-bold mb-4">Bachelor thesis - prerequisites</h1>
   <v-clicks depth="2">
-  <ul  class="space-y-2 list-disc list-inside">
+  <ul  v-clicks class="space-y-2 list-disc list-inside">
     <li>Official prerequisites: at least 100 ECTS</li>
     <li>Recommended prerequisites:
       <ul class="list-disc pl-6 space-y-1 mt-1">
@@ -167,17 +188,34 @@ const track = (urlParams.get('group') ||  'BS').toUpperCase();
 
 <div v-else-if="track === 'BS'">
 
-# Seminar Prerequisites
+# Seminar prerequisites
 
 <div class="space-y-2 text-slate-300">
-  prerequisites bs 
+<v-clicks depth="2">
+<ul >
+  <li>At an advanced stage of your Bachelor‘s program </li>
+  <li>Completed course work in
+  <ul>
+  <li>Microeconomics</li>
+  <li>Econometrics</li>
+  <li>Academic writing / Wissenschaftliches Arbeiten</li>
+  </ul>
+  </li>
+  <li>Previous courses in 
+  <ul>
+  <li>Behavioral Economics / Economics and Psychology</li>
+  <li>Experimental Economics?</li>
+  </ul>
+  </li>
+  </ul> 
+  </v-clicks>
 </div>
 
 </div>
 
 <div v-else-if="track === 'MS'">
 
-# Seminar Prerequisites
+# Seminar prerequisites
 
 <div class="space-y-2 text-slate-300">
   prerequisites ms 
@@ -198,7 +236,7 @@ const track = (urlParams.get('group') ||  'BS').toUpperCase();
 
 <div v-if="track === 'BT'">
 
-# Bachelor Thesis - Objectives 
+# Bachelor Thesis - objectives 
 <v-clicks depth="2">
   <ul class="space-y-2 list-disc list-inside">
     <li>You choose a research question and try to find an answer.</li>
@@ -217,16 +255,33 @@ const track = (urlParams.get('group') ||  'BS').toUpperCase();
 
 <div v-else-if="track === 'BS'">
 
-# Bachelor Seminar - Objectives 
+# Bachelor Seminar - objectives 
 
   <div>
- find a mechanism, propose etc etc 
+  <v-clicks depth="2">
+  <ul>
+  <!-- todo change pages here -->
+    <li>Prepare a term paper (max. 10-15 pages)
+    <ul>
+      <li>Choose your research topic</li>
+      <li>Critically examine the underlying policy or management problem</li>
+      <li>Interpret the evidence from related research study(s) </li>
+      <li>Identify and explain the key behavioral mechanisms at play</li>
+      <li>Propose an original intervention to address the problem</li>
+    </ul>
+    </li>
+    <li>Present your seminar paper in the workshop in June (≈20min)</li>
+    <li>Actively engage in discussion of all other presentations</li>
+    <li>Grading will be based on seminar paper and presentation, weighted 3:2</li>
+  </ul>
+  </v-clicks depth="2">
   </div>
 </div>
 <div v-else-if="track === 'MS'" >
 
-# Master Seminar - Objectives 
+# Master Seminar - objectives 
   <div>
+  <v-clicks depth="2">
     <ul>
       <li>Option 1
         <ul>
@@ -239,6 +294,7 @@ const track = (urlParams.get('group') ||  'BS').toUpperCase();
         </ul>
       </li>
     </ul>
+    </v-clicks depth="2">
   </div>
 
 </div>
@@ -267,7 +323,7 @@ const bibliographyEntries = computed(() => {
     if (!item.note || !item.tracks || !Array.isArray(item.tracks)) return false; 
     if (track === 'BT') return item.tracks.includes('BT');
     if (track === 'BS') return item.tracks.includes('BS');
-    if (track === 'MS') return item.tracks.includes('MS') || item.tracks.includes('BS');
+    if (track === 'MS') return item.tracks.includes('MS');
     return false;
   });
 });
@@ -282,16 +338,24 @@ const bibliographyEntries = computed(() => {
     </p>
   </div>
 
-  <div v-if="track !== 'BT'" class="space-y-2 text-sm text-slate-300 max-h-[350px] overflow-y-auto pr-2" >
+  <div v-if="track === 'MS'" class="space-y-2 text-sm text-slate-300 max-h-[350px] overflow-y-auto pr-2" >
     <div v-for="item in bibliographyEntries" :key="item.key" class="p-2.5 bg-slate-800/60 rounded border border-slate-700">
       <strong>{{ item.note }}</strong><br>
       <strong>{{ item.author }}</strong> ({{ item.year }}). <em>{{ item.title }}</em>.
     </div>
   </div>
 
+  <div v-else-if="track === 'BS'" class="space-y-2 text-sm text-slate-300 max-h-[350px] overflow-y-auto pr-2" >
+    <div v-for="item in bibliographyEntries" :key="item.key" class="p-2.5 bg-slate-800/60 rounded border border-slate-700">
+      <strong>{{ item.note }}</strong><br>
+      <strong>{{ item.author }}</strong> ({{ item.year }}). <em>{{ item.title }}</em>.
+    </div>
+  </div>
+
+
   <div v-else-if="track === 'BT'">
     <div v-click.hide v-if="$clicks < 6">
-    <h1>Inspiration for Your Bachelor Thesis Topic</h1>
+    <h1>Inspiration for your bachelor thesis topic</h1>
       <v-clicks depth="2">
       <ul>
       <li>Good thesis ideas often start from real contexts you know well: student job, sports club, volunteering, student initiative.</li>
@@ -306,7 +370,7 @@ const bibliographyEntries = computed(() => {
       </v-clicks>
     </div>
     <div v-else>
-      <h1>Inspiration for Your Bachelor Thesis Topic</h1>
+      <h1>Inspiration for your bachelor thesis topic</h1>
       <p v-if="track === 'BT'" v-click>The following topics  from the literature might also be interesting for you:</p>
       <div class="space-y-2 text-sm text-slate-300 max-h-[350px] overflow-y-auto pr-2" >
         <div v-for="item in bibliographyEntries" :key="item.key" class="p-2.5 bg-slate-800/60 rounded border border-slate-700">
@@ -409,7 +473,11 @@ const track = (urlParams.get('group') ||  'BS').toUpperCase();
 </ul>
 </v-clicks>
 
-<p v-click class="align center"><strong>Have a good start!</strong></p>
+<p v-click class="align center  m-10 text-xl"><strong>Have a good start!</strong></p>
+
+<div v-if="track='BT'" class="mt-6 p-4 bg-blue-950/40 border border-blue-800/50 rounded-lg text-slate-300">
+  Please ensure you fill in your <strong>Project Draft</strong> on schedule. <br>Check your <a href="https://alessiabogoni.github.io/seminar/roadmap.html?group=BT">roadmap</a> for the specific milestone dates.
+</div>
 
 </div>
 
@@ -417,30 +485,61 @@ const track = (urlParams.get('group') ||  'BS').toUpperCase();
 
 # Next Steps
 <v-clicks>
-<ul>
-<li>Review your course reading list and preparation notes.</li>
-<li>Prepare for your initial topic assignment session.</li>
-</ul>
-</v-clicks>
+  <ul>
+  <li>Select your preferred option and topic</li>
+  </ul>
+  </v-clicks>
+
+  <div class="mt-6 p-4 bg-blue-950/40 border border-blue-800/50 rounded-lg text-slate-300">
+  Please ensure you complete your <strong>Topic Selection</strong> on schedule. Check your <a href="https://alessiabogoni.github.io/seminar/roadmap.html?group=MS">roadmap</a> for specific milestone dates.
+</div>
 </div>
 
+<!-- BS -->
 <div v-else>
 
 # Next Steps
+<ul>
+<li>Select the research topic that interests you and a potential alternative</li>
+<li>Communicate your choice (first come, first served)</li>
+<li>We confirm your topic and you can start working on your term paper</li>
+</ul>
 
-- Review your provided preliminary materials.
+<div class="text-center m-10 text-xl"><strong>Have a good start!</strong></div>
 
-<div class="mt-6 p-4 bg-blue-950/40 border border-blue-800/50 rounded-lg text-sm text-slate-300">
-  Please ensure you complete your <strong>Topic Selection</strong> on schedule. Check your roadmap for specific milestone dates.
+<div v-if-else="track='BS'" class="mt-6 p-4 bg-blue-950/40 border border-blue-800/50 rounded-lg text-slate-300">
+  Please ensure you complete your <strong>Topic Selection</strong> on schedule. <br>Check your <a href="https://alessiabogoni.github.io/seminar/roadmap.html?group=BS">roadmap</a> for specific milestone dates.
 </div>
+
 
 </div>
 
 ---
-layout: center
-class: text-center
+layout: default
 ---
 
-# See you soon!
+<script setup>
+import { computed } from 'vue';
+import { SHARED_TIMELINE_DATA } from './shared-data.js';
 
-We look forward to seeing you at the upcoming course sessions.
+const urlParams = new URLSearchParams(window.location.search);
+const track = (urlParams.get('group') ||  'BS').toUpperCase();
+
+const roadmapEvents = computed(() => {
+  const data = SHARED_TIMELINE_DATA || [];
+  return data.filter(item => item.Groups && item.Groups.includes(track) && item.MilestoneName == "Intro Methods");
+  });
+
+</script>
+
+<h1>Next meeting</h1>
+  <div v-for="event in roadmapEvents" :key="event.ID" class="p-3 bg-slate-800/50 rounded-lg border border-slate-700/80 flex flex-col gap-1">
+    <div class="flex justify-between items-center text-blue-400 font-semibold">
+      <span>🗓️ {{ event.TargetDate }}</span>
+    </div>
+    <div class="font-bold text-slate-100 text-base text-xl">{{ event.MilestoneName }}</div>
+    <div class="text-slate-400 leading-relaxed text-xl" v-html="event.description"></div>
+  </div>
+  <p>You can find these slides and all materials in the WueCampus course room &rarr; <a href="placeholder wuecampus">WueCampus</a></p>
+
+

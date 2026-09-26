@@ -50,7 +50,7 @@ const BIBLIOGRAPHY = {
     year: 2015,
     title: "Psychological frictions and the incomplete take-up of social benefits: Evidence from an IRS field experiment",
     journal: "American Economic Review, 105(11), 3489-3529",
-    tracks: ["BS", "BT"],
+    tracks: ["BS"],
     note: "Why do people fail to claim benefits they are entitled to?"
   },
   "card2012": {
@@ -66,7 +66,7 @@ const BIBLIOGRAPHY = {
     year: 2022,
     title: "Implicit reminders of reputation and nature reduce littering more than explicit information on injunctive norms and monetary costs",
     journal: "Journal of Environmental Psychology, 84, 101914",
-    tracks: ["BS"],
+    tracks: ["BS", "BT"],
     note: "How can cities reduce littering without increasing fines?"
   },
   "gravert2025": {
@@ -90,7 +90,7 @@ const BIBLIOGRAPHY = {
     year: 2007,
     title: "Does price matter in charitable giving? Evidence from a large-scale natural field experiment",
     journal: "American Economic Review, 97(5), 1774-1793",
-    tracks: ["BS", "BT"],
+    tracks: ["BS"],
     note: "How can charities encourage charitable giving?"
   },
   "ariely2009": {

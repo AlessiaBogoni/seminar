@@ -76,7 +76,7 @@ const SHARED_TIMELINE_DATA = [
     TargetDate: "23-10-2026",
     Groups: "BT",
     RefDoc: "Info Project",
-    description: "First Project Draft to be submitted via WueCampus (see the reference documents for more info)",
+    description: "First Project Draft to be submitted via WueCampus. Usually you will be invited for an individual discussion meeting the week after the submission",
     block: "1.0",
     syllabus: "false"
   },
@@ -86,7 +86,7 @@ const SHARED_TIMELINE_DATA = [
     TargetDate: "23-10-2026",
     Groups: "MS",
     RefDoc: "Info Project",
-    description: "First Project Draft to be submitted via WueCampus (see the reference documents for more info)",
+    description: "First Project Draft to be submitted via WueCampus. Usually you will be invited for an individual meeting the week after the submission.",
     block: "2.0",
     syllabus: "false"
   },
@@ -96,7 +96,7 @@ const SHARED_TIMELINE_DATA = [
     TargetDate: "06-11-2026",
     Groups: "BT",
     RefDoc: "Info Project",
-    description: "Second Project Draft to be submitted via WueCampus (see the reference documents for more info)",
+    description: "Extended Project Draft to be submitted via WueCampus.",
     block: "2.0",
     syllabus: "false"
   },
@@ -106,28 +106,28 @@ const SHARED_TIMELINE_DATA = [
     TargetDate: "06-11-2026",
     Groups: "MS",
     RefDoc: "Info Project",
-    description: "Second Project Draft to be submitted via WueCampus (see the reference documents for more info)",
+    description: "Extended Project Draft to be submitted via WueCampus.  Once you submit, you can ask for a meeting to discuss your project.",
     block: "2.0",
     syllabus: "false"
   },
   {
     ID: "bs_ext_proj",
-    MilestoneName: "Extended Project Draft",
+    MilestoneName: "Project Draft",
     TargetDate: "06-11-2026",
     Groups: "BS",
     RefDoc: "Info Project",
-    description: "Second Project Draft to be submitted via WueCampus (see the reference documents for more info)",
+    description: "Project Draft to be submitted via WueCampus. Once you submit, you can ask for a meeting to discuss your project.",
     block: "2.0",
     syllabus: "false"
   },
   {
     ID: "bs_submission",
-    MilestoneName: "BSc Seminar Submission",
+    MilestoneName: "B.Sc. Seminar Submission",
     TargetDate: "27-11-2026",
     Groups: "BS",
     RefDoc: "Submission Requirements\\Info Paper\\AI Guidelines WiWi\\Versicherung zur selbstständigen Leistungserbringung\\Info Formatting",
     description: "",
-    block: "2.0",
+    block: "3.0",
     syllabus: "true"
   },
   {
@@ -136,7 +136,7 @@ const SHARED_TIMELINE_DATA = [
     TargetDate: "27-11-2027",
     Groups: "BT",
     RefDoc: "Info Paper",
-    description: "First Paper Draft to be submitted via WueCampus (see the reference documents for more info)",
+    description: "First Paper Draft to be submitted via WueCampus.",
     block: "3.0",
     syllabus: "false"
   },
@@ -146,27 +146,27 @@ const SHARED_TIMELINE_DATA = [
     TargetDate: "27-11-2027",
     Groups: "MS",
     RefDoc: "Info Paper",
-    description: "First Paper Draft to be submitted via WueCampus (see the reference documents for more info)",
+    description: "First Paper Draft to be submitted via WueCampus.",
     block: "2.0",
     syllabus: "false"
   },
   {
     ID: "bt_survey1",
-    MilestoneName: "Survey Proposal",
+    MilestoneName: "Survey/Experiment Proposal",
     TargetDate: "27-11-2026",
     Groups: "BT",
     RefDoc: "Submission Requirements\\Info Project",
-    description: "Survey Proposal (see the reference documents for more info)",
+    description: "Submission of your detailed implementation plan and/or survey.",
     block: "3.0",
     syllabus: "false"
   },
   {
     ID: "ms_survey1",
-    MilestoneName: "Survey Proposal",
+    MilestoneName: "Survey/Experiment Proposal",
     TargetDate: "27-11-2026",
     Groups: "MS",
     RefDoc: "Submission Requirements\\Info Project",
-    description: "Survey Proposal (see the reference documents for more info)",
+    description: "Submission of your detailed implementation plan and/or survey.",
     block: "2.0",
     syllabus: "false"
   },
@@ -176,37 +176,37 @@ const SHARED_TIMELINE_DATA = [
     TargetDate: "02-12-2026",
     Groups: "BT",
     RefDoc: "Info Presentation",
-    description: "First Project Presentation (see the reference documents for more info)",
+    description: "First Project Presentation.",
     block: "3.0",
     syllabus: "false"
   },
   {
     ID: "bs_pres",
-    MilestoneName: "BSc Seminar Presentation",
+    MilestoneName: "B.Sc. Seminar Presentation",
     TargetDate: "02-12-2026",
     Groups: "BS",
     RefDoc: "Info Presentation",
-    description: "BSc Seminar Final Presentation (see the reference documents for more info)",
+    description: "B.Sc. Seminar Final Presentation.",
     block: "3.0",
     syllabus: "true"
   },
   {
     ID: "bt_survey2",
-    MilestoneName: "Final survey submission",
+    MilestoneName: "Final survey/experimental plan submission",
     TargetDate: "09-12-2026",
     Groups: "BT",
     RefDoc: "Submission Requirements",
-    description: "Submission of Final Survey used for data collection",
+    description: "Submission of final survey/experimental plan used for data collection.",
     block: "3.0",
     syllabus: "false"
   },
   {
     ID: "ms_survey2",
-    MilestoneName: "Final survey submission",
+    MilestoneName: "Final survey/experimental plan submission",
     TargetDate: "09-12-2026",
     Groups: "MS",
     RefDoc: "Submission Requirements",
-    description: "Submission of Final Survey used for data collection",
+    description: "Submission of final survey/experimental plan used for data collection.",
     block: "2.0",
     syllabus: "false"
   },
@@ -216,17 +216,17 @@ const SHARED_TIMELINE_DATA = [
     TargetDate: "09-01-2027",
     Groups: "BT",
     RefDoc: "Info Paper",
-    description: "Second Paper Draft to be submitted via WueCampus together with the raw collected data (see the reference documents for more info)",
+    description: "Second Paper Draft to be submitted via WueCampus together with the raw collected data.",
     block: "4.0",
     syllabus: "false"
   },
   {
     ID: "ms_submission",
-    MilestoneName: "MSc Seminar Submission",
+    MilestoneName: "M.Sc. Seminar Submission",
     TargetDate: "27-01-2027",
     Groups: "MS",
     RefDoc: "Submission Requirements\\Info Paper\\AI Guidelines WiWi\\Versicherung zur selbstständigen Leistungserbringung\\Info Formatting",
-    description: "Final Paper Submission",
+    description: "Final Paper Submission.",
     block: "2.0",
     syllabus: "true"
   },
@@ -236,17 +236,17 @@ const SHARED_TIMELINE_DATA = [
     TargetDate: "13-01-2027",
     Groups: "BT",
     RefDoc: "Info Presentation",
-    description: "Presentation",
+    description: "A colloquium to present your project and get feedbacks",
     block: "4.0",
     syllabus: "false"
   },
   {
     ID: "bt_submission",
-    MilestoneName: "BSc Thesis Submission",
+    MilestoneName: "B.Sc. Thesis Submission",
     TargetDate: "27-01-2027",
     Groups: "BT",
     RefDoc: "Submission Requirements\\Info Paper\\Info Project\\AI Guidelines WiWi\\Versicherung zur selbstständigen Leistungserbringung\\Info Formatting",
-    description: "",
+    description: "Final thesis and material submission.",
     block: "5.0",
     syllabus: "true"
   },
@@ -256,7 +256,7 @@ const SHARED_TIMELINE_DATA = [
     TargetDate: "03-02-2027",
     Groups: "MS",
     RefDoc: "Info Presentation",
-    description: "Presentation",
+    description: "Presentation of your master seminar paper",
     block: "3.0",
     syllabus: "true"
   }
