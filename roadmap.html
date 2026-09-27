@@ -410,7 +410,7 @@
         const events = grouped[blockKey] || [];
         if (events.length === 0) continue;
 
-        const blockColor = (selectedGroup === 'BT' && BT_BLOCK_COLORS[blockKey]) 
+        const blockColor = ( BT_BLOCK_COLORS[blockKey]) 
           ? BT_BLOCK_COLORS[blockKey] 
           : '#3b82f6';
 
@@ -451,7 +451,6 @@
               }).join('')
             : '';
 
-          // Renders the original individual milestone name inside the card again
           html += `
             <div class="node ${sideClass}" style="--node-color: ${blockColor};">
               <div class="card" style="border-top: 4px solid ${blockColor}; background: linear-gradient(180deg, ${blockColor}15 0%, var(--card-bg) 40%);">

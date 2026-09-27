@@ -172,11 +172,11 @@ export const SHARED_TIMELINE_DATA = [
   },
   {
     ID: "bt_pres1",
-    MilestoneName: "Presentation 1 + Antrag auf Zuteilung Bachelor Arbeit",
+    MilestoneName: " Intermediate Presentation + Antrag auf Zuteilung Bachelor Arbeit",
     TargetDate: "02-12-2026",
     Groups: "BT",
     RefDoc: "Info Presentation",
-    description: "First Project Presentation.",
+    description: "First project presentation.",
     block: "3.0",
     syllabus: "false"
   },
@@ -186,7 +186,7 @@ export const SHARED_TIMELINE_DATA = [
     TargetDate: "02-12-2026",
     Groups: "BS",
     RefDoc: "Info Presentation",
-    description: "B.Sc. Seminar Final Presentation.",
+    description: "B.Sc. Seminar final fresentation.",
     block: "3.0",
     syllabus: "true"
   },
@@ -216,7 +216,7 @@ export const SHARED_TIMELINE_DATA = [
     TargetDate: "09-01-2027",
     Groups: "BT",
     RefDoc: "Info Paper",
-    description: "Second Paper Draft to be submitted via WueCampus together with the raw collected data.",
+    description: "Second paper draft to be submitted via WueCampus together with the raw collected data.",
     block: "4.0",
     syllabus: "false"
   },
@@ -227,7 +227,7 @@ export const SHARED_TIMELINE_DATA = [
     Groups: "MS",
     RefDoc: "Submission Requirements\\Info Paper\\AI Guidelines WiWi\\Versicherung zur selbstständigen Leistungserbringung\\Info Formatting",
     description: "Final Paper Submission.",
-    block: "2.0",
+    block: "3.0",
     syllabus: "true"
   },
   {
