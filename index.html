@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +15,13 @@
       --border: #334155;
       --primary: #3b82f6;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       font-family: system-ui, -apple-system, sans-serif;
       background: var(--bg);
@@ -25,8 +32,12 @@
       align-items: center;
       padding: 3rem 1.5rem;
     }
-    .container { max-width: 900px; width: 100%; }
-    
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+    }
+
     .header-box {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -39,10 +50,26 @@
       flex-wrap: wrap;
       gap: 1.5rem;
     }
-    h1 { font-size: 1.8rem; background: linear-gradient(135deg, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    p { color: var(--text-muted); font-size: 0.95rem; margin-top: 0.3rem; }
-    
-    .track-selector { display: flex; gap: 0.5rem; align-items: center; }
+
+    h1 {
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-top: 0.3rem;
+    }
+
+    .track-selector {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
     .track-btn {
       background: var(--bg);
       border: 1px solid var(--border);
@@ -53,11 +80,26 @@
       font-weight: 600;
       transition: all 0.2s;
     }
-    .track-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); box-shadow: 0 0 12px rgba(59, 130, 246, 0.4); }
 
-    h2 { font-size: 1.2rem; margin-bottom: 1rem; color: #cbd5e1; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
-    
+    .track-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+      box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: #cbd5e1;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
     .card {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -70,15 +112,48 @@
       justify-content: space-between;
       transition: all 0.25s ease;
     }
-    .card:hover { border-color: var(--primary); transform: translateY(-4px); box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.2); }
-    .card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
-    .card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 1.5rem; }
-    .card-footer { font-size: 0.8rem; font-weight: 600; color: #60a5fa; display: flex; align-items: center; gap: 0.3rem; }
+
+    .card:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.2);
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-footer {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #60a5fa;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .slides-trigger-card {
+      cursor: pointer;
+    }
 
     /* MANDATORY GATE MODAL OVERLAY */
     #track-modal {
       position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       background: rgba(15, 23, 42, 0.85);
       backdrop-filter: blur(8px);
       display: flex;
@@ -89,10 +164,12 @@
       pointer-events: none;
       transition: opacity 0.3s ease;
     }
+
     #track-modal.visible {
       opacity: 1;
       pointer-events: auto;
     }
+
     .modal-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -103,9 +180,26 @@
       text-align: center;
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
     }
-    .modal-card h2 { font-size: 1.5rem; color: #f8fafc; margin-bottom: 0.75rem; }
-    .modal-card p { font-size: 0.95rem; margin-bottom: 2rem; color: var(--text-muted); line-height: 1.5; }
-    .modal-options { display: flex; flex-direction: column; gap: 0.75rem; }
+
+    .modal-card h2 {
+      font-size: 1.5rem;
+      color: #f8fafc;
+      margin-bottom: 0.75rem;
+    }
+
+    .modal-card p {
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .modal-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
     .modal-track-btn {
       background: var(--bg);
       border: 1px solid var(--border);
@@ -121,17 +215,97 @@
       align-items: center;
       transition: all 0.2s;
     }
-    .modal-track-btn:hover { border-color: var(--primary); background: rgba(59, 130, 246, 0.1); color: #60a5fa; }
-    .modal-track-btn span { font-size: 0.8rem; color: var(--text-muted); font-weight: normal; }
+
+    .modal-track-btn:hover {
+      border-color: var(--primary);
+      background: rgba(59, 130, 246, 0.1);
+      color: #60a5fa;
+    }
+
+    .modal-track-btn span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: normal;
+    }
+
+    /* SLIDES POPUP MODAL STYLES */
+    #slidesModal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .slides-modal-content {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1.25rem;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: var(--text);
+    }
+
+    .modal-slide-item {
+      display: block;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      margin-top: 0.75rem;
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+
+    .modal-slide-item:hover {
+      border-color: var(--primary);
+      background: rgba(59, 130, 246, 0.1);
+    }
+
+    .modal-slide-item strong {
+      color: #60a5fa;
+      font-size: 1rem;
+    }
+
+    .modal-slide-item p {
+      margin-top: 0.25rem;
+      font-size: 0.85rem;
+    }
   </style>
 </head>
+
 <body>
 
   <!-- MANDATORY ENTRY GATE MODAL -->
   <div id="track-modal">
     <div class="modal-card">
       <h2>Welcome to the LEO Hub</h2>
-      <p>Please select your academic track to view the correct deadlines, guidelines, and roadmap tailored specifically for you.</p>
+      <p>Please select your academic track to view the correct deadlines, guidelines, and roadmap tailored specifically
+        for you.</p>
       <div class="modal-options">
         <button class="modal-track-btn" onclick="selectTrackAndReload('BS')">
           Bachelor Seminar (BS) <span>Select Track →</span>
@@ -143,6 +317,15 @@
           Master Seminar (MS) <span>Select Track →</span>
         </button>
       </div>
+    </div>
+  </div>
+
+  <!-- SLIDES POPUP MODAL -->
+  <div id="slidesModal">
+    <div class="slides-modal-content">
+      <button class="close-btn" onclick="closeSlidesModal()">&times;</button>
+      <h2>🚀 Slides</h2>
+      <div id="slidesListContainer"></div>
     </div>
   </div>
 
@@ -166,8 +349,10 @@
   </div>
 
   <script>
-    // Define all available resources and which tracks they are valid for.
-    // If a track is not in the array, its card will be completely hidden.
+    // Define global slides array so popup functions can read it
+    let slides = [];
+    let currentTrack = 'BS';
+
     const RESOURCES = [
       {
         id: 'roadmap',
@@ -188,14 +373,14 @@
       {
         id: 'infopresentation',
         title: '🎤 Presentation Guidelines',
-        desc: 'Timing, weights anc content of your presentation.',
+        desc: 'Timing, weights and content of your presentation.',
         file: 'infopresentation.html',
         footer: 'Read Presentation Info →',
         tracks: ['BS', 'BT', 'MS']
       },
       {
         id: 'infoproject',
-        title: '📊 Project Guidelines',
+        title: '🎯 Project Guidelines',
         desc: 'Requirements, methodology readings, survey platforms, and data analysis training resources.',
         file: 'infoproject.html',
         footer: 'Read Project Info →',
@@ -207,63 +392,53 @@
         desc: 'Overview, requirements and expectations',
         file: 'syllabus.html',
         footer: 'Read Syllabus →',
-        tracks: ['BS', 'MS'] // Example: hidden if track is BT if it doesn't exist for BT
+        tracks: ['BS', 'MS']
       },
       {
-        id: 'slides_intro',
-        title: '📊 Intro Presentation',
-        desc: 'Interactive lecture slides covering course structure, expectations, and roadmap highlights.',
-        file: 'Intro_Meeting/dist-slides/Intro/index.html', // Pointing to your built Slidev folder
-        footer: 'Open Slides →',
-        tracks: ['BS', 'BT', 'MS'] // Change if it's only for certain tracks
-      },
-      /* {
-        id: 'website',
-        title: '📄 Overview',
-        desc: 'Seminar structure overview',
-        file: 'website.html',
-        footer: 'Read Overview →',
-        tracks: ['BS', 'MS'] // Example: hidden if track is BT if it doesn't exist for BT
-      }, */
-       {
         id: 'standards',
         title: '📄 Formatting Standards',
         desc: 'Formatting rules and citation requirements',
         file: 'standards.html',
         footer: 'Read Formatting Standards →',
-        tracks: ['BS', 'MS', 'BT'] 
+        tracks: ['BS', 'MS', 'BT']
+      },
+      {
+        id: 'slides_intro',
+        title: '👋 Intro - Slides',
+        desc: 'kick-off slides covering course structure, expectations, and milestones.',
+        file: 'Intro_Meeting/dist-slides/Intro/index.html',
+        footer: 'Open Slides →',
+        tracks: ['BS', 'BT', 'MS']
       },
       {
         id: 'slides_emp',
-        title: '📊 Empirical Methods',
+        title: '🔬 Empirical Methods - Slides',
         desc: 'A recap on experiments and causality',
-        file: 'Intro_Meeting/dist-slides/Intro_emp/index.html', // Pointing to your built Slidev folder
+        file: 'Intro_Meeting/dist-slides/Intro_emp/index.html',
         footer: 'Open Slides →',
-        tracks: ['BS', 'BT', 'MS'] // Change if it's only for certain tracks
+        tracks: ['BS', 'BT', 'MS']
       },
       {
         id: 'slides_writing',
-        title: '📄 How to Write',
+        title: '📝 How to Write - Slides',
         desc: 'Best practices for academic writing',
         file: 'Intro_Meeting/dist-slides/Intro_writing/index.html',
         footer: 'Read Overview →',
-        tracks: ['BS', 'MS','BT'] // Example: hidden if track is BT if it doesn't exist for BT
+        tracks: ['BS', 'MS', 'BT']
       },
-       {
+      {
         id: 'slides_reading',
-        title: '📄 How to Read',
+        title: '📖 How to Read - Slides',
         desc: 'Best practices for academic reading',
         file: 'Intro_Meeting/dist-slides/Intro_reading/index.html',
         footer: 'Read Formatting Standards →',
-        tracks: ['BS', 'MS', 'BT'] 
+        tracks: ['BS', 'MS', 'BT']
       }
-
     ];
 
     function switchTrackAndReload(track) {
       if (!['BS', 'BT', 'MS'].includes(track)) return;
       localStorage.setItem('student_track', track);
-      // Force a full page reload with the updated group parameter to clear old states and hide non-existent docs
       window.location.href = `index.html?group=${track}`;
     }
 
@@ -271,55 +446,88 @@
       switchTrackAndReload(track);
     }
 
+    function openSlidesModal() {
+      const container = document.getElementById('slidesListContainer');
+      container.innerHTML = slides.map(slide => `
+        <a href="${slide.file}?group=${currentTrack}" class="modal-slide-item">
+            <strong>${slide.title}</strong>
+            <p>${slide.desc || ''}</p>
+        </a>
+      `).join('');
+      
+      document.getElementById('slidesModal').style.display = 'flex';
+    }
+
+    function closeSlidesModal() {
+      document.getElementById('slidesModal').style.display = 'none';
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       const urlParams = new URLSearchParams(window.location.search);
       let track = urlParams.get('group');
 
-
-      // Validate or fallback to localStorage or default 'BS'
       if (!track || !['BS', 'BT', 'MS'].includes(track.toUpperCase())) {
         track = localStorage.getItem('student_track');
         if (!track || !['BS', 'BT', 'MS'].includes(track.toUpperCase())) {
-          // No track selected anywhere -> show modal gate
           document.getElementById('track-modal').classList.add('visible');
-          track = 'BS'; // provisional background state
+          track = 'BS';
         } else {
-          // Found in localStorage, reload to normalize URL
           window.location.href = `index.html?group=${track.toUpperCase()}`;
           return;
         }
       }
 
-      const activeTrack = track.toUpperCase();
+      currentTrack = track.toUpperCase();
 
       // Highlight active track button
       document.querySelectorAll('.track-btn').forEach(btn => btn.classList.remove('active'));
-      const activeBtn = document.getElementById(`btn-${activeTrack}`);
+      const activeBtn = document.getElementById(`btn-${currentTrack}`);
       if (activeBtn) activeBtn.classList.add('active');
 
       // Update subtitle
-      document.getElementById('welcome-sub').textContent = `Loaded profile for: ${activeTrack} Track`;
+      document.getElementById('welcome-sub').textContent = `Loaded profile for: ${currentTrack} Track`;
 
-      // Filter and render only resources belonging to the active track
+      // Filter and render resources
       const gridContainer = document.getElementById('resource-grid');
       let cardsHTML = '';
+      
+      // Reset global slides array
+      slides = [];
 
       RESOURCES.forEach(res => {
-        if (res.tracks.includes(activeTrack)) {
-          cardsHTML += `
-            <a href="${res.file}?group=${activeTrack}" class="card">
-              <div>
-                <h3>${res.title}</h3>
-                <p>${res.desc}</p>
-              </div>
-              <div class="card-footer">${res.footer}</div>
-            </a>
-          `;
+        if (res.tracks.includes(currentTrack)) {
+          if (res.title.includes('Slides')) {
+            slides.push(res);
+          } else {
+            cardsHTML += `
+              <a href="${res.file}?group=${currentTrack}" class="card">
+                  <div>
+                    <h3>${res.title}</h3>
+                    <p>${res.desc}</p>
+                  </div>
+                  <div class="card-footer">${res.footer}</div>
+              </a>
+            `;
+          }
         }
       });
+
+      // Add unified slides trigger card if slides exist
+      if (slides.length > 0) {
+        cardsHTML += `
+          <div class="card slides-trigger-card" onclick="openSlidesModal()">
+              <div>
+                <h3> 🚀 Slides</h3>
+                <p>Access all slide decks used in introductory meetings</p>
+              </div>
+              <div class="card-footer">View Slides</div>
+          </div>
+        `;
+      }
 
       gridContainer.innerHTML = cardsHTML;
     });
   </script>
 </body>
+
 </html>
