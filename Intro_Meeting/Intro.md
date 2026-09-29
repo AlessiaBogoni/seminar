@@ -175,7 +175,7 @@ const track = (urlParams.get('group') ||  'BS').toUpperCase();
 <div v-if="track === 'BT'">
   <h1>Bachelor thesis - prerequisites</h1>
   <v-clicks depth="2">
-  <ul  v-clicks class="space-y-2 list-disc list-inside">
+  <ul class="space-y-2 list-disc list-inside">
     <li>Official prerequisites: at least 100 ECTS</li>
     <li>Recommended prerequisites:
       <ul class="list-disc pl-6 space-y-1 mt-1">
@@ -624,72 +624,68 @@ const groupedRoadmap = computed(() => {
     </div>
   </template>
 </div>
+
 ---
 layout: default
 ---
 
 <script setup>
 const urlParams = new URLSearchParams(window.location.search);
-const track = (urlParams.get('group') ||  'BS').toUpperCase();
+const track = (urlParams.get('group') || 'BS').toUpperCase();
 </script>
 
 <div v-if="track === 'BT'">
+  <h1>Next Steps</h1>
+  <v-clicks depth="2">
+    <ul>
+      <li>Think about a topic and research question that interests you.</li>
+      <li>Print and fill out the Project Draft form. Please bring it to the individual meeting.</li>
+      <li>We inform you thereafter on your topic and supervisor.</li>
+      <li>You can start working on your thesis.</li>
+    </ul>
+  </v-clicks>
 
-<h1>Next Steps</h1>
-<v-clicks depth="2">
-<ul>
-<li>Think about a topic and research question that interests you.</li>
-<li>Print and fill out the Project Draft form. Please bring it to the individual meeting.</li>
-<li>We inform you thereafter on your topic and supervisor.</li>
-<li>You can start working on your thesis.</li>
-</ul>
-</v-clicks>
+  <p v-click class="text-center mb-10 mt-10 text-xl"><strong>Have a good start!</strong></p>
 
-<p v-click class="text-center mb-10 mt-10 text-xl"><strong>Have a good start!</strong></p>
-
-<div v-if="track='BT'" class="mt-6 p-4 bg-blue-950/40 border border-blue-800/50 rounded-lg text-slate-300" v-click>
-  Please ensure you fill in your <strong>Project Draft</strong> on schedule. <br>Check your <a href="https://alessiabogoni.github.io/seminar/roadmap.html?group=BT">roadmap</a> for the specific milestone dates.
-</div>
-
+  <!-- Removed redundant v-if="track='BT'" -->
+  <div class="mt-6 p-4 bg-blue-950/40 border border-blue-800/50 rounded-lg text-slate-300" v-click>
+    Please ensure you fill in your <strong>Project Draft</strong> on schedule. <br>Check your <a href="https://alessiabogoni.github.io/seminar/roadmap.html?group=BT">roadmap</a> for the specific milestone dates.
+  </div>
 </div>
 
 <div v-else-if="track === 'MS'">
-
-<h1>Next Steps</h1>
-<v-clicks>
-  <ul>
-  <li>Select your preferred option and topic</li>
-  <li>Select between option 1 and 2 and propose a related research question (the presented papers are a good starting point) or paper to replicate</li>
-  <li>Communicate which your choice is (first come, first served)</li>
-  <li>We confirm your topic and you can start working on your term paper</li>  
-  </ul>
+  <h1>Next Steps</h1>
+  <v-clicks>
+    <ul>
+      <li>Select your preferred option and topic</li>
+      <li>Select between option 1 and 2 and propose a related research question (the presented papers are a good starting point) or paper to replicate</li>
+      <li>Communicate which your choice is (first come, first served)</li>
+      <li>We confirm your topic and you can start working on your term paper</li>    
+    </ul>
   </v-clicks>
 
   <p class="mt-10 mb-10 text-xl" v-click><strong>Good luck!</strong></p>
 
   <div class="mt-6 p-4 bg-blue-950/40 border border-blue-800/50 rounded-lg text-slate-300" v-click>
-  Please ensure you complete your <strong>Topic Selection</strong> in WueCampus on schedule. Check your <a href="https://alessiabogoni.github.io/seminar/roadmap.html?group=MS">roadmap</a> for specific milestone dates.
-<!--   placeholder website, change to leo.teaching -->
-</div>
+    Please ensure you complete your <strong>Topic Selection</strong> in WueCampus on schedule. Check your <a href="https://alessiabogoni.github.io/seminar/roadmap.html?group=MS">roadmap</a> for specific milestone dates.
+  </div>
 </div>
 
 <!-- BS -->
 <div v-else>
+  <h1>Next Steps</h1>
+  <ul>
+    <li>Select the research topic that interests you and a potential alternative</li>
+    <li>Communicate your choice (first come, first served)</li>
+    <li>We confirm your topic and you can start working on your term paper</li>
+  </ul>
 
-<h1>Next Steps</h1>
-<ul>
-<li>Select the research topic that interests you and a potential alternative</li>
-<li>Communicate your choice (first come, first served)</li>
-<li>We confirm your topic and you can start working on your term paper</li>
-</ul>
+  <div class="text-center mt-10 mb-10 text-xl"><strong>Have a good start!</strong></div>
 
-<div class="text-center mt-10 mb-10 text-xl"><strong>Have a good start!</strong></div>
-
-<div v-if-else="track='BS'" class="mt-6 p-4 bg-blue-950/40 border border-blue-800/50 rounded-lg text-slate-300">
-  Please ensure you complete your <strong>Topic Selection</strong> on schedule. <br>Check your <a href="https://alessiabogoni.github.io/seminar/roadmap.html?group=BS">roadmap</a> for specific milestone dates.
-</div>
-
-
+  <!-- Fixed: changed v-if-else to a normal div since it's already inside v-else -->
+  <div class="mt-6 p-4 bg-blue-950/40 border border-blue-800/50 rounded-lg text-slate-300">
+    Please ensure you complete your <strong>Topic Selection</strong> on schedule. <br>Check your <a href="https://alessiabogoni.github.io/seminar/roadmap.html?group=BS">roadmap</a> for specific milestone dates.
+  </div>
 </div>
 
 ---
