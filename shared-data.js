@@ -133,7 +133,7 @@ const SHARED_TIMELINE_DATA = [
   {
     ID: "bt_paper_draft",
     MilestoneName: "Paper Draft",
-    TargetDate: "27-11-2027",
+    TargetDate: "27-11-2026",
     Groups: "BT",
     RefDoc: "Info Paper",
     description: "First Paper Draft to be submitted via WueCampus.",
@@ -143,7 +143,7 @@ const SHARED_TIMELINE_DATA = [
   {
     ID: "ms_paper_draft",
     MilestoneName: "Paper Draft",
-    TargetDate: "27-11-2027",
+    TargetDate: "27-11-2026",
     Groups: "MS",
     RefDoc: "Info Paper",
     description: "First Paper Draft to be submitted via WueCampus.",
@@ -233,7 +233,7 @@ const SHARED_TIMELINE_DATA = [
   {
     ID: "bt_coll",
     MilestoneName: "Presentation",
-    TargetDate: "13-01-2027",
+    TargetDate: "21-01-2027",
     Groups: "BT",
     RefDoc: "Info Presentation",
     description: "A colloquium to present your project and get feedbacks",
