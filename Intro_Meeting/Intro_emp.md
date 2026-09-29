@@ -298,7 +298,7 @@ canvasWidth: 980
     </div>
   </div>
 
-  <ul class="list-disc pl-5 space-y-1 text-xs">
+  <ul class="list-disc pl-5 space-y-1 ">
     <li><strong>Perceived social norms</strong> and <strong>behavior beliefs</strong> significantly drive contributions (alongside baseline altruism & patience).</li>
     <li>Demonstrates the strong power of information provision via survey experiments.</li>
   </ul>
