@@ -3,6 +3,7 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "dev": "slidev --remote=leo123",
     "build:intro": "slidev build Intro.md --base /seminar/Intro_Meeting/dist-slides/Intro/ --out dist-slides/Intro && node -e \"require('fs').copyFileSync('dist-slides/Intro/index.html', 'dist-slides/Intro/404.html')\"",
     "build:emp": "slidev build Intro_emp.md --base /seminar/Intro_Meeting/dist-slides/Intro_emp/ --out dist-slides/Intro_emp && node -e \"require('fs').copyFileSync('dist-slides/Intro_emp/index.html', 'dist-slides/Intro_emp/404.html')\"",
     "build:reading": "slidev build Intro_reading.md --base /seminar/Intro_Meeting/dist-slides/Intro_reading/ --out dist-slides/Intro_reading && node -e \"require('fs').copyFileSync('dist-slides/Intro_reading/index.html', 'dist-slides/Intro_reading/404.html')\"",
