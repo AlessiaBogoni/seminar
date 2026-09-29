@@ -4,7 +4,7 @@ defaults:
   class: 'bg-[#0f172a] text-white'
 background: '#0f172a'
 routerMode: memory
-class: 'text-slate-100 bg-[#0f172a]'
+class: 'text-slate-100 bg-[#0f172a]' 
 highlighter: shiki
 lineNumbers: false
 info: |
@@ -17,6 +17,8 @@ canvasWidth: 980
 ### Labour and Organizational Economics
 <p class="mt-4 text-slate-400">Julius-Maximilians-Universität Würzburg</p>
 
+---
+layout: default
 ---
 
 <div class="grid grid-cols-1 gap-6">
@@ -41,6 +43,8 @@ canvasWidth: 980
 }
 </style>
 
+---
+layout: default
 ---
 
 <div>
@@ -85,6 +89,8 @@ canvasWidth: 980
 </div>
 
 ---
+layout: default
+---
 
 <div>
   <h2 class="text-2xl font-bold mb-4">Two Fundamental Problems of Empirical Research</h2>
@@ -107,6 +113,8 @@ canvasWidth: 980
 </div>
 
 ---
+layout: default
+---
 
 <div>
   <h2 class="text-2xl font-bold mb-4">Case Study: Class Size & Educational Outcomes</h2>
@@ -122,6 +130,8 @@ canvasWidth: 980
   </div>
 </div>
 
+---
+layout: default
 ---
 
 <div>
@@ -140,6 +150,8 @@ canvasWidth: 980
   </div>
 </div>
 
+---
+layout: default
 ---
 
 <div>
@@ -166,6 +178,8 @@ canvasWidth: 980
 </div>
 
 ---
+layout: default
+---
 
 <div>
   <h2 class="text-2xl font-bold mb-4">The Essence of Experiments: Control!</h2>
@@ -191,6 +205,8 @@ canvasWidth: 980
 </div>
 
 ---
+layout: default
+---
 
 <div>
   <h2 class="text-2xl font-bold mb-4">Why Randomization Matters</h2>
@@ -212,6 +228,8 @@ canvasWidth: 980
   </div>
 </div>
 
+---
+layout: default
 ---
 
 <div>
@@ -238,6 +256,8 @@ canvasWidth: 980
 </div>
 
 ---
+layout: default
+---
 
 <div>
   <h2 class="text-2xl font-bold mb-4">Survey Experiments</h2>
@@ -261,6 +281,8 @@ canvasWidth: 980
   </div>
 </div>
 
+---
+layout: default
 ---
 
 <div>
@@ -287,6 +309,8 @@ canvasWidth: 980
 </div>
 
 ---
+layout: default
+---
 
 <div>
   <h2 class="text-2xl font-bold mb-2">Main finding: Correcting misperceptions</h2>
@@ -305,6 +329,8 @@ canvasWidth: 980
 </div>
 
 ---
+layout: default
+---
 
 <div>
   <h2 class="text-2xl font-bold mb-4">Audit studies & Correspondence tests</h2>
@@ -322,6 +348,8 @@ canvasWidth: 980
   </div>
 </div>
 
+---
+layout: default
 ---
 
 <div>
@@ -349,6 +377,8 @@ canvasWidth: 980
 </div>
 
 ---
+layout: default
+---
 
 <div>
   <h2 class="text-2xl font-bold mb-4">Summary</h2>
@@ -367,6 +397,8 @@ canvasWidth: 980
 </div>
 
 ---
+layout: default
+---
 
 <div>
   <h2 class="text-2xl font-bold mb-4">Beyond experiments</h2>
@@ -384,6 +416,8 @@ canvasWidth: 980
   </div>
 </div>
 
+---
+layout: default
 ---
 
 <div class="flex flex-col items-center justify-center h-full text-center">

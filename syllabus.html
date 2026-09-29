@@ -129,6 +129,7 @@
 
     .timeline-item {
       margin-bottom: 1rem;
+      margin-left:15px;
       display: flex;
       flex-direction: column;
       gap: 0.2rem;
@@ -224,16 +225,23 @@
       let html = '';
       for (const [blockKey, title] of Object.entries(BLOCK_TITLES)) {
         const events = grouped[blockKey] || [];
-        if (events.length === 0) continue;
+        
+        // Removed: if (events.length === 0) continue;
 
         html += `<h3>${title}</h3><div class="timeline-dl">`;
-        events.forEach(milestone => {
-          html += `
-            <div class="timeline-item">
-              <span class="timeline-date">${milestone.TargetDate || ''}: <strong>${milestone.MilestoneName || ''}</strong></span>
-              ${milestone.description ? `<span class="timeline-desc">${milestone.description}</span>` : ''}
-            </div>`;
-        });
+        
+        if (events.length === 0) {
+          html += `<div class="timeline-item"><span class="timeline-desc text-slate-500">Independent work phase</span></div>`;
+        } else {
+          events.forEach(milestone => {
+            html += `
+              <div class="timeline-item">
+                <span class="timeline-date">${milestone.TargetDate || ''}: <strong>${milestone.MilestoneName || ''}</strong></span>
+                ${milestone.description ? `<span class="timeline-desc">${milestone.description}</span>` : ''}
+              </div>`;
+          });
+        }
+        
         html += `</div>`;
       }
 

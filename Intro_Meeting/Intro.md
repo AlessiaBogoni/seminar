@@ -244,9 +244,11 @@ const track = (urlParams.get('group') ||  'BS').toUpperCase();
 </div>
 
 </div>
+
 ---
 layout: default
 ---
+
 <!-- Project Objectives -->
 
 <script setup>
@@ -424,25 +426,26 @@ const bibliographyEntries = computed(() => {
 
 
   <div v-else-if="track === 'BT'">
-    <div v-click.hide v-if="$clicks < 6">
-    <h1>Inspiration for your bachelor thesis topic</h1>
-      <v-clicks depth="2">
-      <ul>
-      <li>Good thesis ideas often start from real contexts you know well: student job, sports club, volunteering, student initiative.</li>
-      <li>These environments give access to relevant questions, realistic settings, and participants.</li>
-      <li>Examples of previous student projects:
-      <ul>
-        <li><strong>Choice Difficulty and Delegation in Hotel Booking:</strong> studying whether difficult choices increase willingness to delegate decisions via online survey/experiment.</li>
-        <li><strong>Entrepreneurial Red Flags and Behavioral Responses:</strong> experimentally studying how founders react to negative information shocks.</li>
-        </ul>
-      </li>
+  <h1>Inspiration for your bachelor thesis topic</h1>
+  
+  <div class="grid grid-cols-1 items-start mt-4">
+    <!-- Part 1: Visible initially, hides on the first click -->
+    <div class="col-start-1 row-start-1" v-click.hide>
+      <ul class="space-y-2 list-disc list-inside">
+        <li>Good thesis ideas often start from real contexts you know well: student job, sports club, volunteering, student initiative.</li>
+        <li>These environments give access to relevant questions, realistic settings, and participants.</li>
+        <li>Examples of previous student projects:
+          <ul class="list-disc pl-6 space-y-1 mt-1">
+            <li><strong>Choice Difficulty and Delegation in Hotel Booking:</strong> studying whether difficult choices increase willingness to delegate decisions via online survey/experiment.</li>
+            <li><strong>Entrepreneurial Red Flags and Behavioral Responses:</strong> experimentally studying how founders react to negative information shocks.</li>
+          </ul>
+        </li>
       </ul>
-      </v-clicks>
     </div>
-    <div v-else>
-      <h1>Inspiration for your bachelor thesis topic</h1>
-      <p v-if="track === 'BT'" v-click>The following topics  from the literature might also be interesting for you:</p>
-      <div class="space-y-2 text-sm text-slate-300 max-h-[350px] overflow-y-auto pr-2" >
+    <!-- Part 2: Appears immediately when Part 1 hides (at click 1) -->
+    <div class="col-start-1 row-start-1" v-if="$clicks >= 1">
+      <p class="mb-3 text-slate-300">The following topics from the literature might also be interesting for you:</p>
+      <div class="space-y-2 text-sm text-slate-300 max-h-[350px] overflow-y-auto pr-2">
         <div v-for="item in bibliographyEntries" :key="item.key" class="p-2.5 bg-slate-800/60 rounded border border-slate-700">
           <strong>{{ item.note }}</strong><br>
           <strong>{{ item.author }}</strong> ({{ item.year }}). <em>{{ item.title }}</em>.
@@ -450,10 +453,9 @@ const bibliographyEntries = computed(() => {
       </div>
     </div>
   </div>
+</div>
 
   
-
-
 ---
 layout: default
 ---

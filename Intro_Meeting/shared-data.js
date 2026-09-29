@@ -186,7 +186,7 @@ export const SHARED_TIMELINE_DATA = [
     TargetDate: "02-12-2026",
     Groups: "BS",
     RefDoc: "Info Presentation",
-    description: "B.Sc. Seminar final fresentation.",
+    description: "B.Sc. Seminar final presentation.",
     block: "3.0",
     syllabus: "true"
   },
@@ -226,7 +226,7 @@ export const SHARED_TIMELINE_DATA = [
     TargetDate: "27-01-2027",
     Groups: "MS",
     RefDoc: "Submission Requirements\\Info Paper\\AI Guidelines WiWi\\Versicherung zur selbstständigen Leistungserbringung\\Info Formatting",
-    description: "Final Paper Submission.",
+    description: "Final paper submission.",
     block: "3.0",
     syllabus: "true"
   },
