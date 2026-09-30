@@ -143,7 +143,8 @@
       height: 16px;
       border-radius: 50%;
       background: var(--bg);
-      border: 4px solid var(--node-color, var(--border)); /* Uses the dynamic inline variable */
+      border: 4px solid var(--node-color, var(--border));
+      /* Uses the dynamic inline variable */
       z-index: 2;
     }
 
@@ -266,7 +267,7 @@
     }
 
 
-    
+
     /* True Hover Tooltip Styles */
     .badge-wrapper {
       position: relative;
@@ -287,7 +288,8 @@
 
     .milestone-tooltip {
       visibility: hidden;
-      width: 250px; /* Made smaller/more compact */
+      width: 250px;
+      /* Made smaller/more compact */
       background-color: #1e293b;
       color: #f8fafc;
       text-align: left;
@@ -332,7 +334,7 @@
   <!-- Centralized data source -->
   <script src="shared-data.js"></script>
 
-<script>
+  <script>
     const DEFAULT_BLOCK_TITLES = {
       "1": "Block 1: Orientation & Topic Assignment",
       "2": "Block 2: Research, Drafts & Writing Phase",
@@ -356,11 +358,11 @@
     };
 
     const BT_BLOCK_COLORS = {
-      "1": "#8b5cf6", 
-      "2": "#5979a6", 
-      "3": "#10b981", 
-      "4": "#0696d4", 
-      "5": "#bc4899"  
+      "1": "#8b5cf6",
+      "2": "#5979a6",
+      "3": "#10b981",
+      "4": "#0696d4",
+      "5": "#bc4899"
     };
 
     const GROUP_NAMES = {
@@ -410,12 +412,12 @@
         const events = grouped[blockKey] || [];
         if (events.length === 0) continue;
 
-        const blockColor = ( BT_BLOCK_COLORS[blockKey]) 
-          ? BT_BLOCK_COLORS[blockKey] 
+        const blockColor = (BT_BLOCK_COLORS[blockKey])
+          ? BT_BLOCK_COLORS[blockKey]
           : '#3b82f6';
 
-        const tooltipDesc = (selectedGroup === 'BT' && BT_BLOCK_DESCRIPTIONS[blockKey]) 
-          ? BT_BLOCK_DESCRIPTIONS[blockKey] 
+        const tooltipDesc = (selectedGroup === 'BT' && BT_BLOCK_DESCRIPTIONS[blockKey])
+          ? BT_BLOCK_DESCRIPTIONS[blockKey]
           : '';
 
         // Badge wrapper with a hoverable tooltip icon
@@ -439,16 +441,39 @@
 
           const docs = event.RefDoc
             ? event.RefDoc.split('\\').map(doc => {
-                const docName = doc.trim();
+              const docName = doc.trim();
+              const lowerName = docName.toLowerCase();
+              let linkURL = '';
+
+              // 1. Handle special links and direct URLs here:
+              if (lowerName.includes('versicherung')) {
+                linkURL = 'https://www.uni-wuerzburg.de/fileadmin/33120300/Pruefungsamt/Formulare/Allgemeine_Formulare/Versicherung_zur_Leistungserbringung/20231127_Versicherung_zur_selbststaendigen_Leistungserbringung.pdf';
+              } else if (lowerName.includes('ai guidelines')) {
+                linkURL = 'https://flip.wiwi.uni-wuerzburg.de/index.php?app=ai&page=guidelines';
+              } else if (lowerName.startsWith('http')) {
+                linkURL = docName;
+              }
+              // 2. Otherwise use your local target files:
+              else {
                 let targetFile = 'infopaper.html';
-                if (docName.toLowerCase().includes('syllabus')) targetFile = 'syllabus.html';
-                
+                if (lowerName.includes('syllabus')) targetFile = 'syllabus.html';
+                if (lowerName.includes('presentation')) targetFile = 'infopresentation.html';
+                if (lowerName.includes('project')) targetFile = 'infoproject.html';
+                if (lowerName.includes('standards') || lowerName.includes('formatting')) targetFile = 'standards.html';
+                if (lowerName.includes('reading')) targetFile = 'introreading.html';
+                if (lowerName.includes('methods')) targetFile = 'intromethods.html';
+                if (lowerName.includes('writing')) targetFile = 'introwriting.html';
+                if (lowerName.includes('kickoff')) targetFile = 'introkickoff.html';
+                if (lowerName.includes('submission')) targetFile = 'submissionrequirements.html';
+
                 const eventId = event.ID || '';
                 const sectionHash = eventId ? `#${eventId}` : '';
-                const linkURL = `${targetFile}?group=${selectedGroup}&doc=${encodeURIComponent(docName)}${sectionHash}`;
+                linkURL = `${targetFile}?group=${selectedGroup}&doc=${encodeURIComponent(docName)}${sectionHash}`;
+              }
 
-                return `<a href="${linkURL}" class="doc-tag">📄 ${docName}</a>`;
-              }).join('')
+              const isExternal = linkURL.startsWith('http');
+              return `<a href="${linkURL}" class="doc-tag"${isExternal ? ' target="_blank"' : ''}>${isExternal ? '🌐' : '📄'} ${docName}</a>`;
+            }).join('')
             : '';
 
           html += `
