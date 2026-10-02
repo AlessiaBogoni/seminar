@@ -5,7 +5,7 @@ export const SHARED_TIMELINE_DATA = [
     MilestoneName: "Mandatory Introductory Meeting",
     TargetDate: "14-10-2026",
     Groups: "BT",
-    RefDoc: "Intro Meeting Slides\\Intro Writing\\Intro Reading\\Info Project\\Info Paper",
+    RefDoc: "Intro Meeting Slides\\Syllabus",
     description: "For students who don't show up at this meeting without a valid excuse, supervision commitment will be revoked.",
     block: "1.0",
     syllabus: "true"
@@ -15,7 +15,7 @@ export const SHARED_TIMELINE_DATA = [
     MilestoneName: "Mandatory Introductory Meeting",
     TargetDate: "14-10-2026",
     Groups: "MS",
-    RefDoc: "Intro Meeting Slides\\Intro Writing\\Intro Reading\\Info Project\\Info Paper",
+    RefDoc: "Intro Meeting Slides\\Syllabus",
     description: "For students who don't show up at this meeting without a valid excuse, supervision commitment will be revoked.",
     block: "1.0",
     syllabus: "true"
@@ -25,7 +25,7 @@ export const SHARED_TIMELINE_DATA = [
     MilestoneName: "Mandatory Introductory Meeting",
     TargetDate: "14-10-2026",
     Groups: "BS",
-    RefDoc: "Intro Meeting Slides\\Intro Writing\\Intro Reading\\Info Project\\Info Paper",
+    RefDoc: "Intro Meeting Slides\\Syllabus",
     description: "For students who don't show up at this meeting without a valid excuse, supervision commitment will be revoked.",
     block: "1.0",
     syllabus: "true"
@@ -45,7 +45,7 @@ export const SHARED_TIMELINE_DATA = [
     MilestoneName: "Intro Methods",
     TargetDate: "21-10-2026",
     Groups: "BT",
-    RefDoc: "Intro Methods Slides",
+    RefDoc: "Intro Methods Slides\\Intro Writing\\Intro Reading",
     description: "Recap Session: Empirical methods and Academic writing and reading guidelines",
     block: "1.0",
     syllabus: "true"
@@ -55,7 +55,7 @@ export const SHARED_TIMELINE_DATA = [
     MilestoneName: "Intro Methods",
     TargetDate: "21-10-2026",
     Groups: "MS",
-    RefDoc: "Intro Methods Slides",
+    RefDoc: "Intro Methods Slides\\Intro Writing\\Intro Reading",
     description: "Recap Session: Empirical methods and Academic writing and reading guidelines",
     block: "1.0",
     syllabus: "true"
@@ -65,7 +65,7 @@ export const SHARED_TIMELINE_DATA = [
     MilestoneName: "Intro Methods",
     TargetDate: "21-10-2026",
     Groups: "BS",
-    RefDoc: "Intro Methods Slides",
+    RefDoc: "Intro Methods Slides\\Intro Writing\\Intro Reading",
     description: "Recap Session: Empirical methods and Academic writing and reading guidelines",
     block: "1.0",
     syllabus: "true"
@@ -106,7 +106,7 @@ export const SHARED_TIMELINE_DATA = [
     TargetDate: "06-11-2026",
     Groups: "MS",
     RefDoc: "Info Project",
-    description: "Extended Project Draft to be submitted via WueCampus.  Once you submit, you can ask for a meeting to discuss your project.",
+    description: "Extended Project Draft to be submitted via WueCampus. Depending on the type of project you are carrying out (replication or own contribution) the content of this draft might vary. Once you submit, you can ask for a meeting to discuss your project.",
     block: "2.0",
     syllabus: "false"
   },
@@ -125,48 +125,28 @@ export const SHARED_TIMELINE_DATA = [
     MilestoneName: "B.Sc. Seminar Submission",
     TargetDate: "27-11-2026",
     Groups: "BS",
-    RefDoc: "Submission Requirements\\Info Paper\\AI Guidelines WiWi\\Versicherung zur selbstständigen Leistungserbringung\\Info Formatting",
+    RefDoc: "Submission Requirements\\Info Paper\\Info Project\\Info Formatting\\AI Guidelines WiWi\\Versicherung zur selbstständigen Leistungserbringung",
     description: "",
     block: "3.0",
     syllabus: "true"
   },
   {
-    ID: "bt_paper_draft",
-    MilestoneName: "Paper Draft",
-    TargetDate: "27-11-2026",
-    Groups: "BT",
-    RefDoc: "Info Paper",
-    description: "First Paper Draft to be submitted via WueCampus.",
-    block: "3.0",
-    syllabus: "false"
-  },
-  {
-    ID: "ms_paper_draft",
-    MilestoneName: "Paper Draft",
-    TargetDate: "27-11-2026",
-    Groups: "MS",
-    RefDoc: "Info Paper",
-    description: "First Paper Draft to be submitted via WueCampus.",
-    block: "2.0",
-    syllabus: "false"
-  },
-  {
     ID: "bt_survey1",
-    MilestoneName: "Survey/Experiment Proposal",
+    MilestoneName: "Design proposal and/or survey proposal",
     TargetDate: "27-11-2026",
     Groups: "BT",
-    RefDoc: "Submission Requirements\\Info Project",
-    description: "Submission of your detailed implementation plan and/or survey.",
+    RefDoc: "Info Project",
+    description: "Submission of your design proposal and/or survey.",
     block: "3.0",
     syllabus: "false"
   },
   {
     ID: "ms_survey1",
-    MilestoneName: "Survey/Experiment Proposal",
+    MilestoneName: "Design proposal and/or survey proposal",
     TargetDate: "27-11-2026",
     Groups: "MS",
-    RefDoc: "Submission Requirements\\Info Project",
-    description: "Submission of your detailed implementation plan and/or survey.",
+    RefDoc: "Info Project",
+    description: "Submission of your design proposal and/or survey proposal. Only for students carrying out an own contribution project.",
     block: "2.0",
     syllabus: "false"
   },
@@ -192,43 +172,43 @@ export const SHARED_TIMELINE_DATA = [
   },
   {
     ID: "bt_survey2",
-    MilestoneName: "Final survey/experimental plan submission",
+    MilestoneName: "Final design and/or survey submission",
     TargetDate: "09-12-2026",
     Groups: "BT",
-    RefDoc: "Submission Requirements",
-    description: "Submission of final survey/experimental plan used for data collection.",
+    RefDoc: "Info Project",
+    description: "Submission of final design and/or survey used for data collection.",
     block: "3.0",
     syllabus: "false"
   },
   {
     ID: "ms_survey2",
-    MilestoneName: "Final survey/experimental plan submission",
+    MilestoneName: "Final design and/or survey submission",
     TargetDate: "09-12-2026",
     Groups: "MS",
-    RefDoc: "Submission Requirements",
-    description: "Submission of final survey/experimental plan used for data collection.",
+    RefDoc: "Info Project",
+    description: "Submission of final design and/or survey used for data collection. Only for students carrying out an own contribution project.",
     block: "2.0",
     syllabus: "false"
   },
   {
     ID: "bt_ext_paper_coll_data",
-    MilestoneName: "Extended Paper Draft + Collected Data",
+    MilestoneName: "Paper Draft + Collected Data",
     TargetDate: "09-01-2027",
     Groups: "BT",
-    RefDoc: "Info Paper",
-    description: "Second paper draft to be submitted via WueCampus together with the raw collected data.",
+    RefDoc: "Info Paper\\Info Project\\Info Formatting",
+    description: "Paper draft to be submitted via WueCampus together with the raw collected data.",
     block: "4.0",
     syllabus: "false"
   },
   {
-    ID: "ms_submission",
-    MilestoneName: "M.Sc. Seminar Submission",
-    TargetDate: "27-01-2027",
-    Groups: "MS",
-    RefDoc: "Submission Requirements\\Info Paper\\AI Guidelines WiWi\\Versicherung zur selbstständigen Leistungserbringung\\Info Formatting",
-    description: "Final paper submission.",
-    block: "3.0",
-    syllabus: "true"
+    ID: "ms_coll_data",
+    MilestoneName: "Collected data submission",
+    TargetDate: "09-01-2027",
+    Groups: "BT",
+    RefDoc: "Info Project",
+    description: "Raw collected data submitted via WueCampus. Only for students carrying out an own contribution project.",
+    block: "4.0",
+    syllabus: "false"
   },
   {
     ID: "bt_coll",
@@ -241,11 +221,21 @@ export const SHARED_TIMELINE_DATA = [
     syllabus: "false"
   },
   {
+    ID: "ms_submission",
+    MilestoneName: "M.Sc. Seminar Submission",
+    TargetDate: "27-01-2027",
+    Groups: "MS",
+    RefDoc: "Submission Requirements\\Info Paper\\Info Project\\Info Formatting\\AI Guidelines WiWi\\Versicherung zur selbstständigen Leistungserbringung",
+    description: "Final paper submission.",
+    block: "3.0",
+    syllabus: "true"
+  },
+  {
     ID: "bt_submission",
     MilestoneName: "B.Sc. Thesis Submission",
     TargetDate: "27-01-2027",
     Groups: "BT",
-    RefDoc: "Submission Requirements\\Info Paper\\Info Project\\AI Guidelines WiWi\\Versicherung zur selbstständigen Leistungserbringung\\Info Formatting",
+    RefDoc: "Submission Requirements\\Info Paper\\Info Project\\Info Formatting\\AI Guidelines WiWi\\Versicherung zur selbstständigen Leistungserbringung",
     description: "Final thesis and material submission.",
     block: "5.0",
     syllabus: "true"
@@ -253,7 +243,7 @@ export const SHARED_TIMELINE_DATA = [
   {
     ID: "ms_pres",
     MilestoneName: "Presentation",
-    TargetDate: "03-02-2027",
+    TargetDate: "27-01-2027",
     Groups: "MS",
     RefDoc: "Info Presentation",
     description: "Presentation of your master seminar paper",
