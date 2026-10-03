@@ -5,7 +5,7 @@ const SHARED_TIMELINE_DATA = [
     MilestoneName: "Mandatory Introductory Meeting",
     TargetDate: "14-10-2026",
     Groups: "BT",
-    RefDoc: "Intro Meeting Slides\\Syllabus",
+    RefDoc: "Syllabus",
     description: "For students who don't show up at this meeting without a valid excuse, supervision commitment will be revoked.",
     block: "1.0",
     syllabus: "true"
@@ -15,7 +15,7 @@ const SHARED_TIMELINE_DATA = [
     MilestoneName: "Mandatory Introductory Meeting",
     TargetDate: "14-10-2026",
     Groups: "MS",
-    RefDoc: "Intro Meeting Slides\\Syllabus",
+    RefDoc: "Syllabus",
     description: "For students who don't show up at this meeting without a valid excuse, supervision commitment will be revoked.",
     block: "1.0",
     syllabus: "true"
@@ -25,7 +25,7 @@ const SHARED_TIMELINE_DATA = [
     MilestoneName: "Mandatory Introductory Meeting",
     TargetDate: "14-10-2026",
     Groups: "BS",
-    RefDoc: "Intro Meeting Slides\\Syllabus",
+    RefDoc: "Syllabus",
     description: "For students who don't show up at this meeting without a valid excuse, supervision commitment will be revoked.",
     block: "1.0",
     syllabus: "true"
@@ -35,7 +35,7 @@ const SHARED_TIMELINE_DATA = [
     MilestoneName: "Topic Selection Deadline",
     TargetDate: "19-10-2026",
     Groups: "BS",
-    RefDoc: "Intro Meeting Slides",
+    RefDoc: "",
     description: "Use the activity in WueCampus to select your preferred topic among the proposed ones. If no topic is selected, supervision commitment will be revoked.",
     block: "1.0",
     syllabus: "true"
@@ -45,7 +45,7 @@ const SHARED_TIMELINE_DATA = [
     MilestoneName: "Intro Methods",
     TargetDate: "21-10-2026",
     Groups: "BT",
-    RefDoc: "Intro Methods Slides\\Intro Writing\\Intro Reading",
+    RefDoc: "",
     description: "Recap Session: Empirical methods and Academic writing and reading guidelines",
     block: "1.0",
     syllabus: "true"
@@ -55,7 +55,7 @@ const SHARED_TIMELINE_DATA = [
     MilestoneName: "Intro Methods",
     TargetDate: "21-10-2026",
     Groups: "MS",
-    RefDoc: "Intro Methods Slides\\Intro Writing\\Intro Reading",
+    RefDoc: "",
     description: "Recap Session: Empirical methods and Academic writing and reading guidelines",
     block: "1.0",
     syllabus: "true"
@@ -65,7 +65,7 @@ const SHARED_TIMELINE_DATA = [
     MilestoneName: "Intro Methods",
     TargetDate: "21-10-2026",
     Groups: "BS",
-    RefDoc: "Intro Methods Slides\\Intro Writing\\Intro Reading",
+    RefDoc: "",
     description: "Recap Session: Empirical methods and Academic writing and reading guidelines",
     block: "1.0",
     syllabus: "true"
@@ -125,7 +125,7 @@ const SHARED_TIMELINE_DATA = [
     MilestoneName: "B.Sc. Seminar Submission",
     TargetDate: "27-11-2026",
     Groups: "BS",
-    RefDoc: "Submission Requirements\\Info Paper\\Info Project\\Info Formatting\\AI Guidelines WiWi\\Versicherung zur selbstständigen Leistungserbringung",
+    RefDoc: "Info Paper\\Info Project\\Info Formatting\\AI Guidelines WiWi\\Versicherung zur selbstständigen Leistungserbringung",
     description: "",
     block: "3.0",
     syllabus: "true"
@@ -225,7 +225,7 @@ const SHARED_TIMELINE_DATA = [
     MilestoneName: "M.Sc. Seminar Submission",
     TargetDate: "27-01-2027",
     Groups: "MS",
-    RefDoc: "Submission Requirements\\Info Paper\\Info Project\\Info Formatting\\AI Guidelines WiWi\\Versicherung zur selbstständigen Leistungserbringung",
+    RefDoc: "Info Paper\\Info Project\\Info Formatting\\AI Guidelines WiWi\\Versicherung zur selbstständigen Leistungserbringung",
     description: "Final paper submission.",
     block: "3.0",
     syllabus: "true"
@@ -235,7 +235,7 @@ const SHARED_TIMELINE_DATA = [
     MilestoneName: "B.Sc. Thesis Submission",
     TargetDate: "27-01-2027",
     Groups: "BT",
-    RefDoc: "Submission Requirements\\Info Paper\\Info Project\\Info Formatting\\AI Guidelines WiWi\\Versicherung zur selbstständigen Leistungserbringung",
+    RefDoc: "Info Paper\\Info Project\\Info Formatting\\AI Guidelines WiWi\\Versicherung zur selbstständigen Leistungserbringung",
     description: "Final thesis and material submission.",
     block: "5.0",
     syllabus: "true"

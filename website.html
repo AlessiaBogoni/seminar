@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Course Website & Overview</title>
@@ -85,12 +86,21 @@
   <!-- Load Central Data Sources -->
   <script src="shared_data.js"></script>
   <script src="references.js"></script>
+  <script src="resources.js"></script>
+  <script src="script.js"></script>
+
+  <script>
+    // Automatically checks 'hw2.html' against resources.js!
+    protectCurrentPage(); 
+  </script>
+  
 </head>
 <body>
 
   <div class="container" id="main-container">
     <div class="header-bar">
-      <span style="font-size: 0.8rem; color: var(--primary); font-weight: 700; text-transform: uppercase;">Official Course Website</span>
+      <span style="font-size: 0.8rem; color: var(--primary); font-weight: 700; text-transform: uppercase;">Project Overview</span>
+      <div class="track-selector"></div>
       <a id="back-link" href="index.html" class="back-hub-btn">&#8592; Back to Hub</a>
     </div>
 

@@ -1,0 +1,49 @@
+/* style.css */
+.dev-only {
+  display: none !important;
+}
+
+.locked {
+  opacity: 0.4;
+  pointer-events: none;
+  user-select: none;
+  filter: grayscale(100%);
+}
+
+/* Shared Track Selector Styles */
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border, #485f81);
+}
+
+.track-selector {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.track-btn {
+  background: var(--card-bg, #1e293b);
+  border: 1px solid var(--border, #485f81);
+  color: var(--text-muted, #94a3b8);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.track-btn:hover {
+  color: var(--text, #f8fafc);
+  border-color: var(--text-muted, #94a3b8);
+}
+
+.track-btn.active {
+  background: var(--accent, #3b82f6);
+  color: #fff;
+  border-color: var(--accent, #3b82f6);
+}

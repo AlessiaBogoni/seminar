@@ -2,18 +2,18 @@
 <html lang="en">
 
 <head>
+  <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Course Resource Hub</title>
-  <link rel="icon" href="/seminar/mortarboard.png" >
+  <title>Student Hub & Resource Portal</title>
   <style>
     :root {
       --bg: #0f172a;
       --card-bg: #1e293b;
       --text: #f8fafc;
       --text-muted: #94a3b8;
-      --border: #334155;
-      --primary: #3b82f6;
+      --border: #485f81;
+      --accent: #3b82f6;
     }
 
     * {
@@ -30,38 +30,21 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 3rem 1.5rem;
+      padding: 2rem 1rem;
     }
 
-    .container {
-      max-width: 900px;
+    #hub-container {
       width: 100%;
+      max-width: 1000px;
     }
 
-    .header-box {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem;
-      margin-bottom: 2.5rem;
+    .header-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-    }
-
-    h1 {
-      font-size: 1.8rem;
-      background: linear-gradient(135deg, #60a5fa, #a78bfa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      margin-top: 0.3rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
     }
 
     .track-selector {
@@ -71,461 +54,249 @@
     }
 
     .track-btn {
-      background: var(--bg);
+      background: var(--card-bg);
       border: 1px solid var(--border);
       color: var(--text-muted);
       padding: 0.5rem 1rem;
-      border-radius: 8px;
+      border-radius: 6px;
       cursor: pointer;
-      font-weight: 600;
+      font-size: 0.9rem;
       transition: all 0.2s;
+    }
+
+    .track-btn:hover {
+      color: var(--text);
+      border-color: var(--text-muted);
     }
 
     .track-btn.active {
-      background: var(--primary);
+      background: var(--accent);
       color: #fff;
-      border-color: var(--primary);
-      box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+      border-color: var(--accent);
     }
 
-    h2 {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-      color: #cbd5e1;
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 2rem 0 1rem 0;
+      color: var(--text);
     }
 
-    .grid {
+    .grid-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1.25rem;
     }
 
-    .card {
+    .hub-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 1.5rem;
+      padding: 1.25rem;
       text-decoration: none;
-      color: var(--text);
+      color: inherit;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: all 0.25s ease;
-    }
-
-    .card:hover {
-      border-color: var(--primary);
-      transform: translateY(-4px);
-      box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.2);
-    }
-
-    .card h3 {
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .card p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.4;
-      margin-bottom: 1.5rem;
-    }
-
-    .card-footer {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #60a5fa;
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .slides-trigger-card {
+      transition: transform 0.2s, border-color 0.2s;
+      position: relative;
       cursor: pointer;
     }
 
-    /* MANDATORY GATE MODAL OVERLAY */
-    #track-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(8px);
+    .hub-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    .card-header {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    #track-modal.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .modal-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 2.5rem;
-      max-width: 480px;
-      width: 90%;
-      text-align: center;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-    }
-
-    .modal-card h2 {
-      font-size: 1.5rem;
-      color: #f8fafc;
+      justify-content: space-between;
+      align-items: flex-start;
       margin-bottom: 0.75rem;
     }
 
-    .modal-card p {
-      font-size: 0.95rem;
-      margin-bottom: 2rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    .modal-options {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .modal-track-btn {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 1rem;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 1rem;
+    .card-title {
+      font-size: 1.1rem;
       font-weight: 600;
-      text-align: left;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: all 0.2s;
     }
 
-    .modal-track-btn:hover {
-      border-color: var(--primary);
-      background: rgba(59, 130, 246, 0.1);
-      color: #60a5fa;
-    }
-
-    .modal-track-btn span {
-      font-size: 0.8rem;
+    .card-desc {
+      font-size: 0.9rem;
       color: var(--text-muted);
-      font-weight: normal;
+      line-height: 1.4;
+      margin-bottom: 1rem;
     }
 
-    /* SLIDES POPUP MODAL STYLES */
-    #slidesModal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(8px);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
+    .status-badge {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      display: inline-block;
     }
 
-    .slides-modal-content {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem;
-      width: 90%;
-      max-width: 500px;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-      position: relative;
+    .status-badge.unlocked {
+      background: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+      border: 1px solid rgba(16, 185, 129, 0.3);
     }
 
-    .close-btn {
-      position: absolute;
-      top: 1rem;
-      right: 1.25rem;
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      font-size: 1.5rem;
-      cursor: pointer;
+    .status-badge.locked {
+      background: rgba(239, 68, 68, 0.15);
+      color: #ef4444;
+      border: 1px solid rgba(239, 68, 68, 0.3);
     }
 
-    .close-btn:hover {
-      color: var(--text);
+    .hub-card.locked-card {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
 
-    .modal-slide-item {
-      display: block;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      padding: 1rem;
-      margin-top: 0.75rem;
-      border-radius: 8px;
-      text-decoration: none;
-      color: var(--text);
-      transition: all 0.2s;
-    }
-
-    .modal-slide-item:hover {
-      border-color: var(--primary);
-      background: rgba(59, 130, 246, 0.1);
-    }
-
-    .modal-slide-item strong {
-      color: #60a5fa;
-      font-size: 1rem;
-    }
-
-    .modal-slide-item p {
-      margin-top: 0.25rem;
-      font-size: 0.85rem;
+    .hub-card.locked-card:hover {
+      transform: none;
+      border-color: var(--border);
     }
   </style>
 </head>
 
 <body>
 
-  <!-- MANDATORY ENTRY GATE MODAL -->
-  <div id="track-modal">
-    <div class="modal-card">
-      <h2>Welcome to the LEO Hub</h2>
-      <p>Please select your academic track to view the correct deadlines, guidelines, and roadmap tailored specifically
-        for you.</p>
-      <div class="modal-options">
-        <button class="modal-track-btn" onclick="selectTrackAndReload('BS')">
-          Bachelor Seminar (BS) <span>Select Track →</span>
-        </button>
-        <button class="modal-track-btn" onclick="selectTrackAndReload('BT')">
-          Bachelor Thesis (BT) <span>Select Track →</span>
-        </button>
-        <button class="modal-track-btn" onclick="selectTrackAndReload('MS')">
-          Master Seminar (MS) <span>Select Track →</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- SLIDES POPUP MODAL -->
-  <div id="slidesModal">
-    <div class="slides-modal-content">
-      <button class="close-btn" onclick="closeSlidesModal()">&times;</button>
-      <h2>🚀 Slides</h2>
-      <div id="slidesListContainer"></div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="header-box">
+  <div id="hub-container">
+    <div class="header-bar">
       <div>
-        <h1>LEO Resource Hub</h1>
-        <p id="welcome-sub">Your central location for roadmaps, milestones, and guidelines.</p>
+        <h2>Resource Hub</h2>
+        <span style="color: var(--text-muted); font-size: 0.9rem;">Select your active academic track</span>
       </div>
-      <div class="track-selector">
-        <span style="font-size: 0.85rem; color: var(--text-muted); margin-right: 0.5rem;">Active Track:</span>
-        <button class="track-btn" id="btn-BS" onclick="switchTrackAndReload('BS')">B.Sc. Seminar</button>
-        <button class="track-btn" id="btn-BT" onclick="switchTrackAndReload('BT')">B.Sc. Thesis</button>
-        <button class="track-btn" id="btn-MS" onclick="switchTrackAndReload('MS')">M.Sc. Seminar</button>
-      </div>
+      <div class="track-selector"></div>
     </div>
 
-    <h2>Available Resources</h2>
-    <!-- Grid container where valid cards are dynamically injected -->
-    <div class="grid" id="resource-grid"></div>
+    <!-- Core Navigation Links -->
+
+    <div class="grid-container">
+      <a id="roadmap-link" href="roadmap.html" class="hub-card">
+        <div>
+          <div class="card-header">
+            <div class="card-title">🗺️ Roadmap</div>
+          </div>
+          <div class="card-desc">View your milestone timeline and upcoming target dates.</div>
+        </div>
+      </a>
+    </div>
+
+
+    <!-- Course Documents & Resources Section -->
+    <div class="section-title">Course Documents & Resources</div>
+    <div id="resources-grid" class="grid-container"></div>
   </div>
 
+  <!-- Centralized data sources -->
+  <script src="shared-data.js"></script>
+  <script src="references.js"></script>
+  <script src="resources.js"></script>
+  <script src="script.js"></script>
   <script>
-    // Define global slides array so popup functions can read it
-    let slides = [];
     let currentTrack = 'BS';
-
-    const RESOURCES = [
-      {
-        id: 'infopaper',
-        title: '📄 Paper Guidelines',
-        desc: 'Formatting instructions, structure layout, literature quality tips, and expectations for your final paper.',
-        file: 'infopaper.html',
-        footer: 'Read Guidelines →',
-        tracks: ['BS', 'BT', 'MS']
-      },
-      {
-        id: 'infopresentation',
-        title: '🎤 Presentation Guidelines',
-        desc: 'Timing, weights and content of your presentation.',
-        file: 'infopresentation.html',
-        footer: 'Read Presentation Info →',
-        tracks: ['BS', 'BT', 'MS']
-      },
-      {
-        id: 'infoproject',
-        title: '🎯 Project Guidelines',
-        desc: 'Requirements, methodology readings, survey platforms, and data analysis training resources.',
-        file: 'infoproject.html',
-        footer: 'Read Project Info →',
-        tracks: ['BS', 'BT', 'MS']
-      },
-      {
-        id: 'syllabus',
-        title: '📄 Syllabus',
-        desc: 'Overview, requirements and expectations',
-        file: 'syllabus.html',
-        footer: 'Read Syllabus →',
-        tracks: ['BS', 'MS']
-      },
-      {
-        id: 'standards',
-        title: '📄 Formatting Standards',
-        desc: 'Formatting rules and citation requirements',
-        file: 'standards.html',
-        footer: 'Read Formatting Standards →',
-        tracks: ['BS', 'MS', 'BT']
-      },
-      {
-        id: 'slides_intro',
-        title: '👋 Intro - Slides',
-        desc: 'kick-off slides covering course structure, expectations, and milestones.',
-        file: 'Intro_Meeting/dist-slides/Intro/index.html',
-        footer: 'Open Slides →',
-        tracks: ['BS', 'BT', 'MS']
-      },
-      {
-        id: 'slides_emp',
-        title: '🔬 Empirical Methods - Slides',
-        desc: 'A recap on experiments and causality',
-        file: 'Intro_Meeting/dist-slides/Intro_emp/index.html',
-        footer: 'Open Slides →',
-        tracks: ['BS', 'BT', 'MS']
-      },
-      {
-        id: 'slides_writing',
-        title: '📝 How to Write - Slides',
-        desc: 'Best practices for academic writing',
-        file: 'Intro_Meeting/dist-slides/Intro_writing/index.html',
-        footer: 'Read Overview →',
-        tracks: ['BS', 'MS', 'BT']
-      },
-      {
-        id: 'slides_reading',
-        title: '📖 How to Read - Slides',
-        desc: 'Best practices for academic reading',
-        file: 'Intro_Meeting/dist-slides/Intro_reading/index.html',
-        footer: 'Read Formatting Standards →',
-        tracks: ['BS', 'MS', 'BT']
-      },
-      {
-        id: 'roadmap',
-        title: '🗺️ Roadmap',
-        desc: 'Interactive timeline tracking all course milestones, deadlines, and requirements step by step.',
-        file: 'roadmap.html',
-        footer: 'View Timeline →',
-        tracks: ['BS', 'BT', 'MS']
-      }
-    ];
-
-    function switchTrackAndReload(track) {
-      if (!['BS', 'BT', 'MS'].includes(track)) return;
-      localStorage.setItem('student_track', track);
-      window.location.href = `index.html?group=${track}`;
-    }
-
-    function selectTrackAndReload(track) {
-      switchTrackAndReload(track);
-    }
-
-    function openSlidesModal() {
-      const container = document.getElementById('slidesListContainer');
-      container.innerHTML = slides.map(slide => `
-        <a href="${slide.file}?group=${currentTrack}" class="modal-slide-item">
-            <strong>${slide.title}</strong>
-            <p>${slide.desc || ''}</p>
-        </a>
-      `).join('');
-      
-      document.getElementById('slidesModal').style.display = 'flex';
-    }
-
-    function closeSlidesModal() {
-      document.getElementById('slidesModal').style.display = 'none';
-    }
 
     window.addEventListener('DOMContentLoaded', () => {
       const urlParams = new URLSearchParams(window.location.search);
-      let track = urlParams.get('group');
+      let groupParam = urlParams.get('group');
 
-      if (!track || !['BS', 'BT', 'MS'].includes(track.toUpperCase())) {
-        track = localStorage.getItem('student_track');
-        if (!track || !['BS', 'BT', 'MS'].includes(track.toUpperCase())) {
-          document.getElementById('track-modal').classList.add('visible');
-          track = 'BS';
-        } else {
-          window.location.href = `index.html?group=${track.toUpperCase()}`;
-          return;
-        }
+      if (!groupParam || !['BS', 'BT', 'MS'].includes(groupParam.toUpperCase())) {
+        currentTrack = localStorage.getItem('student_track') || 'BS';
+      } else {
+        currentTrack = groupParam.toUpperCase();
       }
 
-      currentTrack = track.toUpperCase();
+      switchTrack(currentTrack, false);
+    });
 
-      // Highlight active track button
-      document.querySelectorAll('.track-btn').forEach(btn => btn.classList.remove('active'));
-      const activeBtn = document.getElementById(`btn-${currentTrack}`);
-      if (activeBtn) activeBtn.classList.add('active');
+    function switchTrack(track, updateURL = true) {
+      currentTrack = track;
+      localStorage.setItem('student_track', currentTrack);
 
-      // Update subtitle
-      document.getElementById('welcome-sub').textContent = `Loaded profile for: ${currentTrack} Track`;
-
-      // Filter and render resources
-      const gridContainer = document.getElementById('resource-grid');
-      let cardsHTML = '';
-      
-      // Reset global slides array
-      slides = [];
-
-      RESOURCES.forEach(res => {
-        if (res.tracks.includes(currentTrack)) {
-          if (res.title.includes('Slides')) {
-            slides.push(res);
-          } else {
-            cardsHTML += `
-              <a href="${res.file}?group=${currentTrack}" class="card">
-                  <div>
-                    <h3>${res.title}</h3>
-                    <p>${res.desc}</p>
-                  </div>
-                  <div class="card-footer">${res.footer}</div>
-              </a>
-            `;
-          }
+      document.querySelectorAll('.track-btn').forEach(btn => {
+        if (btn.getAttribute('data-track') === currentTrack) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
         }
       });
 
-      // Add unified slides trigger card if slides exist
-      if (slides.length > 0) {
-        cardsHTML += `
-          <div class="card slides-trigger-card" onclick="openSlidesModal()">
-              <div>
-                <h3> 🚀 Slides</h3>
-                <p>Access all slide decks used in introductory meetings</p>
-              </div>
-              <div class="card-footer">View Slides</div>
-          </div>
-        `;
+      document.getElementById('roadmap-link').href = `roadmap.html?group=${currentTrack}`;
+
+      if (updateURL && window.history.pushState) {
+        const newUrl = `${window.location.pathname}?group=${currentTrack}`;
+        window.history.pushState({ path: newUrl }, '', newUrl);
       }
 
-      gridContainer.innerHTML = cardsHTML;
+      renderHubResources();
+    }
+
+
+    function renderHubResources() {
+      const grid = document.getElementById('resources-grid');
+      if (!grid) return;
+
+      if (!window.RESOURCES || !Array.isArray(window.RESOURCES)) {
+        grid.innerHTML = '<p style="color: var(--text-muted);">No resources available.</p>';
+        return;
+      }
+
+      let html = '';
+
+      window.RESOURCES.forEach(res => {
+        if (res.devOnly && !window.isDev) return;
+
+        const isUnlocked = (typeof window.isResourceUnlocked === 'function')
+          ? window.isResourceUnlocked(res.file, currentTrack)
+          : true;
+
+        const releaseDateFormatted = window.getFormattedReleaseDate(res, currentTrack);
+
+        const targetURL = `${res.file}?group=${currentTrack}`;
+
+        if (isUnlocked) {
+          html += `
+            <a href="${targetURL}" class="hub-card">
+              <div>
+                <div class="card-header">
+                  <div class="card-title"> ${res.title || res.file}</div>
+                </div>
+                <div class="card-desc">${res.desc}</div>
+                <div class="card-desc">${res.footer}</div>
+              </div>
+            </a>
+          `;
+        } else {
+          html += `
+            <div class="hub-card locked-card">
+              <div>
+                <div class="card-header">
+                  <div class="card-title"> ${res.title || res.file} 🔒</div>
+                  <span class="status-badge locked">Locked</span>
+                </div>
+                <div class="card-desc">${res.desc || 'This resource is currently locked'}</div>
+                <div class="lock-banner" style="background: #6f639d; color: #d5d4f4; padding: 8px; border-radius: 4px; font-size: 0.85rem; margin-top: 10px;">
+                  🔒 Available on <strong>${releaseDateFormatted || 'TBA'}</strong>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+      });
+
+      grid.innerHTML = html;
+    }
+  </script>
+  <script>
+    // Global render function called by script.js on page load or track switch
+    function renderPage(selectedTrack) {
+      document.getElementById('roadmap-link').href = `roadmap.html?group=${selectedTrack}`;
+      renderHubResources();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const activeTrack = getActiveTrack();
+      renderPage(activeTrack);
     });
   </script>
 </body>

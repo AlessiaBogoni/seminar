@@ -2,9 +2,10 @@
 <html lang="en">
 
 <head>
+  <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Interactive Roadmap </title>
+  <title>Interactive Roadmap</title>
   <style>
     :root {
       --bg: #0f172a;
@@ -144,7 +145,6 @@
       border-radius: 50%;
       background: var(--bg);
       border: 4px solid var(--node-color, var(--border));
-      /* Uses the dynamic inline variable */
       z-index: 2;
     }
 
@@ -239,6 +239,18 @@
       background: rgba(96, 165, 250, 0.2);
     }
 
+    .doc-tag.locked {
+      color: var(--text-muted);
+      border-color: rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.2);
+      cursor: not-allowed;
+      opacity: 0.65;
+    }
+
+    .doc-tag.locked:hover {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
     @media (max-width: 768px) {
       .timeline::before {
         left: 20px;
@@ -263,12 +275,9 @@
       .doc-tags {
         justify-content: flex-start !important;
       }
-
     }
 
-
-
-    /* True Hover Tooltip Styles */
+    /* Hover Tooltip Styles */
     .badge-wrapper {
       position: relative;
       display: inline-block;
@@ -289,7 +298,6 @@
     .milestone-tooltip {
       visibility: hidden;
       width: 250px;
-      /* Made smaller/more compact */
       background-color: #1e293b;
       color: #f8fafc;
       text-align: left;
@@ -310,7 +318,6 @@
       pointer-events: none;
     }
 
-    /* Show tooltip only when hovering over the wrapper */
     .badge-wrapper:hover .milestone-tooltip {
       visibility: visible;
       opacity: 1;
@@ -324,16 +331,23 @@
     <div class="header-bar">
       <div>
         <h2 id="active-group-title">Roadmap</h2>
-        <span style="color: var(--text-muted); font-size: 0.9rem;">Sequential Milestone Path</span>
       </div>
-      <a id="back-link" href="index.html" class="back-hub-btn">← Back to Hub</a>
+
+      <!-- 1. PLACED HERE: Flex container holding track selector and back button -->
+      <div style="display: flex; gap: 1rem; align-items: center;">
+        <div class="track-selector"></div>
+        <a id="back-link" href="index.html" class="back-hub-btn">← Back to Hub</a>
+      </div>
     </div>
+
     <div id="timeline" class="timeline"></div>
   </div>
 
-  <!-- Centralized data source -->
+  <!-- Centralized data sources -->
   <script src="shared-data.js"></script>
-
+  <script src="references.js"></script>
+  <script src="resources.js"></script>
+  <script src="script.js"></script>
   <script>
     const DEFAULT_BLOCK_TITLES = {
       "1": "Block 1: Orientation & Topic Assignment",
@@ -370,31 +384,43 @@
       "BT": "Bachelor Thesis Roadmap",
       "MS": "Master Track Roadmap"
     };
+    // Global render function triggered by script.js when track buttons are clicked
+    function renderPage(selectedGroup) {
+      document.getElementById('active-group-title').textContent = GROUP_NAMES[selectedGroup] || selectedGroup;
 
-    window.addEventListener('DOMContentLoaded', () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      let groupParam = urlParams.get('group');
-
-      if (!groupParam || !['BS', 'BT', 'MS'].includes(groupParam.toUpperCase())) {
-        groupParam = localStorage.getItem('student_track') || 'BS';
-      } else {
-        groupParam = groupParam.toUpperCase();
+      const backLink = document.getElementById('back-link');
+      if (backLink) {
+        backLink.href = `index.html?group=${selectedGroup}`;
       }
 
-      document.getElementById('active-group-title').textContent = GROUP_NAMES[groupParam] || groupParam;
-      document.getElementById('back-link').href = `index.html?group=${groupParam}`;
+      // Synchronize blue highlight state on buttons
+      document.querySelectorAll('.track-btn').forEach(btn => {
+        if (btn.getAttribute('data-track') === selectedGroup) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
 
-      renderRoadmap(groupParam);
+      renderRoadmap(selectedGroup);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const activeTrack = getActiveTrack();
+      renderPage(activeTrack);
     });
 
     function renderRoadmap(selectedGroup) {
+      // 1. Filter Timeline data from SHARED_TIMELINE_DATA
       const filteredEvents = SHARED_TIMELINE_DATA.filter(event => {
         const groups = event.Groups ? event.Groups.split('|') : [];
         return groups.includes(selectedGroup);
       });
 
+      // Select active block titles configuration
       const activeBlockTitles = (selectedGroup === 'BT') ? BT_BLOCK_TITLES : DEFAULT_BLOCK_TITLES;
 
+      // 2. Group events by Block
       const grouped = {};
       Object.keys(activeBlockTitles).forEach(key => { grouped[key] = []; });
 
@@ -408,10 +434,12 @@
       let html = '';
       let isLeft = true;
 
+      // 3. Render Blocks and Nodes
       for (const [blockKey, title] of Object.entries(activeBlockTitles)) {
         const events = grouped[blockKey] || [];
         if (events.length === 0) continue;
 
+        // Color coding logic
         const blockColor = (BT_BLOCK_COLORS[blockKey])
           ? BT_BLOCK_COLORS[blockKey]
           : '#3b82f6';
@@ -420,7 +448,7 @@
           ? BT_BLOCK_DESCRIPTIONS[blockKey]
           : '';
 
-        // Badge wrapper with a hoverable tooltip icon
+        // Block Divider Header (Badge with Tooltip for BT)
         html += `
           <div class="block-divider">
             <div class="badge-wrapper">
@@ -439,32 +467,34 @@
           const sideClass = isLeft ? 'left' : 'right';
           isLeft = !isLeft;
 
+          // Process document links
           const docs = event.RefDoc
             ? event.RefDoc.split('\\').map(doc => {
               const docName = doc.trim();
               const lowerName = docName.toLowerCase();
               let linkURL = '';
+              let targetFile = '';
 
-              // 1. Handle special links and direct URLs here:
               if (lowerName.includes('versicherung')) {
                 linkURL = 'https://www.uni-wuerzburg.de/fileadmin/33120300/Pruefungsamt/Formulare/Allgemeine_Formulare/Versicherung_zur_Leistungserbringung/20231127_Versicherung_zur_selbststaendigen_Leistungserbringung.pdf';
               } else if (lowerName.includes('ai guidelines')) {
                 linkURL = 'https://flip.wiwi.uni-wuerzburg.de/index.php?app=ai&page=guidelines';
               } else if (lowerName.startsWith('http')) {
                 linkURL = docName;
-              }
-              // 2. Otherwise use your local target files:
-              else {
-                let targetFile = 'infopaper.html';
+              } else {
+                targetFile = 'infopaper.html';
                 if (lowerName.includes('syllabus')) targetFile = 'syllabus.html';
                 if (lowerName.includes('presentation')) targetFile = 'infopresentation.html';
                 if (lowerName.includes('project')) targetFile = 'infoproject.html';
                 if (lowerName.includes('standards') || lowerName.includes('formatting')) targetFile = 'standards.html';
-                if (lowerName.includes('reading')) targetFile = 'introreading.html';
+
+                /* if (lowerName.includes('reading')) targetFile = 'introreading.html';
                 if (lowerName.includes('methods')) targetFile = 'intromethods.html';
                 if (lowerName.includes('writing')) targetFile = 'introwriting.html';
-                if (lowerName.includes('kickoff')) targetFile = 'introkickoff.html';
-                if (lowerName.includes('submission')) targetFile = 'submissionrequirements.html';
+                if (lowerName.includes('kickoff')) targetFile = 'introkickoff.html'; */
+
+                /* if (lowerName.includes('submission')) targetFile = 'submissionrequirements.html'; */
+                /* when decommenting this, also remember to include Submission Requirements in the roadmap ref docs */
 
                 const eventId = event.ID || '';
                 const sectionHash = eventId ? `#${eventId}` : '';
@@ -472,8 +502,22 @@
               }
 
               const isExternal = linkURL.startsWith('http');
-              return `<a href="${linkURL}" class="doc-tag"${isExternal ? ' target="_blank"' : ''}>${isExternal ? '🌐' : '📄'} ${docName}</a>`;
-            }).join('')
+
+              // Evaluate unlock state using resources.js window.isResourceUnlocked helper
+              const isUnlocked = isExternal || (typeof window.isResourceUnlocked === 'function' && window.isResourceUnlocked(targetFile, selectedGroup));
+
+              // Dev-only filtering
+              const resObj = (window.RESOURCES && targetFile) ? window.RESOURCES.find(r => r.file === targetFile) : null;
+              if (resObj && resObj.devOnly && !window.isDev) {
+                return '';
+              }
+
+              if (isUnlocked) {
+                return `<a href="${linkURL}" class="doc-tag"${isExternal ? ' target="_blank"' : ''}>${isExternal ? '🌐' : '📄'} ${docName}</a>`;
+              } else {
+                return `<span class="doc-tag locked" title="This resource is currently locked">🔒 ${docName}</span>`;
+              }
+            }).filter(Boolean).join('')
             : '';
 
           html += `

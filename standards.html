@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Standards for Theses and Seminar Papers</title>
@@ -82,6 +83,7 @@
   <div class="container" id="main-container">
     <div class="header-bar">
       <span style="font-size: 0.8rem; color: var(--primary); font-weight: 700; text-transform: uppercase;">LEO Standards</span>
+      <div class="track-selector"></div>
       <a id="back-link" href="index.html" class="back-hub-btn">&larr; Back to Hub</a>
     </div>
 
@@ -146,7 +148,14 @@
       <div id="dynamic-bibliography"></div>
     </div>
   </div>
+  <script src="references.js"></script>
+  <script src="resources.js"></script>
+  <script src="script.js"></script>
 
+  <script>
+    // Automatically checks 'hw2.html' against resources.js!
+    protectCurrentPage(); 
+  </script>
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       // Handle back link track context

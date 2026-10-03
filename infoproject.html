@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Course Guidelines & Project Details</title>
-  
-  <!-- Load Central References Data Source -->
-  <script src="references.js"></script>
+
 
   <style>
     :root {
@@ -123,6 +122,7 @@
       <div>
         <span style="font-size: 0.8rem; color: var(--primary); font-weight: 700; text-transform: uppercase;">Official Project Guideline</span>
       </div>
+      <div class="track-selector"></div>
       <a id="back-link" href="index.html" class="back-hub-btn">← Back to Hub</a>
     </div>
 
@@ -130,6 +130,16 @@
       <!-- Rendered dynamically -->
     </div>
   </div>
+
+  <script src="references.js"></script>
+  <script src="resources.js"></script>
+  <script src="script.js"></script>
+
+  <script>
+    // Automatically checks 'hw2.html' against resources.js!
+    protectCurrentPage(); 
+  </script>
+
 
   <script>
     const DOCUMENTS_DATA = {
@@ -195,10 +205,7 @@
             <div class="todo-box">Include specific requirements for the extended project draft and specific templates. For both relicationa dn own contribution otpion. SHould show familiarity with data (replication) and be the same as BT etended project draft in case od a own controbution </div>
             
             <h3 id="ms_survey1">Design proposal</h3>
-            <div class="todo-box">Include specific requirements for how specific the deisgn proposal should be. survey, data collection plan, treatments, sample size etc. This is right now listes only as a deadline for own contribution and not for replication</div>
-
-            /* I dont think we will need a section for final survey/design proposal deadline as the info are in the previous section already. Same for data collection deadline, there is not much to say */
-            
+            <div class="todo-box">Include specific requirements for how specific the design proposal should be. survey, data collection plan, treatments, sample size etc. This is right now listes only as a deadline for own contribution and not for replication</div>            
           `,
           "BS": `
             <h2>Bachelor Seminar Project</h2>
