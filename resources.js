@@ -82,7 +82,7 @@ window.RESOURCES = [
     },
     "devOnly": {
       "BS": true,
-      "BT": false,
+      "BT": true,
       "MS": true
     }
   },
