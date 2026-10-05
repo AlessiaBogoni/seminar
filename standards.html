@@ -93,6 +93,7 @@
       
       <p>This sheet contains the main layout and citation requirements for theses and seminar papers at LEO. The presented examples are not complete, and we refer you to the suggested style guide for further information.</p>
 
+      <!-- 1. Formatting & Document Structure -->
       <h2>Formatting</h2>
       <ul>
         <li><strong>Page margins:</strong> 
@@ -116,7 +117,8 @@
       <h2>Cover Page</h2>
       <p>A cover page template is available on WueCampus. While alternative templates and formats are permitted, please ensure they include the essential elements specified in the provided template.</p>
 
-      <h2>Citation and References</h2>
+      <!-- 2. In-Text Citation Guidelines & Examples -->
+      <h2>Citation Guidelines</h2>
       
       <h3>Citation Style</h3>
       <ul>
@@ -126,7 +128,7 @@
         <li>All citations must be verifiable using the reference list. Citations that are not sufficiently marked as such may be considered plagiarism. Plagiarism is an act of academic fraud.</li>
       </ul>
 
-      <h3>Examples for citation within the main text body</h3>
+      <h3>Basic In-Text Citation Examples</h3>
       <p><strong>Indirect (main thought):</strong></p>
       <ul>
         <li>Fehr (1999) has argued that sanctions enforce norms.</li>
@@ -137,6 +139,24 @@
         <li>Fehr (1999) wrote: “sanctions enforce norms.”</li>
       </ul>
 
+      <h3>Detailed In-Text Citation Rules &amp; Examples</h3>
+      <p>
+        When citing an author with multiple publications, list the years chronologically for different years, e.g., Konow (2000, 2023) or Fehr and Schmidt (1999, 2006). If an author has multiple works in the same year, append lowercase letters to distinguish them, e.g., Acemoglu and Restrepo (2018a, 2018b) or parenthetically (Acemoglu &amp; Restrepo, 2018a, 2018b).
+      </p>
+
+      <p><strong>Narrative Examples (Authors in the sentence):</strong></p>
+      <ul>
+        <li>Acemoglu and Restrepo (2018a) argue that artificial intelligence transforms task allocation, whereas Acemoglu and Restrepo (2018b) show how technological progress drives the race between human labor and automation.</li>
+        <li>Over two decades of research, Konow (2000, 2023) consistently examines how cognitive dissonance and moral salience shape allocation decisions and altruistic behavior.</li>
+      </ul>
+
+      <p><strong>Parenthetical Examples (Citations in parentheses):</strong></p>
+      <ul>
+        <li>Recent theoretical models demonstrate that technological advancements shift factor shares and alter labor demand across economic tasks (Acemoglu &amp; Restrepo, 2018a, 2018b).</li>
+        <li>Laboratory experiments demonstrate that risk-taking, accountability, and social norms heavily influence individual views on fair distribution (Cappelen et al., 2013; Fehr &amp; Schmidt, 1999; Konow, 2000).</li>
+      </ul>
+
+      <!-- 3. Reference List Rules & Section -->
       <h2>References Guidelines</h2>
       <ul>
         <li>The list of references includes all references that have been used in the seminar paper or theses. References that have not been used are not included.</li>
@@ -144,10 +164,14 @@
         <li>The citation style has guidelines for dealing with various sources such as journal articles, monographs, handbooks, and discussion papers.</li>
       </ul>
 
+      <h3>Reference Format Examples by Type</h3>
+      <div id="reference-type-examples"></div>
+
       <h2>Example for a List of References</h2>
       <div id="dynamic-bibliography"></div>
     </div>
   </div>
+
   <script src="references.js"></script>
   <script src="resources.js"></script>
   <script src="script.js"></script>
@@ -190,6 +214,57 @@
       }
 
       bibContainer.innerHTML = bibHTML;
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const exampleCategories = [
+        {
+          title: 'Journal Article',
+          keys: ['cappelen2013']
+        },
+        {
+          title: 'Monograph',
+          keys: ['gintis2005']
+        },
+        {
+          title: 'Handbook Chapter',
+          keys: ['fehr2006']
+        },
+        {
+          title: 'Discussion Paper',
+          keys: ['konow2023']
+        }
+      ];
+
+      const examplesContainer = document.getElementById('reference-type-examples');
+      let examplesHTML = '';
+
+      if (typeof BIBLIOGRAPHY !== 'undefined' && examplesContainer) {
+        exampleCategories.forEach(cat => {
+          let categoryHTML = '';
+
+          cat.keys.forEach(key => {
+            const ref = BIBLIOGRAPHY[key];
+            if (ref) {
+              let entry = `${ref.author} (${ref.year}). <strong>${ref.title}</strong>.`;
+              if (ref.journal) {
+                entry += ` <em>${ref.journal}</em>.`;
+              }
+              categoryHTML += `<div class="reference-item">${entry}</div>`;
+            }
+          });
+
+          if (categoryHTML !== '') {
+            examplesHTML += `
+              <div class="reference-category" style="margin-bottom: 1.5rem;">
+                <h4 style="color: #93c5fd; margin-top: 1rem; margin-bottom: 0.5rem;">${cat.title}</h4>
+                ${categoryHTML}
+              </div>`;
+          }
+        });
+
+        examplesContainer.innerHTML = examplesHTML;
+      }
     });
   </script>
 </body>
