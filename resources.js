@@ -7,7 +7,17 @@ window.RESOURCES = [
     desc: 'Formatting instructions, structure layout, literature quality tips, and expectations for your final paper.',
     file: 'infopaper.html',
     footer: 'Read Paper Guidelines →',
-    tracks: ['BS', 'BT', 'MS']
+    tracks: ['BS', 'BT', 'MS'],
+    releaseDate: {
+      BS: '2026-10-01T09:00:00',
+      BT: '2026-10-20T09:00:00',
+      MS: '2026-11-01T09:00:00',
+    },
+    devOnly: { 
+      BS: true, 
+      BT: false,
+      MS: true
+    }
   },
   {
     id: 'infopresentation',
@@ -16,7 +26,16 @@ window.RESOURCES = [
     file: 'infopresentation.html',
     footer: 'Read Presentation Info →',
     tracks: ['BS', 'BT', 'MS'],
-    releaseDate: '2026-11-01T00:00:00'
+    releaseDate: {
+      BS: '2026-10-01T09:00:00',
+      BT: '2026-10-20T09:00:00',
+      MS: '2026-11-01T09:00:00',
+    },
+    devOnly: { 
+      BS: true, 
+      BT: false,
+      MS: true
+    }
   },
   {
     id: 'infoproject',
@@ -28,7 +47,12 @@ window.RESOURCES = [
     releaseDate: {
       BS: '2026-10-01T09:00:00',
       BT: '2026-10-20T09:00:00',
-      MS: '2026-11-01T09:00:00'
+      MS: '2026-11-01T09:00:00',
+    },
+    devOnly: { 
+      BS: true, 
+      BT: false,
+      MS: true
     }
   },
   {
@@ -37,7 +61,17 @@ window.RESOURCES = [
     desc: 'Overview, requirements and expectations',
     file: 'syllabus.html',
     footer: 'Read Syllabus →',
-    tracks: ['BS', 'MS']
+    tracks: ['BS', 'MS'],
+    releaseDate: {
+      BS: '2026-10-01T09:00:00',
+      BT: '2026-10-20T09:00:00',
+      MS: '2026-11-01T09:00:00',
+    },
+    devOnly: { 
+      BS: true, 
+      BT: false,
+      MS: true
+    }
   },
   {
     id: 'standards',
@@ -46,7 +80,17 @@ window.RESOURCES = [
     file: 'standards.html',
     footer: 'Read Formatting Standards →',
     tracks: ['BS', 'MS', 'BT'],
-/*     devOnly: true */
+    releaseDate: {
+      BS: '2026-10-01T09:00:00',
+      BT: '2026-10-20T09:00:00',
+      MS: '2026-11-01T09:00:00',
+    },
+    devOnly: { 
+      BS: true, 
+      BT: false,
+      MS: true
+    }
+
   },
   /* {
     id: 'slides_intro',

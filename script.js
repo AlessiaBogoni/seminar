@@ -31,30 +31,65 @@ if (urlParams.get('mode') === 'dev') {
 window.isDev = sessionStorage.getItem('devMode') === 'true';
 window.now = new Date();
 
-// Inside protectCurrentPage() in script.js:
+window.isDevOnlyForGroup = function(devOnly, group) {
+  if (!devOnly) return false;
+
+  // 1. If devOnly is a boolean (e.g., devOnly: true)
+  if (typeof devOnly === 'boolean') {
+    return devOnly;
+  }
+
+  // 2. If devOnly is an array (e.g., devOnly: ['BS', 'BT'])
+  if (Array.isArray(devOnly)) {
+    return devOnly.includes(group);
+  }
+
+  // 3. If devOnly is an object (e.g., devOnly: { BS: true, BT: false })
+  if (typeof devOnly === 'object') {
+    return !!devOnly[group];
+  }
+
+  return false;
+};
+
 function protectCurrentPage() {
   if (window.isDev) return;
 
   const currentPageFile = window.location.pathname.split('/').pop() || 'index.html';
   const currentGroup = getActiveTrack();
 
-  if (typeof window.isResourceUnlocked === 'function' && !window.isResourceUnlocked(currentPageFile, currentGroup)) {
-    // Get exact formatted release date for this page & track
-    const dateText = typeof window.getFormattedReleaseDate === 'function'
-      ? window.getFormattedReleaseDate(currentPageFile, currentGroup)
-      : 'a later date';
+  // Find resource entry for this page
+  const currentRes = window.RESOURCES ? window.RESOURCES.find(r => r.file === currentPageFile) : null;
 
-    if (!document.body) return;
-    document.body.innerHTML = `
-      <div style="max-width: 500px; margin: 100px auto; text-align: center; font-family: sans-serif; padding: 30px;  border-radius: 8px; background: #77a;">
-        <h1 style="font-size: 48px; margin-bottom: 10px;">🔒</h1>
-        <h2>Content Locked</h2>
-        <p style="color: #ccc;">This document is scheduled for release on <strong>${dateText}</strong></p>
-        <br>
-        <a href="index.html?group=${currentGroup}" style="color: #0b2d60; text-decoration: none;">← Return to Home Page</a>
-      </div>
-    `;
+  if (currentRes) {
+    // 1. Check if dev-only for this specific group
+    if (isDevOnlyForGroup(currentRes.devOnly, currentGroup)) {
+      renderLockedPage(currentGroup, "This document is currently under development.");
+      return;
+    }
+
+    // 2. Check standard release date lock
+    if (typeof window.isResourceUnlocked === 'function' && !window.isResourceUnlocked(currentPageFile, currentGroup)) {
+      const dateText = typeof window.getFormattedReleaseDate === 'function'
+        ? window.getFormattedReleaseDate(currentPageFile, currentGroup)
+        : 'a later date';
+
+      renderLockedPage(currentGroup, `This document is scheduled for release on <strong>${dateText}</strong>`);
+    }
   }
+}
+
+function renderLockedPage(group, message) {
+  if (!document.body) return;
+  document.body.innerHTML = `
+    <div style="max-width: 500px; margin: 100px auto; text-align: center; font-family: sans-serif; padding: 30px; border-radius: 8px; background: #77a;">
+      <h1 style="font-size: 48px; margin-bottom: 10px;">🔒</h1>
+      <h2>Content Locked</h2>
+      <p style="color: #ccc;">${message}</p>
+      <br>
+      <a href="index.html?group=${group}" style="color: #0b2d60; text-decoration: none;">← Return to Home Page</a>
+    </div>
+  `;
 }
 
 
@@ -90,6 +125,9 @@ function switchTrack(track) {
     }
   });
 
+  // Add this helper near the top of script.js
+
+
   const backLink = document.getElementById('back-link');
   if (backLink) {
     backLink.href = `index.html?group=${track}`;
@@ -117,12 +155,73 @@ function switchTrack(track) {
   }
 }
 
+function renderDevBanner() {
+  if (!window.isDev) return;
+
+  // Prevent duplicate banners
+  if (document.getElementById('dev-mode-banner')) return;
+
+  const banner = document.createElement('div');
+  banner.id = 'dev-mode-banner';
+  banner.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99999;
+    background: #980029;
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-align: center;
+    padding: 0.4rem 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 0.05em;
+  `;
+
+  banner.innerHTML = `
+    <span>🛠️ <strong>DEV MODE ACTIVE</strong> — Hidden & Locked Content Unlocked</span>
+    <button onclick="exitDevMode()" style="
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    " onmouseover="this.style.background='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">
+      Exit Dev Mode ✕
+    </button>
+  `;
+
+  document.body.prepend(banner);
+
+  // Push page content down slightly so top header isn't obscured
+  document.body.style.marginTop = `${banner.offsetHeight}px`;
+}
+
+// Function to exit dev mode easily
+window.exitDevMode = function() {
+  sessionStorage.removeItem('devMode');
+  const url = new URL(window.location.href);
+  url.searchParams.delete('mode');
+  window.location.href = url.toString();
+};
+
 
 // ==========================================
 // 4. DEFERRED INITIALIZATION ON DOM READY
 // ==========================================
 
 function onInit() {
+
+  renderDevBanner();
+
   if (window.isDev) {
     document.querySelectorAll('.dev-only').forEach(el => el.style.display = 'block');
   }

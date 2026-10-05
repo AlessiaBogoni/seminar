@@ -244,16 +244,23 @@
       let html = '';
 
       window.RESOURCES.forEach(res => {
-        if (res.devOnly && !window.isDev) return;
+        // Check group-specific devOnly status
+        const isDevForThisGroup = isDevOnlyForGroup(res.devOnly, currentTrack);
 
-        // 💡 HIDE COMPLETELY if resource is not assigned to the active track
+        // Hide if in dev-mode for this group AND user is not in dev mode
+        if (isDevForThisGroup && !window.isDev) return;
+
+        // Hide completely if resource is not assigned to the active track
         if (res.tracks && Array.isArray(res.tracks) && !res.tracks.includes(currentTrack)) {
           return;
         }
 
+        // Render locked / unlocked cards...
         const isUnlocked = (typeof window.isResourceUnlocked === 'function')
           ? window.isResourceUnlocked(res.file, currentTrack)
           : true;
+
+
 
         const releaseDateFormatted = (typeof window.getFormattedReleaseDate === 'function')
           ? window.getFormattedReleaseDate(res, currentTrack)
@@ -293,6 +300,7 @@
 
       grid.innerHTML = html;
     }
+
   </script>
   <script>
     // Global render function called by script.js on page load or track switch
