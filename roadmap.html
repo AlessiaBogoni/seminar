@@ -322,6 +322,35 @@
       visibility: visible;
       opacity: 1;
     }
+
+    .guide-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--card-bg);
+  color: var(--accent);
+  border: 1px solid var(--border);
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.guide-btn:hover {
+  background: #253346;
+  color: #ffffff;
+  border-color: var(--primary);
+  transform: translateY(-1px);
+}
+/* CSS */
+.btn-container-right {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1.5rem; /* Optional spacing */
+}
   </style>
 </head>
 
@@ -339,7 +368,10 @@
         <a id="back-link" href="index.html" class="back-hub-btn">← Back to Hub</a>
       </div>
     </div>
-
+    <div class="btn-container-right">
+    <a href="calendar_guide.html" class="guide-btn">
+  📅 WueCampus Calendar Export
+</a></div>
     <div id="timeline" class="timeline"></div>
   </div>
 
