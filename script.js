@@ -31,7 +31,7 @@ if (urlParams.get('mode') === 'dev') {
 window.isDev = sessionStorage.getItem('devMode') === 'true';
 window.now = new Date();
 
-window.isDevOnlyForGroup = function(devOnly, group) {
+window.isDevOnlyForGroup = function (devOnly, group) {
   if (!devOnly) return false;
 
   // 1. If devOnly is a boolean (e.g., devOnly: true)
@@ -206,11 +206,45 @@ function renderDevBanner() {
 }
 
 // Function to exit dev mode easily
-window.exitDevMode = function() {
+window.exitDevMode = function () {
   sessionStorage.removeItem('devMode');
   const url = new URL(window.location.href);
   url.searchParams.delete('mode');
   window.location.href = url.toString();
+};
+
+// ==========================================
+// RESOURCE UNLOCK & FORMATTING UTILITIES
+// ==========================================
+
+window.getFormattedReleaseDate = function (res, track) {
+  if (!res || !res.releaseDate || !res.releaseDate[track]) return null;
+  const dateObj = new Date(res.releaseDate[track]);
+  if (isNaN(dateObj.getTime())) return null;
+  return dateObj.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  });
+};
+
+window.isResourceUnlocked = function (fileOrRes, track) {
+  if (window.isDev) return true;
+
+  let res = typeof fileOrRes === 'string'
+    ? (window.RESOURCES ? window.RESOURCES.find(r => r.file === fileOrRes) : null)
+    : fileOrRes;
+
+  if (!res) return true;
+
+  if (window.isDevOnlyForGroup(res.devOnly, track)) {
+    return false;
+  }
+
+  if (!res.releaseDate || !res.releaseDate[track]) return true;
+
+  const releaseTime = new Date(res.releaseDate[track]).getTime();
+  return Date.now() >= releaseTime;
 };
 
 

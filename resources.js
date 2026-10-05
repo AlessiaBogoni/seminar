@@ -1,5 +1,3 @@
-// resources.js - Centralized resource registry and access rules
-
 window.RESOURCES = [
   {
     id: 'infopaper',
@@ -135,68 +133,3 @@ window.RESOURCES = [
     tracks: ['BS', 'BT', 'MS']
   } */
 ];
-
-/**
- * Helper to get a human-readable release date string for a given resource and track.
- */
-window.getFormattedReleaseDate = function (resourceOrFile, track = 'BS') {
-  const res = typeof resourceOrFile === 'string'
-    ? window.RESOURCES.find(r => r.file === resourceOrFile || r.id === resourceOrFile)
-    : resourceOrFile;
-
-  if (!res || !res.releaseDate) return null;
-
-  // Extract raw date string (handles both track object or plain string)
-  const dateStr = typeof res.releaseDate === 'object'
-    ? res.releaseDate[track]
-    : res.releaseDate;
-
-  if (!dateStr) return null;
-
-  const dateObj = new Date(dateStr);
-
-  // Return formatted readable string
-  return dateObj.toLocaleString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric'
-  });
-};
-
-/**
- * Global helper to check whether a given resource object (or filename) is unlocked.
- */
-window.isResourceUnlocked = function (resourceOrFile, track = 'BS') {
-  const isDevMode = window.isDev || false;
-  const currentTime = window.now || new Date();
-
-  // Find resource object if a string (filename or ID) was passed
-  const res = typeof resourceOrFile === 'string'
-    ? window.RESOURCES.find(r => r.file === resourceOrFile || r.id === resourceOrFile)
-    : resourceOrFile;
-
-  // Unlisted resources default to accessible
-  if (!res) return true;
-
-  // 1. Dev Mode bypasses all locks and devOnly restrictions
-  if (isDevMode) return true;
-
-  // 2. Hide devOnly items from non-dev users
-  if (res.devOnly) return false;
-
-  // 3. Track accessibility check
-  if (res.tracks && !res.tracks.includes(track)) return false;
-
-  // 4. Release date check (handles track-specific object or global string date)
-  if (res.releaseDate) {
-    const targetDateStr = typeof res.releaseDate === 'object'
-      ? res.releaseDate[track]
-      : res.releaseDate;
-
-    if (targetDateStr && currentTime < new Date(targetDateStr)) {
-      return false; // Still locked
-    }
-  }
-
-  return true;
-};
