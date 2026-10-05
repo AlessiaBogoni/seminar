@@ -206,12 +206,6 @@ const BIBLIOGRAPHY = {
     "title": "Just luck: An experimental study of risk-taking and fairness",
     "journal": "The American Economic Review, 103(4), 1398-1413"
   },
-  "cappelen2016": {
-    "author": "Cappelen, Alexander W. and Konow, James and Sørensen, Erik Ø. and Tungodden, Bertil",
-    "year": 2016,
-    "title": "Just luck: An experimental study of risk-taking and fairness: Erratum",
-    "journal": "American Economic Review, 106(2), 239-240"
-  },
   "fehr2006": {
     "author": "Fehr, Ernst and Schmidt, Klaus M.",
     "year": 2006,
