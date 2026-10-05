@@ -768,12 +768,17 @@
 
         // Fetch live file content from GitHub API
         async function fetchLatestFromGitHub(owner, repo, token) {
-            const headers = token ? { 'Authorization': `token ${token}` } : {};
             try {
+                const timestamp = Date.now();
+                const baseUrl = `https://raw.githubusercontent.com/${owner}/${repo}/main`;
+
+                // DO NOT pass the 'Authorization' header to raw.githubusercontent.com!
+                // Sending custom/auth headers to raw.githubusercontent triggers an HTTP OPTIONS preflight request 
+                // that fails with a CORS error in the browser.
                 const [tRes, rRes, refRes] = await Promise.all([
-                    fetch(`https://raw.githubusercontent.com/${owner}/${repo}/main/shared-data.js?t=${Date.now()}`, { headers }),
-                    fetch(`https://raw.githubusercontent.com/${owner}/${repo}/main/resources.js?t=${Date.now()}`, { headers }),
-                    fetch(`https://raw.githubusercontent.com/${owner}/${repo}/main/references.js?t=${Date.now()}`, { headers })
+                    fetch(`${baseUrl}/shared-data.js?t=${timestamp}`),
+                    fetch(`${baseUrl}/resources.js?t=${timestamp}`),
+                    fetch(`${baseUrl}/references.js?t=${timestamp}`)
                 ]);
 
                 if (tRes.ok && rRes.ok && refRes.ok) {
@@ -781,11 +786,12 @@
                     const rText = await rRes.text();
                     const refText = await refRes.text();
 
-                    // Safely extract JS values from file content strings
-                    eval(tText);
-                    eval(rText);
-                    eval(refText);
+                    // Evaluate fetched JS code safely
+                    new Function(tText)();
+                    new Function(rText)();
+                    new Function(refText)();
 
+                    // Sync global state
                     if (typeof SHARED_TIMELINE_DATA !== 'undefined') window.SHARED_TIMELINE_DATA = SHARED_TIMELINE_DATA;
                     if (typeof RESOURCES !== 'undefined') window.RESOURCES = RESOURCES;
                     if (typeof BIBLIOGRAPHY !== 'undefined') window.BIBLIOGRAPHY = BIBLIOGRAPHY;
