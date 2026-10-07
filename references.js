@@ -4,10 +4,7 @@ const BIBLIOGRAPHY = {
     "year": 2016,
     "title": "Behavioral Economics: Past, present, and future",
     "journal": "American Economic Review, 106(7), 1577-1600",
-    "tracks": [
-      "BS",
-      "MS"
-    ]
+   
   },
   "allcott2011": {
     "author": "Allcott, Hunt",
@@ -36,7 +33,6 @@ const BIBLIOGRAPHY = {
     "journal": "American Economic Review, 96(3), 694-719",
     "tracks": [
       "BS",
-      "BT"
     ],
     "note": "Why do we pay for subscriptions we don't use?"
   },
@@ -53,8 +49,6 @@ const BIBLIOGRAPHY = {
     "title": "How do beliefs about the gender wage gap affect the demand for public policy?",
     "journal": "American Economic Journal: Economic Policy, 14(2), 475-508",
     "tracks": [
-      "BS",
-      "BT"
     ],
     "note": "How do beliefs about the gender gap affect policy demand?"
   },
@@ -85,7 +79,6 @@ const BIBLIOGRAPHY = {
     "journal": "Journal of Environmental Psychology, 84, 101914",
     "tracks": [
       "BS",
-      "BT"
     ],
     "note": "How can cities reduce littering without increasing fines?"
   },
@@ -119,14 +112,42 @@ const BIBLIOGRAPHY = {
     ],
     "note": "How can charities encourage charitable giving?"
   },
+   "shang2009field": {
+    "author": "Shang, Jen and Croson, Rachel",
+    "year": 2009,
+    "title": "A field experiment in charitable contribution: The impact of social information on the voluntary provision of public goods",
+    "journal": "The Economic Journal, 119(540), 1422-1439",
+    "tracks": [
+      "BS"
+    ],
+    "note": "How can charities encourage charitable giving? Pt. II"
+  },  
+  "hossain2012behavioralist": {
+    "author": "Hossain, Tanjim and List, John A",
+    "year": 2012,
+    "title": "The behavioralist visits the factory: Increasing productivity using simple framing manipulations",
+    "journal": "Management Science, 58(12), 2151-2167",
+    "tracks": [
+      "BS"
+    ],
+    "note": "How can firms use behavioral insights to design more effective incentive schemes?"
+  }, 
+    "lacetera2012heuristic": {
+    "author": "Lacetera, Nicola and Pope, Devin G and Sydnor, Justin R",
+    "year": 2012,
+    "title": "Heuristic thinking and limited attention in the car market",
+    "journal": "American Economic Review, 102(5), 2206-2236",
+    "tracks": [
+      "BS"
+    ],
+    "note": "How can costly consumer decision-making biases be reduced?"
+  }, 
   "ariely2009": {
     "author": "Ariely, Dan and Bracha, Anat and Meier, Stephan",
     "year": 2009,
     "title": "Doing Good or Doing Well? Image Motivation and Monetary Incentives in Behaving Prosocially",
     "journal": "American Economic Review, 99(1), 544-555",
     "tracks": [
-      "BS",
-      "BT"
     ],
     "note": "How can charities encourage charitable giving?"
   },
@@ -138,7 +159,7 @@ const BIBLIOGRAPHY = {
     "tracks": [
       "MS"
     ],
-    "note": "Actual and perceived support for climate change"
+    "note": "Actual and perceived support for climate action"
   },
   "altmann2019": {
     "author": "Altmann, Steffen and Falk, Armin and Heidhues, Paul and Jayaraman, Rajshri and Teirlinck, Marrit",
@@ -170,6 +191,17 @@ const BIBLIOGRAPHY = {
     ],
     "note": "Is wage equality (un)fair?"
   },
+  
+  "horn2025underestimating" : {
+  "title": "Underestimating learning by doing",
+  "author": "Horn, Samantha and Loewenstein, George",
+  "journal": "American Economic Journal: Microeconomics, 17(4), 328–351.",
+  "year": "2025",
+  "tracks": [
+      "MS"
+    ],
+    "note": "Can people accurately predict how quickly they will learn a new task?"
+},
   "haaland2023designing": {
     "author": "Haaland, Ingar and Roth, Christopher and Wohlfart, Johannes",
     "year": 2023,

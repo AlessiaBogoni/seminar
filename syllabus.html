@@ -146,6 +146,13 @@
       color: var(--text-muted);
       font-size: 0.9rem;
     }
+    .mt-10 {
+      margin-top: 10pt;
+    }
+    .mb-10 {
+      margin-bottom: 10pt;
+    }
+  
   </style>
 
   <!-- Centralized data source -->
@@ -180,36 +187,158 @@
       "3": "Block 3: Final Submissions & Presentations"
     };
 
-    function getReferencesHTML(targetTrack) {
-      let html = '<ul>';
-      let found = false;
-      if (typeof BIBLIOGRAPHY !== 'undefined') {
-        for (const key in BIBLIOGRAPHY) {
-          const ref = BIBLIOGRAPHY[key];
-          if (ref.tracks && ref.tracks.includes(targetTrack) && ref.note) {
-            html += `<li>${ref.note ? `<strong>${ref.note}</strong><br>` : ''} ${ref.author} (${ref.year}). <strong>${ref.title}</strong>. <em>${ref.journal}</em>.</li>`;
-            found = true;
-          }
-        }
-      }
-      html += '</ul>';
-      return found ? html : '<p>No specific readings listed for this track.</p>';
+    function formatAuthorsAPA(authorString) {
+  if (!authorString) return '';
+
+  // BibTeX authors are separated by "and"
+  const authors = authorString.split(/\s+and\s+/i);
+
+  const formattedAuthors = authors.map(author => {
+    author = author.trim();
+    let lastName = '';
+    let firstNames = '';
+
+    if (author.includes(',')) {
+      // Format: "Last, First Middle"
+      const parts = author.split(',');
+      lastName = parts[0].trim();
+      firstNames = parts[1].trim();
+    } else {
+      // Format: "First Middle Last"
+      const parts = author.split(/\s+/);
+      lastName = parts.pop();
+      firstNames = parts.join(' ');
     }
 
-    function getThalerHTML(targetTrack) {
-      let html = '<p>';
-      let found = false;
-      if (typeof BIBLIOGRAPHY !== 'undefined') {
-        for (const key in BIBLIOGRAPHY) {
-          const ref = BIBLIOGRAPHY[key];
-          if (ref.tracks && ref.tracks.includes(targetTrack) && key == "thaler2016") {
-            html += `${ref.author} (${ref.year}). <strong>${ref.title}</strong>. <em>${ref.journal}</em>.<br>`;
-            found = true;
+    // Convert first/middle names into initials
+    const initials = firstNames
+      ? firstNames
+          .split(/[\s\-]+/)
+          .filter(name => name.length > 0)
+          .map(name => `${name[0].toUpperCase()}.`)
+          .join(' ')
+      : '';
+
+    return initials ? `${lastName}, ${initials}` : lastName;
+  });
+
+  if (formattedAuthors.length === 1) {
+    return formattedAuthors[0];
+  } else if (formattedAuthors.length === 2) {
+    return `${formattedAuthors[0]} & ${formattedAuthors[1]}`;
+  } else {
+    // 3 or more authors
+    const lastAuthor = formattedAuthors.pop();
+    return `${formattedAuthors.join(', ')}, & ${lastAuthor}`;
+  }
+}
+
+function getReferencesHTML(targetTrack) {
+  let html = '<ul>';
+  let found = false;
+
+  if (typeof BIBLIOGRAPHY !== 'undefined') {
+    for (const key in BIBLIOGRAPHY) {
+      const ref = BIBLIOGRAPHY[key];
+
+      if (ref.tracks && ref.tracks.includes(targetTrack)) {
+        const authorStr = formatAuthorsAPA(ref.author);
+        const yearStr = ref.year ? ` (${ref.year}).` : ' (n.d.).';
+        const titleStr = ref.title ? ` ${ref.title}.` : '';
+        
+        // APA Journal metadata: Journal, volume(issue), pages.
+        let journalStr = '';
+        if (ref.journal) {
+          journalStr += ` <em>${ref.journal}</em>`;
+          if (ref.volume) {
+            journalStr += `, <em>${ref.volume}</em>`;
+            if (ref.number || ref.issue) {
+              journalStr += `(${ref.number || ref.issue})`;
+            }
           }
+          if (ref.pages) {
+            journalStr += `, ${ref.pages.replace('--', '–')}`;
+          }
+          journalStr += '.';
         }
+
+        const noteStr = ref.note ? `<strong>${ref.note}</strong><br>` : '';
+
+        html += `<li>${noteStr}${authorStr}${yearStr}${titleStr}${journalStr}</li>`;
+        found = true;
       }
-      html += '</p>';
-      return found ? html : '<p>No specific readings listed for this track.</p>';
+    }
+  }
+
+  html += '</ul>';
+  return found ? html : '<p>No specific readings listed for this track.</p>';
+}
+
+    function getThalerHTML(targetTrack) {
+  let html = '<p>';
+  let found = false;
+
+  if (typeof BIBLIOGRAPHY !== 'undefined') {
+    for (const key in BIBLIOGRAPHY) {
+      const ref = BIBLIOGRAPHY[key];
+
+      if (ref.tracks && ref.tracks.includes(targetTrack) && key === "thaler2016") {
+        const authorStr = formatAuthorsAPA(ref.author);
+        const yearStr = ref.year ? ` (${ref.year}).` : ' (n.d.).';
+        const titleStr = ref.title ? ` <strong>${ref.title}.</strong>` : '';
+
+        // APA Journal metadata: Journal, volume(issue), pages.
+        let journalStr = '';
+        if (ref.journal) {
+          journalStr += ` <em>${ref.journal}</em>`;
+          if (ref.volume) {
+            journalStr += `, <em>${ref.volume}</em>`;
+            if (ref.number || ref.issue) {
+              journalStr += `(${ref.number || ref.issue})`;
+            }
+          }
+          if (ref.pages) {
+            journalStr += `, ${ref.pages.replace('--', '–')}`;
+          }
+          journalStr += '.';
+        }
+
+        html += `${authorStr}${yearStr}${titleStr}${journalStr}<br>`;
+        found = true;
+      }
+    }
+  }
+
+  html += '</p>';
+  return found ? html : '<p>No specific readings listed for this track.</p>';
+}
+           function getWebsiteTimelineHTML(targetTrack) {
+      let html = '';
+      
+      html += `<h3>Block 1: Introduction</h3>`;
+      if (targetTrack === 'BS') {
+        html += `<p>The seminar starts with an introductory meeting in the first week of the semester and 1-2 lectures in the first two weeks of the semester. These lectures provide an overview of the required theoretical and empirical methods.</p>`;
+      } else {
+        html += `<p>The seminar starts with an introductory meeting in the first week of the semester and 1-2 lectures in the first two weeks of the semester. In the lectures, we will discuss possible topics for the seminar papers and provide an overview of the required theoretical and empirical methods.</p>`;
+      }
+
+      html += `<h3>Block 2: Writing Period</h3>`;
+      if (targetTrack === 'BS') {
+        html += `<p>Students work independently on their seminar paper over a period of 4 weeks. Individual appointments for consultation will be available.</p>`;
+      } else {
+        html += `<p>Students work independently on their seminar paper. Individual appointments for consultation will be available.</p>`;
+      }
+
+      html += `<h3>Block 3: Seminar Presentations</h3>`;
+      if (targetTrack === 'BS') {
+        html += `<p>The seminar concludes with a workshop (block seminar) where students present their seminar projects. Each student is expected to actively participate in the discussion of all presentations. Attendance for the full workshop is mandatory. The planned date for the workshop is 1-2 weeks after the paper submission.</p>
+        <p>A <strong>detailed overview</strong> of seminar meetings and deadlines will be provided in the introductory meeting.</p>`;
+      } else {
+        html += `<p>The seminar concludes with a workshop (block seminar) where students present their seminar projects. Each student is expected to actively participate in the discussion of all presentations. Attendance of the full workshop is mandatory. The planned date for the workshop is 1-2 weeks after the paper submission.</p>
+        <p>A <strong>detailed overview</strong> of seminar meetings and deadlines will be provided in the introductory meeting.</p>`;
+      }
+
+      return html;
     }
 
     function getSyllabusTimelineHTML(selectedGroup) {
@@ -224,6 +353,8 @@
         const isSyllabusMatch = String(event.syllabus).toLowerCase() === 'true';
         return isGroupMatch && isSyllabusMatch;
       });
+
+
 
       const grouped = { "1": [], "2": [], "3": [] };
       filteredEvents.forEach(item => {
@@ -292,20 +423,24 @@
       const thalerRef = getThalerHTML(groupParam);
       const dynamicTimeline = getSyllabusTimelineHTML(groupParam);
 
+      document.getElementById('back-link').href = `index.html?group=${groupParam}`;
+
+      const timelineHTML = getWebsiteTimelineHTML(groupParam);
+
       const option1 = groupParam === 'BS' ? `
       ` : `
-      <h4>Option 1: replication & extension of an existing empirical study</h4>
+      <h4 class="mb-10">Option 1: replication & extension of an existing empirical study</h4>
       `
       const option2 = groupParam === 'BS' ? `
       ` : `
       <h4>Option 2: Own experimental design + pilot study</h4>
-      <p>Possible Research Questions:</p>
+      <p class="mt-10">Possible Research Questions:</p>
         <ul>
-          <li>How do anchors affect wage expectations for a job?</li>
           <li>Does a signed pledge increase timely task completion before a deadline?</li>
           <li>How do differences in commuting time and wages affect (stated) job choice?</li>
-          <li>Does a gendered label change individuals’ willingness-to-pay for the same product?</li>
-          <li>How does knowledge about a “gender price gap” affect perceived fairness and purchase intent?</li>
+          <li>How do beliefs about others' behavior affect support for climate action?</li>
+          <li>How can a simple intervention protect consumers from hidden fees</li>
+          <li>Do men and women differ in their willingness to compete? And what consequences does this have?
         </ul>
       <p>…or an own question that you can study, e.g., in your student job (in this case: contact us!)</p>
       `
@@ -329,8 +464,8 @@
           </ul>
         <p>The seminar paper should also include a brief implementation plan and discuss the expected effects and potential unintended consequences of the proposed intervention. Students will present the results of their seminar projects in a workshop with seminar presentations.</p>
 
-        <h2>Prerequisites</h2>
-        <p>Sound knowledge of microeconomics, empirical methods and econometrics (basic courses taught at the B.Sc. level). Previous coursework in behavioral economics is beneficial but not strictly required. It is also recommended to familiarize yourself with the content of the key qualification “Wissenschaftliches Arbeiten” in advance.</p>
+        <!-- <h2>Prerequisites</h2>
+        <p>Sound knowledge of microeconomics, empirical methods and econometrics (basic courses taught at the B.Sc. level). Previous coursework in behavioral economics is beneficial but not strictly required. It is also recommended to familiarize yourself with the content of the key qualification “Wissenschaftliches Arbeiten” in advance.</p> -->
       ` : `
         <h2>Content</h2>
         <p>This seminar introduces students to state-of-the-art research in behavioral, organizational, and labor economics. It builds on a growing body of research in economics and psychology showing that individual behavior is shaped not only by economic incentives and constraints, but also by psychological factors and limitations in self-control, cognition, and attention.</p>
@@ -342,6 +477,7 @@
             <li>Misperceptions and support for climate action</li>
             <li>Experiments on perception and error detection in AI- versus human-generated texts</li>
             <li>Biased beliefs and unemployment duration</li>
+            <li>Promotions and incentives</li>
             <li>Experimental evidence on founders’ reactions to information shocks</li>
           </ul>  
 
@@ -354,32 +490,39 @@
         <p>The seminar is designed to prepare students for independent research and provides an excellent foundation for a subsequent MSc thesis.</p>
         
         <h2>Prerequisites</h2>
-        <p>Sound knowledge of microeconomics, empirical methods, and familiarity with economic literature.</p>
+        <p>Students should have a sound knowledge of microeconomics and empirical methods. Students will also benefit from previous course work on behavioral economics and labor economics, although no specific previous knowledge is required.</p>
       `;
+
+        
+
 
       document.getElementById('document-body').innerHTML = `
         <h1 class="doc-title">${title}</h1>
         <div class="subtitle-track">Official Syllabus &bull; Track: ${groupParam}</div>
         
         ${introContent}
+        
+        
+        <h2>Course Procedures and Timeline</h2>
+        <!-- ${dynamicTimeline} -->
+        ${timelineHTML}
 
-        <h2>Course Topics and Reading List</h2>
-        <p>General reading:</p>
-        ${thalerRef}
+        <h2>Examination and Grading</h2>
+        <p>Grading is based on the seminar paper and the workshop presentation. Further details on the requirements and grading weights will be provided in the introductory meeting.</p>
 
-        <p>Seminar topics will be assigned in the first week of the semester. The following overview and research papers allow you to familiarize yourself with possible topics.</p>
+
+        <h2>Course Topics and Preliminary Reading List</h2>
+        <!-- <p>General reading:</p>
+        ${thalerRef} -->
+
+        <p>Seminar topics will be assigned in the first week of the semester. The following overview allows you to familiarize yourself with possible topics. <u>This list of topics is tentative and subject to changes: </u></p>
 
         ${option1}
-        
+
         ${dynamicRefs}
         ${option2}
 
 
-        <h2>Course Procedures and Timeline</h2>
-        ${dynamicTimeline}
-
-        <h2>Examination and Grading</h2>
-        <p>Grading is based on the seminar paper and the workshop presentation, weighted 3:2 (paper 60%, presentation 40%).</p>
       `;
     });
   </script>
